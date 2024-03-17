@@ -253,9 +253,9 @@ extension NetworkPlayerViewController: UITextFieldDelegate {
 extension NetworkPlayerViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let tabbarHeight = self.tabBarController?.tabBar.frame.height else { return }
-        guard let navigationHeight = self.navigationController?.navigationBar.frame.height else { return }
-        let screenHeight = UIScreen.main.bounds.height
+//        guard let tabbarHeight = self.tabBarController?.tabBar.frame.height else { return }
+//        guard let navigationHeight = self.navigationController?.navigationBar.frame.height else { return }
+//        let screenHeight = UIScreen.main.bounds.height
 
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             UIView.animate(withDuration: 0.5) {
