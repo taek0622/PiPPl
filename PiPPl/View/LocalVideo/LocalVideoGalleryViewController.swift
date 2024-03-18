@@ -55,15 +55,25 @@ class LocalVideoGalleryViewController: UIViewController {
         }
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation == .portrait {
+            videoCollectionView.collectionViewLayout = configureCompositionalLayout(3)
+            layout()
+        } else {
+            videoCollectionView.collectionViewLayout = configureCompositionalLayout(5)
+            layout()
+        }
+    }
+
     // MARK: - Method
 
     private func layout() {
         view.addSubview(videoCollectionView)
         NSLayoutConstraint.activate([
             videoCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            videoCollectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            videoCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             videoCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            videoCollectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+            videoCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
 
         view.addSubview(collectionEmptyButton)
@@ -74,15 +84,15 @@ class LocalVideoGalleryViewController: UIViewController {
     }
 
     private func initializeCollectionView() {
-        videoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCompositionalLayout())
+        videoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCompositionalLayout(3))
         videoCollectionView.translatesAutoresizingMaskIntoConstraints = false
         videoCollectionView.delegate = self
     }
 
-    private func configureCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalWidth(1/3))
+    private func configureCompositionalLayout(_ itemCountOfRow: Double) -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/itemCountOfRow), heightDimension: .fractionalWidth(1/itemCountOfRow))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1/3))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1/itemCountOfRow))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = NSCollectionLayoutSpacing.flexible(UIScreen.main.bounds.width/200)
         let section = NSCollectionLayoutSection(group: group)
