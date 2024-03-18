@@ -22,3 +22,10 @@
 
 ## 개인정보 처리방침
 [개인정보 처리방침](https://pippl.notion.site/9133535f3606428fb2459e5bbc04b2c1?pvs=4)
+
+## 라이센스
+[라이센스](https://pippl.notion.site/e318bd246e894b348ece6387e68270de?pvs=4)
+
+## 이용 문의
+[이용 문의](mailto:meenu170808@gmail.com)
+<br>❗️문의를 하실 때는 제목의 앞에 **[PiPPl]** 을 붙이고 **문의 내용** 을 적어주시면 확인이 빠릅니다.
