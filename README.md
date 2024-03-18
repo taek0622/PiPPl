@@ -20,6 +20,9 @@
 ## 아이콘
 <img src="https://github.com/taek0622/PiPPl/assets/81027256/664f3fa0-8d15-4e9e-804e-77de3aa6991f" width=128>
 
+## 사이트
+[PiPPl 홈페이지](https://pippl.notion.site/PiPPl-94147590ed8440f3828a56dace806583?pvs=4)
+
 ## 개인정보 처리방침
 [개인정보 처리방침](https://pippl.notion.site/9133535f3606428fb2459e5bbc04b2c1?pvs=4)
 
