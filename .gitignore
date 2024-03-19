@@ -129,3 +129,4 @@ iOSInjectionProject/
 # End of https://www.toptal.com/developers/gitignore/api/macos,swift,cocoapods
 PiPPl/Properties.plist
 PiPPl.xcodeproj/xcshareddata/xcschemes/PiPPl.xcscheme
+PiPPl.xcodeproj/xcshareddata/xcschemes/PiPPlShareExtension.xcscheme
