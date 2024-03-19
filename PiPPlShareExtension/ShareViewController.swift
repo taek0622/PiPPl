@@ -14,5 +14,14 @@ class ShareViewController: SLComposeServiceViewController {
         return !self.contentText.isEmpty
     }
 
+    override func configurationItems() -> [Any]! {
+        let item = SLComposeSheetConfigurationItem()
+
+        item?.title = "PiPPl"
+        item?.value = "재생할 동영상이 있는 페이지의 url 입력"
+
+        return [item]
+    }
+
 }
 
