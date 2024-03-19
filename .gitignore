@@ -130,3 +130,4 @@ iOSInjectionProject/
 PiPPl/Properties.plist
 PiPPl.xcodeproj/xcshareddata/xcschemes/PiPPl.xcscheme
 PiPPl.xcodeproj/xcshareddata/xcschemes/PiPPlShareExtension.xcscheme
+*.entitlements
