@@ -15,6 +15,9 @@
 		26B742A22BA62AA300823338 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742A12BA62AA300823338 /* NoticeViewController.swift */; };
 		26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AC2BA736A800823338 /* NoticeModel.swift */; };
 		26B742AF2BA736C200823338 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AE2BA736C200823338 /* NetworkManager.swift */; };
+		26B742B92BA8E8AF00823338 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742B82BA8E8AF00823338 /* ShareViewController.swift */; };
+		26B742BC2BA8E8AF00823338 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B742BA2BA8E8AF00823338 /* MainInterface.storyboard */; };
+		26B742C02BA8E8AF00823338 /* PiPPlShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 26B742B62BA8E8AF00823338 /* PiPPlShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		26EB7EDA2B56AA1000282354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7ED92B56AA1000282354 /* AppDelegate.swift */; };
 		26EB7EDC2B56AA1000282354 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */; };
 		26EB7EE32B56AA1300282354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26EB7EE22B56AA1300282354 /* Assets.xcassets */; };
@@ -23,6 +26,30 @@
 		26EB7EF02B56AB8100282354 /* NetworkPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7EEF2B56AB8100282354 /* NetworkPlayerViewController.swift */; };
 		26EB7EF52B57256200282354 /* LocalVideoThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7EF42B57256200282354 /* LocalVideoThumbnailCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		26B742BE2BA8E8AF00823338 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26EB7ECE2B56AA1000282354 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26B742B52BA8E8AF00823338;
+			remoteInfo = PiPPlShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		26B742C42BA8E8AF00823338 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				26B742C02BA8E8AF00823338 /* PiPPlShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2609D8D52B7B6A3D00CD3BFF /* Properties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Properties.plist; sourceTree = "<group>"; };
@@ -33,6 +60,11 @@
 		26B742A12BA62AA300823338 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		26B742AC2BA736A800823338 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
 		26B742AE2BA736C200823338 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		26B742B62BA8E8AF00823338 /* PiPPlShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PiPPlShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		26B742B82BA8E8AF00823338 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		26B742BB2BA8E8AF00823338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		26B742BD2BA8E8AF00823338 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26B742C52BA8F82A00823338 /* PiPPlShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiPPlShareExtension.entitlements; sourceTree = "<group>"; };
 		26EB7ED62B56AA1000282354 /* PiPPl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPPl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26EB7ED92B56AA1000282354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +78,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		26B742B32BA8E8AF00823338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26EB7ED32B56AA1000282354 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -103,10 +142,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		26B742B72BA8E8AF00823338 /* PiPPlShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				26B742B82BA8E8AF00823338 /* ShareViewController.swift */,
+				26B742BA2BA8E8AF00823338 /* MainInterface.storyboard */,
+				26B742BD2BA8E8AF00823338 /* Info.plist */,
+			);
+			path = PiPPlShareExtension;
+			sourceTree = "<group>";
+		};
 		26EB7ECD2B56AA1000282354 = {
 			isa = PBXGroup;
 			children = (
 				26EB7ED82B56AA1000282354 /* PiPPl */,
+				26B742B72BA8E8AF00823338 /* PiPPlShareExtension */,
 				26EB7ED72B56AA1000282354 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				26EB7ED62B56AA1000282354 /* PiPPl.app */,
+				26B742B62BA8E8AF00823338 /* PiPPlShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +189,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		26B742B52BA8E8AF00823338 /* PiPPlShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26B742C12BA8E8AF00823338 /* Build configuration list for PBXNativeTarget "PiPPlShareExtension" */;
+			buildPhases = (
+				26B742B22BA8E8AF00823338 /* Sources */,
+				26B742B32BA8E8AF00823338 /* Frameworks */,
+				26B742B42BA8E8AF00823338 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PiPPlShareExtension;
+			productName = PiPPlShareExtension;
+			productReference = 26B742B62BA8E8AF00823338 /* PiPPlShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		26EB7ED52B56AA1000282354 /* PiPPl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26EB7EEA2B56AA1300282354 /* Build configuration list for PBXNativeTarget "PiPPl" */;
@@ -145,10 +213,12 @@
 				26EB7ED22B56AA1000282354 /* Sources */,
 				26EB7ED32B56AA1000282354 /* Frameworks */,
 				26EB7ED42B56AA1000282354 /* Resources */,
+				26B742C42BA8E8AF00823338 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				26B742BF2BA8E8AF00823338 /* PBXTargetDependency */,
 			);
 			name = PiPPl;
 			productName = PiPPl;
@@ -165,6 +235,9 @@
 				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
+					26B742B52BA8E8AF00823338 = {
+						CreatedOnToolsVersion = 15.1;
+					};
 					26EB7ED52B56AA1000282354 = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -184,11 +257,20 @@
 			projectRoot = "";
 			targets = (
 				26EB7ED52B56AA1000282354 /* PiPPl */,
+				26B742B52BA8E8AF00823338 /* PiPPlShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		26B742B42BA8E8AF00823338 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26B742BC2BA8E8AF00823338 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26EB7ED42B56AA1000282354 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -202,6 +284,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		26B742B22BA8E8AF00823338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26B742B92BA8E8AF00823338 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26EB7ED22B56AA1000282354 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,7 +313,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		26B742BF2BA8E8AF00823338 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26B742B52BA8E8AF00823338 /* PiPPlShareExtension */;
+			targetProxy = 26B742BE2BA8E8AF00823338 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		26B742BA2BA8E8AF00823338 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26B742BB2BA8E8AF00823338 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		26EB7EE42B56AA1300282354 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -392,6 +498,7 @@
 		26EB7EEC2B56AA1300282354 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
