@@ -65,6 +65,7 @@
 		26B742BB2BA8E8AF00823338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		26B742BD2BA8E8AF00823338 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26B742C52BA8F82A00823338 /* PiPPlShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiPPlShareExtension.entitlements; sourceTree = "<group>"; };
+		26B742C82BA9E10E00823338 /* PiPPl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiPPl.entitlements; sourceTree = "<group>"; };
 		26EB7ED62B56AA1000282354 /* PiPPl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPPl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26EB7ED92B56AA1000282354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		26B742B72BA8E8AF00823338 /* PiPPlShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				26B742C52BA8F82A00823338 /* PiPPlShareExtension.entitlements */,
 				26B742B82BA8E8AF00823338 /* ShareViewController.swift */,
 				26B742BA2BA8E8AF00823338 /* MainInterface.storyboard */,
 				26B742BD2BA8E8AF00823338 /* Info.plist */,
@@ -173,6 +175,7 @@
 		26EB7ED82B56AA1000282354 /* PiPPl */ = {
 			isa = PBXGroup;
 			children = (
+				26B742C82BA9E10E00823338 /* PiPPl.entitlements */,
 				26EB7ED92B56AA1000282354 /* AppDelegate.swift */,
 				26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */,
 				263F037C2B598DA400EAC60E /* View */,
@@ -342,6 +345,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		26B742C22BA8E8AF00823338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PiPPlShareExtension/PiPPlShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F2SSSA5NRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PiPPlShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PiPPlShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl.PiPPlShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		26B742C32BA8E8AF00823338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = PiPPlShareExtension/PiPPlShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F2SSSA5NRF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PiPPlShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PiPPlShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl.PiPPlShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		26EB7EE82B56AA1300282354 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -466,8 +529,10 @@
 		26EB7EEB2B56AA1300282354 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PiPPl/PiPPl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F2SSSA5NRF;
@@ -483,7 +548,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -501,6 +566,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PiPPl/PiPPl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F2SSSA5NRF;
@@ -516,7 +582,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -531,6 +597,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		26B742C12BA8E8AF00823338 /* Build configuration list for PBXNativeTarget "PiPPlShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26B742C22BA8E8AF00823338 /* Debug */,
+				26B742C32BA8E8AF00823338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		26EB7ED12B56AA1000282354 /* Build configuration list for PBXProject "PiPPl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
