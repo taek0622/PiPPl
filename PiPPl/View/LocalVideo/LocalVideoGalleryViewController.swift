@@ -16,6 +16,7 @@ class LocalVideoGalleryViewController: UIViewController {
     private let libraryManager = LocalVideoLibraryManager.shared
     private var videoDataSource: UICollectionViewDiffableDataSource<String, PHAsset>!
     private var buttonConfig = UIButton.Configuration.plain()
+    private let playerView = LocalPlayerViewController()
 
     // MARK: - View
 
@@ -151,12 +152,11 @@ class LocalVideoGalleryViewController: UIViewController {
 
 extension LocalVideoGalleryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let playerView = LocalPlayerViewController()
         playerView.player = AVPlayer()
 
         PHCachingImageManager().requestAVAsset(forVideo: videoDataSource.snapshot().itemIdentifiers[indexPath.item], options: PHVideoRequestOptions()) { asset, audioMix, info in
             guard let asset else { return }
-            playerView.player?.replaceCurrentItem(with: AVPlayerItem(asset: asset))
+            self.playerView.player?.replaceCurrentItem(with: AVPlayerItem(asset: asset))
         }
 
         navigationController?.pushViewController(playerView, animated: true)
@@ -164,6 +164,11 @@ extension LocalVideoGalleryViewController: UICollectionViewDelegate {
 }
 
 class LocalPlayerViewController: AVPlayerViewController {
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        self.removeFromParent()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
