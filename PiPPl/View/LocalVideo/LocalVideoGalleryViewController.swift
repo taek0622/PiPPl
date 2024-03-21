@@ -35,6 +35,7 @@ class LocalVideoGalleryViewController: UIViewController {
         navigationItem.title = "로컬 비디오"
         initializeCollectionView()
         layout()
+        playerView.delegate = self
 
         switch libraryManager.status {
         case .notDetermined, .denied, .restricted:
@@ -184,6 +185,14 @@ class LocalPlayerViewController: AVPlayerViewController {
         super.viewWillDisappear(animated)
         player?.pause()
         tabBarController?.tabBar.isHidden = false
+    }
+
+}
+
+extension LocalVideoGalleryViewController: AVPlayerViewControllerDelegate {
+
+    func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        playerViewController.player?.play()
     }
 
 }
