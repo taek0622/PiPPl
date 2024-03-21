@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2609D8D62B7B6A3D00CD3BFF /* Properties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2609D8D52B7B6A3D00CD3BFF /* Properties.plist */; };
-		263F037A2B5984D800EAC60E /* LocalPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F03792B5984D800EAC60E /* LocalPlayerViewController.swift */; };
+		263F037A2B5984D800EAC60E /* LegacyLocalPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F03792B5984D800EAC60E /* LegacyLocalPlayerViewController.swift */; };
 		263F037F2B598DFB00EAC60E /* LocalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F037E2B598DFB00EAC60E /* LocalVideoPlayer.swift */; };
 		2664066A2B5ED862004B6F8D /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266406692B5ED862004B6F8D /* AppInfoViewController.swift */; };
 		2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */; };
@@ -26,7 +26,7 @@
 
 /* Begin PBXFileReference section */
 		2609D8D52B7B6A3D00CD3BFF /* Properties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Properties.plist; sourceTree = "<group>"; };
-		263F03792B5984D800EAC60E /* LocalPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayerViewController.swift; sourceTree = "<group>"; };
+		263F03792B5984D800EAC60E /* LegacyLocalPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyLocalPlayerViewController.swift; sourceTree = "<group>"; };
 		263F037E2B598DFB00EAC60E /* LocalVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoPlayer.swift; sourceTree = "<group>"; };
 		266406692B5ED862004B6F8D /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
 		2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoLibraryManager.swift; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 			children = (
 				26EB7EED2B56AB7700282354 /* LocalVideoGalleryViewController.swift */,
 				26EB7EF42B57256200282354 /* LocalVideoThumbnailCell.swift */,
-				263F03792B5984D800EAC60E /* LocalPlayerViewController.swift */,
+				263F03792B5984D800EAC60E /* LegacyLocalPlayerViewController.swift */,
 			);
 			path = LocalVideo;
 			sourceTree = "<group>";
@@ -209,7 +209,7 @@
 				26B742AF2BA736C200823338 /* NetworkManager.swift in Sources */,
 				2664066A2B5ED862004B6F8D /* AppInfoViewController.swift in Sources */,
 				26EB7EF52B57256200282354 /* LocalVideoThumbnailCell.swift in Sources */,
-				263F037A2B5984D800EAC60E /* LocalPlayerViewController.swift in Sources */,
+				263F037A2B5984D800EAC60E /* LegacyLocalPlayerViewController.swift in Sources */,
 				26EB7EEE2B56AB7700282354 /* LocalVideoGalleryViewController.swift in Sources */,
 				26B742A22BA62AA300823338 /* NoticeViewController.swift in Sources */,
 				26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */,
@@ -377,7 +377,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -409,7 +409,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -5,6 +5,7 @@
 //  Created by 김민택 on 1/16/24.
 //
 
+import AVKit
 import Photos
 import UIKit
 
@@ -15,6 +16,7 @@ class LocalVideoGalleryViewController: UIViewController {
     private let libraryManager = LocalVideoLibraryManager.shared
     private var videoDataSource: UICollectionViewDiffableDataSource<String, PHAsset>!
     private var buttonConfig = UIButton.Configuration.plain()
+    private let playerView = LocalPlayerViewController()
 
     // MARK: - View
 
@@ -33,6 +35,7 @@ class LocalVideoGalleryViewController: UIViewController {
         navigationItem.title = "로컬 비디오"
         initializeCollectionView()
         layout()
+        playerView.delegate = self
 
         switch libraryManager.status {
         case .notDetermined, .denied, .restricted:
@@ -150,9 +153,46 @@ class LocalVideoGalleryViewController: UIViewController {
 
 extension LocalVideoGalleryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let videoPlayView = LocalPlayerViewController()
-        videoPlayView.hidesBottomBarWhenPushed = true
-        videoPlayView.configureVideo(videoDataSource.snapshot().itemIdentifiers[indexPath.item])
-        navigationController?.pushViewController(videoPlayView, animated: true)
+        playerView.player = AVPlayer()
+
+        PHCachingImageManager().requestAVAsset(forVideo: videoDataSource.snapshot().itemIdentifiers[indexPath.item], options: PHVideoRequestOptions()) { asset, audioMix, info in
+            guard let asset else { return }
+            self.playerView.player?.replaceCurrentItem(with: AVPlayerItem(asset: asset))
+        }
+
+        navigationController?.pushViewController(playerView, animated: true)
     }
+}
+
+class LocalPlayerViewController: AVPlayerViewController {
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        self.removeFromParent()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        player?.play()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player?.pause()
+        tabBarController?.tabBar.isHidden = false
+    }
+
+}
+
+extension LocalVideoGalleryViewController: AVPlayerViewControllerDelegate {
+
+    func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        playerViewController.player?.play()
+    }
+
 }

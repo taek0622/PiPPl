@@ -9,7 +9,7 @@ import AVKit
 import Photos
 import UIKit
 
-class LocalPlayerViewController: UIViewController {
+class LegacyLocalPlayerViewController: UIViewController {
 
     // MARK: - Property
 
@@ -159,7 +159,7 @@ class LocalPlayerViewController: UIViewController {
 
 }
 
-extension LocalPlayerViewController: AVPictureInPictureControllerDelegate {}
+extension LegacyLocalPlayerViewController: AVPictureInPictureControllerDelegate {}
 
 class ToolbarProgressView: UIProgressView {
 

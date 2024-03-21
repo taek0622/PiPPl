@@ -107,6 +107,7 @@ extension AppInfoViewController: MFMailComposeViewControllerDelegate {
         customerServiceMail.mailComposeDelegate = self
         customerServiceMail.setToRecipients(["meenu170808@gmail.com"])
         customerServiceMail.setSubject("[PiPPl] 문의 사항")
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
         let customerServiceBody = """
 
         ----------------------------------------
@@ -114,7 +115,9 @@ extension AppInfoViewController: MFMailComposeViewControllerDelegate {
         - 성함:
         - 연락처(전화번호/이메일):
         - 문의 날짜: \(Date())
-        - 디바이스 종류:
+        - 디바이스 종류: \(UIDevice.current.model)
+        - 운영체제 및 버전: \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)
+        - 앱 버전: \(version)
         - 문의 내용:
 
         ----------------------------------------
