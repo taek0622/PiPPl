@@ -5,6 +5,7 @@
 //  Created by 김민택 on 1/16/24.
 //
 
+import AVKit
 import Photos
 import UIKit
 
@@ -150,9 +151,34 @@ class LocalVideoGalleryViewController: UIViewController {
 
 extension LocalVideoGalleryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let videoPlayView = LocalPlayerViewController()
-        videoPlayView.hidesBottomBarWhenPushed = true
-        videoPlayView.configureVideo(videoDataSource.snapshot().itemIdentifiers[indexPath.item])
-        navigationController?.pushViewController(videoPlayView, animated: true)
+        let playerView = LocalPlayerViewController()
+        playerView.player = AVPlayer()
+
+        PHCachingImageManager().requestAVAsset(forVideo: videoDataSource.snapshot().itemIdentifiers[indexPath.item], options: PHVideoRequestOptions()) { asset, audioMix, info in
+            guard let asset else { return }
+            playerView.player?.replaceCurrentItem(with: AVPlayerItem(asset: asset))
+        }
+
+        navigationController?.pushViewController(playerView, animated: true)
     }
+}
+
+class LocalPlayerViewController: AVPlayerViewController {
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        player?.play()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player?.pause()
+        tabBarController?.tabBar.isHidden = false
+    }
+
 }
