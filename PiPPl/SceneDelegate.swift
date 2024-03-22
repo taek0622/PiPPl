@@ -15,19 +15,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
 
-        let tabbar = UITabBarController()
         let localPlayerView = UINavigationController(rootViewController: LocalVideoGalleryViewController())
         let networkPlayerView = UINavigationController(rootViewController: NetworkPlayerViewController())
         let appInfoView = UINavigationController(rootViewController: AppInfoViewController())
         let views = [localPlayerView, networkPlayerView, appInfoView]
         configureBarAppearance(views)
 
-        localPlayerView.tabBarItem = UITabBarItem(title: "로컬 비디오", image: UIImage(systemName: "play.square"), selectedImage: UIImage(systemName: "play.square.fill"))
-        networkPlayerView.tabBarItem = UITabBarItem(title: "네트워크 비디오", image: UIImage(systemName: "globe"), selectedImage: UIImage(systemName: "globe"))
-        appInfoView.tabBarItem = UITabBarItem(title: "앱 정보", image: UIImage(systemName: "info.circle"), selectedImage: UIImage(systemName: "info.circle.fill"))
-        tabbar.setViewControllers(views, animated: true)
+        if UIDevice.current.systemName == "iOS" {
+            let tabbar = UITabBarController()
 
-        window?.rootViewController = tabbar
+            localPlayerView.tabBarItem = UITabBarItem(title: "로컬 비디오", image: UIImage(systemName: "play.square"), selectedImage: UIImage(systemName: "play.square.fill"))
+            networkPlayerView.tabBarItem = UITabBarItem(title: "네트워크 비디오", image: UIImage(systemName: "globe"), selectedImage: UIImage(systemName: "globe"))
+            appInfoView.tabBarItem = UITabBarItem(title: "앱 정보", image: UIImage(systemName: "info.circle"), selectedImage: UIImage(systemName: "info.circle.fill"))
+            tabbar.setViewControllers(views, animated: true)
+
+            window?.rootViewController = tabbar
+        } else if UIDevice.current.systemName == "iPadOS" {
+            let splitView = UISplitViewController(style: .doubleColumn)
+            splitView.setViewController(ViewListViewController(), for: .primary)
+//            splitView.showDetailViewController(LocalVideoGalleryViewController(), sender: nil)
+            splitView.setViewController(LocalVideoGalleryViewController(), for: .secondary)
+//            splitView.viewControllers = [ViewListViewController(), localPlayerView]
+            window?.rootViewController = splitView
+        }
+
         window?.makeKeyAndVisible()
     }
 
