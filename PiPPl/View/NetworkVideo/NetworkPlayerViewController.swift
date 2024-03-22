@@ -256,22 +256,23 @@ extension NetworkPlayerViewController: UIScrollViewDelegate {
 //        guard let tabbarHeight = self.tabBarController?.tabBar.frame.height else { return }
 //        guard let navigationHeight = self.navigationController?.navigationBar.frame.height else { return }
 //        let screenHeight = UIScreen.main.bounds.height
+        if UIDevice.current.systemName == "iOS" {
+            if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+                UIView.animate(withDuration: 0.5) {
+    //                if (self.tabBarController?.tabBar.frame.origin.y)! <= screenHeight - tabbarHeight {
+    //                    self.tabBarController?.tabBar.frame.origin.y = screenHeight
+    //                }
 
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-            UIView.animate(withDuration: 0.5) {
-//                if (self.tabBarController?.tabBar.frame.origin.y)! <= screenHeight - tabbarHeight {
-//                    self.tabBarController?.tabBar.frame.origin.y = screenHeight
-//                }
+                    self.navigationController?.navigationBar.isHidden = false
+                }
+            } else {
+                UIView.animate(withDuration: 0.5) {
+    //                if (self.tabBarController?.tabBar.frame.origin.y)! > screenHeight - tabbarHeight {
+    //                    self.tabBarController?.tabBar.frame.origin.y = screenHeight - tabbarHeight
+    //                }
 
-                self.navigationController?.navigationBar.isHidden = false
-            }
-        } else {
-            UIView.animate(withDuration: 0.5) {
-//                if (self.tabBarController?.tabBar.frame.origin.y)! > screenHeight - tabbarHeight {
-//                    self.tabBarController?.tabBar.frame.origin.y = screenHeight - tabbarHeight
-//                }
-
-                self.navigationController?.navigationBar.isHidden = true
+                    self.navigationController?.navigationBar.isHidden = true
+                }
             }
         }
     }
