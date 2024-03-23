@@ -79,10 +79,9 @@ extension AppInfoViewController: UICollectionViewDelegate {
         case [0, 0]:
             navigationController?.pushViewController(NoticeViewController(), animated: true)
         case [0, 1]:
-            if let url = URL(string: "https://github.com/taek0622") {
-                let developerInfo = SFSafariViewController(url: url)
-                present(developerInfo, animated: true)
-            }
+            guard let url = URL(string: "https://github.com/taek0622") else { return }
+            let developerInfo = SFSafariViewController(url: url)
+            present(developerInfo, animated: true)
         case [0, 2]:
             openCustomerServiceCenter()
         case [0, 3]:
