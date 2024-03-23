@@ -33,9 +33,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else if UIDevice.current.systemName == "iPadOS" {
             let splitView = UISplitViewController(style: .doubleColumn)
             splitView.setViewController(ViewListViewController(), for: .primary)
-//            splitView.showDetailViewController(LocalVideoGalleryViewController(), sender: nil)
-            splitView.setViewController(LocalVideoGalleryViewController(), for: .secondary)
-//            splitView.viewControllers = [ViewListViewController(), localPlayerView]
+            splitView.setViewController(localPlayerView, for: .secondary)
+
             window?.rootViewController = splitView
         }
 
