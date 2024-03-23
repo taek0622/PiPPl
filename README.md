@@ -5,6 +5,7 @@
 ![IDE](https://img.shields.io/badge/Xcode-15.1-blue)
 ![Swift](https://img.shields.io/badge/Swift-5.9-orange)
 ![Platforms-iOS](https://img.shields.io/badge/iOS-15.0+-purple)
+![Platforms-iPadOS](https://img.shields.io/badge/iPadOS-15.0+-skyblue)
 
 ## 다운로드
 <a href="https://apps.apple.com/kr/app/pippl/id6479563734">![Latest_Version](https://img.shields.io/badge/version-1.0.2-green)<br>
