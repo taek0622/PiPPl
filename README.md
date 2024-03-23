@@ -4,10 +4,10 @@
 ## 개발사양
 ![IDE](https://img.shields.io/badge/Xcode-15.1-blue)
 ![Swift](https://img.shields.io/badge/Swift-5.9-orange)
-![Platforms-iOS](https://img.shields.io/badge/iOS-15.0+-green)
+![Platforms-iOS](https://img.shields.io/badge/iOS-15.0+-purple)
 
 ## 다운로드
-<a href="https://apps.apple.com/kr/app/pippl/id6479563734">![Latest_Version](https://img.shields.io/badge/version-1.0.2-critical)<br>
+<a href="https://apps.apple.com/kr/app/pippl/id6479563734">![Latest_Version](https://img.shields.io/badge/version-1.0.2-green)<br>
 <img src="https://github.com/taek0622/PiPPl/assets/81027256/c69ed780-ff4a-42fd-9ba4-a8d643f78454"></a>
 
 ## 스크린샷
