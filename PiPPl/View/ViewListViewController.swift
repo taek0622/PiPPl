@@ -10,6 +10,9 @@ import UIKit
 class ViewListViewController: UITableViewController {
 
     private var dataSource: UITableViewDiffableDataSource<Int, String>?
+    private let localPlayerView = UINavigationController(rootViewController: LocalVideoGalleryViewController())
+    private let networkPlayerView = UINavigationController(rootViewController: NetworkPlayerViewController())
+    private let appInfoView = UINavigationController(rootViewController: AppInfoViewController())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +39,12 @@ class ViewListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
         case [0, 0]:
-            navigationController?.showDetailViewController(LocalVideoGalleryViewController(), sender: nil)
+            splitViewController?.setViewController(localPlayerView, for: .secondary)
             break
         case [0, 1]:
-            navigationController?.showDetailViewController(NetworkPlayerViewController(), sender: nil)
+            splitViewController?.setViewController(networkPlayerView, for: .secondary)
         case [0, 2]:
-            navigationController?.showDetailViewController(AppInfoViewController(), sender: nil)
+            splitViewController?.setViewController(appInfoView, for: .secondary)
         default:
             break
         }
