@@ -67,7 +67,7 @@ class AppInfoViewController: UIViewController {
 
         var snapshot = NSDiffableDataSourceSnapshot<String, String>()
         snapshot.appendSections(["앱 정보"])
-        snapshot.appendItems(["공지사항", "개발자 정보", "고객 문의", "버전 정보"], toSection: "앱 정보")
+        snapshot.appendItems(["공지사항", "개발자 정보", "고객 문의", "라이센스", "버전 정보"], toSection: "앱 정보")
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -79,13 +79,16 @@ extension AppInfoViewController: UICollectionViewDelegate {
         case [0, 0]:
             navigationController?.pushViewController(NoticeViewController(), animated: true)
         case [0, 1]:
-            if let url = URL(string: "https://github.com/taek0622") {
-                let developerInfo = SFSafariViewController(url: url)
-                present(developerInfo, animated: true)
-            }
+            guard let url = URL(string: "https://github.com/taek0622") else { return }
+            let developerInfo = SFSafariViewController(url: url)
+            present(developerInfo, animated: true)
         case [0, 2]:
             openCustomerServiceCenter()
         case [0, 3]:
+            guard let url = URL(string: "https://pippl.notion.site/e318bd246e894b348ece6387e68270de") else { return }
+            let licenseInfo = SFSafariViewController(url: url)
+            present(licenseInfo, animated: true)
+        case [0, 4]:
             // 버전정보
             break
         default:
