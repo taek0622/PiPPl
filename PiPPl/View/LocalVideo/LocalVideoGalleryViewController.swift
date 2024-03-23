@@ -59,13 +59,8 @@ class LocalVideoGalleryViewController: UIViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIDevice.current.orientation == .portrait {
-            videoCollectionView.collectionViewLayout = configureCompositionalLayout(3)
-            layout()
-        } else {
-            videoCollectionView.collectionViewLayout = configureCompositionalLayout(5)
-            layout()
-        }
+        videoCollectionView.collectionViewLayout = configureCompositionalLayout()
+        layout()
     }
 
     // MARK: - Method
@@ -87,12 +82,28 @@ class LocalVideoGalleryViewController: UIViewController {
     }
 
     private func initializeCollectionView() {
-        videoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCompositionalLayout(3))
+        videoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCompositionalLayout())
         videoCollectionView.translatesAutoresizingMaskIntoConstraints = false
         videoCollectionView.delegate = self
     }
 
-    private func configureCompositionalLayout(_ itemCountOfRow: Double) -> UICollectionViewCompositionalLayout {
+    private func configureCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        var itemCountOfRow = 3.0
+
+        if UIDevice.current.systemName == "iOS" {
+            if UIDevice.current.orientation == .portrait {
+                itemCountOfRow = 3
+            } else {
+                itemCountOfRow = 5
+            }
+        } else if UIDevice.current.systemName == "iPadOS" {
+            if UIDevice.current.orientation == .portrait {
+                itemCountOfRow = 5
+            } else {
+                itemCountOfRow = 7
+            }
+        }
+
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/itemCountOfRow), heightDimension: .fractionalWidth(1/itemCountOfRow))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1/itemCountOfRow))
