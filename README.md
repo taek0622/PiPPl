@@ -10,8 +10,11 @@
 <a href="https://apps.apple.com/kr/app/pippl/id6479563734">![Latest_Version](https://img.shields.io/badge/version-1.0.2-green)<br>
 <img src="https://github.com/taek0622/PiPPl/assets/81027256/c69ed780-ff4a-42fd-9ba4-a8d643f78454"></a>
 
-## 스크린샷
+## iOS 스크린샷
 <img src="https://github.com/taek0622/PiPPl/assets/81027256/98fd026a-15f7-40c3-92cf-f1f882b37dc0" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/48c1dc63-d17a-49d3-b515-3f22abf58990" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/bcebf056-f0af-4e17-b1fa-ae0bdaf8a999" width=30%>
+
+## iPadOS 스크린샷
+<img src="https://github.com/taek0622/PiPPl/assets/81027256/d053361d-0733-44d5-94ba-b906209576dd" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/1c79ab5e-794f-4e70-b137-304a29491d2d" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/924c458d-6ea9-4386-be24-3e202ea806d5" width=30%>
 
 ## 기능
 - 로컬 비디오 플레이
