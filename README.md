@@ -2,12 +2,13 @@
 **PiPPl**는 iOS 플랫폼을 위한 PiP 비디오 플레이어입니다.
 
 ## 개발사양
-![IDE](https://img.shields.io/badge/Xcode-15.1-skyblue?style=flat-square)
-![Swift](https://img.shields.io/badge/Swift-5.9-orange?style=flat-square)
-![Platforms](https://img.shields.io/badge/Platforms-iOS_15+-yellowgreen?style=flat-square) 
+![IDE](https://img.shields.io/badge/Xcode-15.1-blue)
+![Swift](https://img.shields.io/badge/Swift-5.9-orange)
+![Platforms-iOS](https://img.shields.io/badge/iOS-15.0+-green)
 
 ## 다운로드
-<a href="https://apps.apple.com/kr/app/pippl/id6479563734"><img src="https://github.com/taek0622/PiPPl/assets/81027256/c69ed780-ff4a-42fd-9ba4-a8d643f78454"></a>
+<a href="https://apps.apple.com/kr/app/pippl/id6479563734">![Latest_Version](https://img.shields.io/badge/version-1.0.2-critical)<br>
+<img src="https://github.com/taek0622/PiPPl/assets/81027256/c69ed780-ff4a-42fd-9ba4-a8d643f78454"></a>
 
 ## 스크린샷
 <img src="https://github.com/taek0622/PiPPl/assets/81027256/98fd026a-15f7-40c3-92cf-f1f882b37dc0" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/48c1dc63-d17a-49d3-b515-3f22abf58990" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/bcebf056-f0af-4e17-b1fa-ae0bdaf8a999" width=30%>
