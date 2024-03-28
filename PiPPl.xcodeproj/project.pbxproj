@@ -16,6 +16,10 @@
 		26B742A22BA62AA300823338 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742A12BA62AA300823338 /* NoticeViewController.swift */; };
 		26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AC2BA736A800823338 /* NoticeModel.swift */; };
 		26B742AF2BA736C200823338 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AE2BA736C200823338 /* NetworkManager.swift */; };
+		26DA7D4C2BB5D059002AF316 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26DA7D4B2BB5D059002AF316 /* Localizable.xcstrings */; };
+		26DA7D4F2BB5D328002AF316 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DA7D4E2BB5D328002AF316 /* String+.swift */; };
+		26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DA7D502BB5D3A3002AF316 /* AppText.swift */; };
+		26DA7D532BB5DD77002AF316 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */; };
 		26EB7EDA2B56AA1000282354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7ED92B56AA1000282354 /* AppDelegate.swift */; };
 		26EB7EDC2B56AA1000282354 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */; };
 		26EB7EE32B56AA1300282354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26EB7EE22B56AA1300282354 /* Assets.xcassets */; };
@@ -35,6 +39,11 @@
 		26B742A12BA62AA300823338 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		26B742AC2BA736A800823338 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
 		26B742AE2BA736C200823338 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		26DA7D492BB5CF53002AF316 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		26DA7D4B2BB5D059002AF316 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		26DA7D4E2BB5D328002AF316 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		26DA7D502BB5D3A3002AF316 /* AppText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
+		26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		26EB7ED62B56AA1000282354 /* PiPPl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPPl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26EB7ED92B56AA1000282354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +115,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		26DA7D4A2BB5CF83002AF316 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				26DA7D4B2BB5D059002AF316 /* Localizable.xcstrings */,
+				26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */,
+				26DA7D502BB5D3A3002AF316 /* AppText.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		26DA7D4D2BB5D310002AF316 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				26DA7D4E2BB5D328002AF316 /* String+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		26EB7ECD2B56AA1000282354 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +157,8 @@
 				263F037C2B598DA400EAC60E /* View */,
 				26B742AB2BA7368D00823338 /* Model */,
 				263F037D2B598DC400EAC60E /* Utility */,
+				26DA7D4D2BB5D310002AF316 /* Extension */,
+				26DA7D4A2BB5CF83002AF316 /* Resource */,
 				26EB7EE22B56AA1300282354 /* Assets.xcassets */,
 				26EB7EE42B56AA1300282354 /* LaunchScreen.storyboard */,
 				26EB7EE72B56AA1300282354 /* Info.plist */,
@@ -180,6 +209,7 @@
 			knownRegions = (
 				Base,
 				ko,
+				en,
 			);
 			mainGroup = 26EB7ECD2B56AA1000282354;
 			productRefGroup = 26EB7ED72B56AA1000282354 /* Products */;
@@ -197,7 +227,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				26EB7EE62B56AA1300282354 /* LaunchScreen.storyboard in Resources */,
+				26DA7D532BB5DD77002AF316 /* InfoPlist.xcstrings in Resources */,
 				26EB7EE32B56AA1300282354 /* Assets.xcassets in Resources */,
+				26DA7D4C2BB5D059002AF316 /* Localizable.xcstrings in Resources */,
 				2609D8D62B7B6A3D00CD3BFF /* Properties.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,6 +243,7 @@
 			files = (
 				26B742AF2BA736C200823338 /* NetworkManager.swift in Sources */,
 				2664066A2B5ED862004B6F8D /* AppInfoViewController.swift in Sources */,
+				26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */,
 				26EB7EF52B57256200282354 /* LocalVideoThumbnailCell.swift in Sources */,
 				26074FD22BACA3D100A5649E /* ViewListViewController.swift in Sources */,
 				263F037A2B5984D800EAC60E /* LegacyLocalPlayerViewController.swift in Sources */,
@@ -221,6 +254,7 @@
 				2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */,
 				263F037F2B598DFB00EAC60E /* LocalVideoPlayer.swift in Sources */,
 				26EB7EDA2B56AA1000282354 /* AppDelegate.swift in Sources */,
+				26DA7D4F2BB5D328002AF316 /* String+.swift in Sources */,
 				26EB7EDC2B56AA1000282354 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,6 +267,7 @@
 			children = (
 				26EB7EE52B56AA1300282354 /* Base */,
 				26EB7EF32B56AC9900282354 /* ko */,
+				26DA7D492BB5CF53002AF316 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -381,7 +416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -413,7 +448,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

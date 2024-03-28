@@ -66,6 +66,7 @@ class NoticeViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = AppText.notice.localized()
         NetworkManager.shared.requestData { data in
             NetworkManager.shared.notices = data
         }

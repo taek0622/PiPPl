@@ -32,14 +32,14 @@ class LocalVideoGalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.title = "로컬 비디오"
+        navigationItem.title = AppText.localVideo.localized()
         initializeCollectionView()
         layout()
         playerView.delegate = self
 
         switch libraryManager.status {
         case .notDetermined, .denied, .restricted:
-            self.buttonConfig.title = "사진 앨범 접근 권한을 허용해주세요"
+            self.buttonConfig.title = AppText.photoGalleryAccessPermissionButtonText.localized()
             self.collectionEmptyButton.configuration = self.buttonConfig
             self.collectionEmptyButton.addAction(UIAction { _ in self.photoLibraryAuthorization() }, for: .touchUpInside)
         case .authorized, .limited:
