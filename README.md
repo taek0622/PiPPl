@@ -12,7 +12,7 @@
 <img src="https://github.com/taek0622/PiPPl/assets/81027256/c69ed780-ff4a-42fd-9ba4-a8d643f78454"></a>
 
 ## iOS 스크린샷
-<img src="https://github.com/taek0622/PiPPl/assets/81027256/98fd026a-15f7-40c3-92cf-f1f882b37dc0" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/48c1dc63-d17a-49d3-b515-3f22abf58990" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/bcebf056-f0af-4e17-b1fa-ae0bdaf8a999" width=30%>
+<img src="https://github.com/taek0622/PiPPl/assets/81027256/b968ca6a-df63-442a-ac6c-6716c6c9be75" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/5c4ecb3b-21df-4e84-b904-bd31942f53a4" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/6455c00a-9c33-46c0-a886-c934ec02babe" width=30%>
 
 ## iPadOS 스크린샷
 <img src="https://github.com/taek0622/PiPPl/assets/81027256/d053361d-0733-44d5-94ba-b906209576dd" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/1c79ab5e-794f-4e70-b137-304a29491d2d" width=30%> <img src="https://github.com/taek0622/PiPPl/assets/81027256/924c458d-6ea9-4386-be24-3e202ea806d5" width=30%>
