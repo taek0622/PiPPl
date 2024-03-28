@@ -24,7 +24,7 @@ class AppInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.title = "앱 정보"
+        navigationItem.title = AppText.appInfo.localized()
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCollectionViewLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
@@ -50,7 +50,7 @@ class AppInfoViewController: UIViewController {
             var content = cell.defaultContentConfiguration()
             content.text = item
 
-            if item == "버전 정보" {
+            if item == AppText.versionInfo.localized() {
                 let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
                 content.secondaryText = version
                 content.secondaryTextProperties.font = .systemFont(ofSize: 16)
@@ -67,7 +67,7 @@ class AppInfoViewController: UIViewController {
 
         var snapshot = NSDiffableDataSourceSnapshot<String, String>()
         snapshot.appendSections(["앱 정보"])
-        snapshot.appendItems(["공지사항", "개발자 정보", "고객 문의", "라이센스", "버전 정보"], toSection: "앱 정보")
+        snapshot.appendItems([AppText.notice.localized(), AppText.developerInfo.localized(), AppText.customerService.localized(), AppText.license.localized(), AppText.versionInfo.localized()], toSection: "앱 정보")
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -102,30 +102,30 @@ extension AppInfoViewController: UICollectionViewDelegate {
 extension AppInfoViewController: MFMailComposeViewControllerDelegate {
     func openCustomerServiceCenter() {
         if !MFMailComposeViewController.canSendMail() {
-            let alertViewController = UIAlertController(title: "메일 기능 사용 불가", message: "앱에서 메일을 보낼 수 없습니다. 기기의 상태를 확인한 후에 다시 이용해주세요.\n지속적으로 오류가 발생하는 경우 meenu170808@gmail.com으로 별도의 메일 발송 부탁드립니다.", preferredStyle: .alert)
+            let alertViewController = UIAlertController(title: AppText.cantSendMailAlertTitle.localized(), message: AppText.cantSendMailAlertBody.localized(), preferredStyle: .alert)
             present(alertViewController, animated: true)
         }
 
         let customerServiceMail = MFMailComposeViewController()
         customerServiceMail.mailComposeDelegate = self
         customerServiceMail.setToRecipients(["meenu170808@gmail.com"])
-        customerServiceMail.setSubject("[PiPPl] 문의 사항")
+        customerServiceMail.setSubject("[PiPPl] \(AppText.mailTitle.localized())")
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
         let customerServiceBody = """
 
         ----------------------------------------
 
-        - 성함:
-        - 연락처(전화번호/이메일):
-        - 문의 날짜: \(Date())
-        - 디바이스 종류: \(UIDevice.current.model)
-        - 운영체제 및 버전: \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)
-        - 앱 버전: \(version)
-        - 문의 내용:
+        - \(AppText.name.localized()):
+        - \(AppText.mail.localized()):
+        - \(AppText.date.localized()): \(Date())
+        - \(AppText.device.localized()): \(UIDevice.current.model)
+        - \(AppText.os.localized()): \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)
+        - \(AppText.appVersion.localized()): \(version)
+        - \(AppText.mailBody.localized()):
 
         ----------------------------------------
 
-        문의 내용을 작성해주세요.
+        \(AppText.mailComment.localized())
 
         """
         customerServiceMail.setMessageBody(customerServiceBody, isHTML: false)

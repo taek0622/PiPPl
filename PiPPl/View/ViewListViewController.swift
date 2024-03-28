@@ -32,7 +32,7 @@ class ViewListViewController: UITableViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
 
         snapshot.appendSections([0])
-        snapshot.appendItems(["로컬 플레이", "네트워크 플레이", "앱 정보"])
+        snapshot.appendItems([AppText.localVideo.localized(), AppText.networkVideo.localized(), AppText.appInfo.localized()])
         dataSource?.apply(snapshot)
     }
 
