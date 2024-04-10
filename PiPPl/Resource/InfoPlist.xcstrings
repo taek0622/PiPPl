@@ -1,5 +1,5 @@
 {
-  "sourceLanguage" : "ko",
+  "sourceLanguage" : "en",
   "strings" : {
     "CFBundleName" : {
       "comment" : "Bundle name",
@@ -9,12 +9,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PiPPlay"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "PiPPl"
           }
         }
       }
@@ -27,12 +21,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Permission is required to import videos from Photo App."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "갤러리에서 비디오를 가져오기 위해 권한이 필요합니다."
           }
         }
       }
