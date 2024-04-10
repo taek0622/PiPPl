@@ -43,8 +43,8 @@ class NetworkPlayerViewController: UIViewController {
                 else { return }
 
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(iTunesID)"
-                let alert = UIAlertController(title: "구버전 알림", message: "새로운 버전의 앱이 출시 되었습니다.\n업데이트 이후 사용해주세요.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "업데이트 하기", style: .default, handler: { action in
+                let alert = UIAlertController(title: AppText.oldVersionAlertTitle, message: AppText.oldVersionAlertBody, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: AppText.oldVersionAlertAction, style: .default, handler: { action in
                     guard let url = URL(string: appStoreOpenURL) else { return }
                     if UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.open(url)
