@@ -89,8 +89,29 @@ extension AppInfoViewController: UICollectionViewDelegate {
             let licenseInfo = SFSafariViewController(url: url)
             present(licenseInfo, animated: true)
         case [0, 4]:
-            // 버전정보
-            break
+            Task {
+                switch await AppVersionManager.shared.checkNewUpdate() {
+                case true:
+                    guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
+                          let property = NSDictionary(contentsOfFile: filePath),
+                          let iTunesID = property["iTunesID"] as? String
+                    else { return }
+
+                    let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(iTunesID)"
+                    let alert = UIAlertController(title: AppText.oldVersionAlertTitle, message: AppText.oldVersionAlertBody, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: AppText.oldVersionAlertAction, style: .default, handler: { action in
+                        guard let url = URL(string: appStoreOpenURL) else { return }
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        }
+                    }))
+                    present(alert, animated: true)
+                case false:
+                    let alert = UIAlertController(title: AppText.latestVersionAlertTitle, message: AppText.latestVersionAlertBody, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: AppText.latestVersionAlertAction, style: .default))
+                    present(alert, animated: true)
+                }
+            }
         default:
             break
         }

@@ -1,5 +1,5 @@
 {
-  "sourceLanguage" : "ko",
+  "sourceLanguage" : "en",
   "strings" : {
     "개발자 정보" : {
       "extractionState" : "manual",
@@ -48,6 +48,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "공지사항"
+          }
+        }
+      }
+    },
+    "구버전 알림" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Old Version"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구버전 알림"
           }
         }
       }
@@ -239,6 +256,23 @@
         }
       }
     },
+    "새로운 버전의 앱이 출시 되었습니다.\\n업데이트 이후 사용해주세요." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A new version of the app has been released.\\nPlease update the app."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로운 버전의 앱이 출시 되었습니다.\\n업데이트 이후 사용해주세요."
+          }
+        }
+      }
+    },
     "성함" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -307,6 +341,40 @@
         }
       }
     },
+    "앱이 최신 버전입니다." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The App is Latest Version."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱이 최신 버전입니다."
+          }
+        }
+      }
+    },
+    "업데이트" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트"
+          }
+        }
+      }
+    },
     "여기에 주소를 입력해주세요." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -354,6 +422,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "운영체제 및 버전"
+          }
+        }
+      }
+    },
+    "최신 버전" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latest Version"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최신 버전"
+          }
+        }
+      }
+    },
+    "확인" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
           }
         }
       }

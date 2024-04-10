@@ -42,6 +42,16 @@ enum AppText {
     static let mailBody = "문의 내용"
     static let mailComment = "문의 내용을 작성해주세요."
 
+    // MARK: - App Version Check Text
+
+    static let oldVersionAlertTitle = "구버전 알림"
+    static let oldVersionAlertBody = "새로운 버전의 앱이 출시 되었습니다.\n업데이트 이후 사용해주세요."
+    static let oldVersionAlertAction = "업데이트"
+
+    static let latestVersionAlertTitle = "최신 버전"
+    static let latestVersionAlertBody = "앱이 최신 버전입니다."
+    static let latestVersionAlertAction = "확인"
+
     // MARK: - Info Plist
 
     static let photoGalleryAccessPermissionInfoPlistText = "갤러리에서 비디오를 가져오기 위해 권한이 필요합니다."
