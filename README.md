@@ -2,8 +2,8 @@
 **PiPPl**는 iOS 플랫폼을 위한 PiP 비디오 플레이어입니다.
 
 ## 개발사양
-![IDE](https://img.shields.io/badge/Xcode-15.1-blue)
-![Swift](https://img.shields.io/badge/Swift-5.9-orange)
+![IDE](https://img.shields.io/badge/Xcode-15.3-blue)
+![Swift](https://img.shields.io/badge/Swift-5.10-orange)
 ![Platforms-iOS](https://img.shields.io/badge/iOS-15.0+-purple)
 ![Platforms-iPadOS](https://img.shields.io/badge/iPadOS-15.0+-skyblue)
 
