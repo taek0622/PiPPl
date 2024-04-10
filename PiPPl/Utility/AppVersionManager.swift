@@ -13,6 +13,20 @@ class AppVersionManager {
 
     private init() {}
 
+    func checkNewUpdate() async -> Bool {
+        guard let downloadedAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
+        guard let latestAppStoreVersion = try? await getLatestAppStoreVersion() else { return false }
+
+        let compareResult = downloadedAppVersion.compare(latestAppStoreVersion, options: .numeric)
+
+        switch compareResult {
+        case .orderedAscending:
+            return true
+        default:
+            return false
+        }
+    }
+
     private func getLatestAppStoreVersion() async throws -> String {
         guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
               let property = NSDictionary(contentsOfFile: filePath),
