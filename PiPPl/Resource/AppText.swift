@@ -9,51 +9,47 @@ enum AppText {
 
     // MARK: - TabBar or SideBar Text
 
-    static let localVideo = "로컬 비디오"
-    static let networkVideo = "네트워크 비디오"
-    static let appInfo = "앱 정보"
+    static let localVideo = String(localized: "LocalVideo")
+    static let networkVideo = String(localized: "NetworkVideo")
+    static let appInfo = String(localized: "AppInfo")
 
     // MARK: - Local Video View Text
 
-    static let photoGalleryAccessPermissionButtonText = "사진 앨범 접근 권한을 허용해주세요"
+    static let photoGalleryAccessPermissionButtonText = String(localized: "PhotoGalleryAccessPermissionText")
 
     // MARK: - Network Video View Text
 
-    static let searchFieldPlaceholder = "여기에 주소를 입력해주세요."
+    static let searchFieldPlaceholder = String(localized: "SearchFieldPlaceholder")
 
     // MARK: - App Info View Text
 
-    static let notice = "공지사항"
-    static let developerInfo = "개발자 정보"
-    static let customerService = "고객센터"
-    static let license = "라이센스"
-    static let versionInfo = "버전 정보"
+    static let notice = String(localized: "Notice")
+    static let developerInfo = String(localized: "DeveloperInfo")
+    static let customerService = String(localized: "CustomerService")
+    static let license = String(localized: "License")
+    static let versionInfo = String(localized: "AppVersionInfo")
 
-    static let cantSendMailAlertTitle = "메일 기능 사용 불가"
-    static let cantSendMailAlertBody = "앱에서 메일을 보낼 수 없습니다. 기기의 상태를 확인한 후에 다시 이용해주세요.\n지속적으로 오류가 발생하는 경우 meenu170808@gmail.com으로 별도의 메일 발송 부탁드립니다."
+    static let cantSendMailAlertTitle = String(localized: "CantSendMailAlertTitle")
+    static let cantSendMailAlertBody = String(localized: "CantSendMailAlertBody")
 
-    static let mailTitle = "문의 사항"
-    static let name = "성함"
-    static let mail = "연락처(전화번호/이메일)"
-    static let date = "문의 날짜"
-    static let device = "디바이스 종류"
-    static let os = "운영체제 및 버전"
-    static let appVersion = "앱 버전"
-    static let mailBody = "문의 내용"
-    static let mailComment = "문의 내용을 작성해주세요."
+    static let mailTitle = String(localized: "MailTitle")
+    static let name = String(localized: "MailName")
+    static let mail = String(localized: "MailContact")
+    static let date = String(localized: "MailSendDate")
+    static let device = String(localized: "MailDevice")
+    static let os = String(localized: "MailOS")
+    static let appVersion = String(localized: "MailAppVersion")
+    static let mailBody = String(localized: "MailBody")
+    static let mailComment = String(localized: "MailComment")
 
     // MARK: - App Version Check Text
 
-    static let oldVersionAlertTitle = "구버전 알림"
-    static let oldVersionAlertBody = "새로운 버전의 앱이 출시 되었습니다.\n업데이트 이후 사용해주세요."
-    static let oldVersionAlertAction = "업데이트"
+    static let oldVersionAlertTitle = String(localized: "OldVesionAlertTitle")
+    static let oldVersionAlertBody = String(localized: "OldVersionAlertBody")
+    static let oldVersionAlertAction = String(localized: "OldVersionAlertAction")
 
-    static let latestVersionAlertTitle = "최신 버전"
-    static let latestVersionAlertBody = "앱이 최신 버전입니다."
-    static let latestVersionAlertAction = "확인"
-
-    // MARK: - Info Plist
-
-    static let photoGalleryAccessPermissionInfoPlistText = "갤러리에서 비디오를 가져오기 위해 권한이 필요합니다."
+    static let latestVersionAlertTitle = String(localized: "LatestVersionAlertTitle")
+    static let latestVersionAlertBody = String(localized: "LatestVersionAlertBody")
+    static let latestVersionAlertAction = String(localized: "LatestVersionAlertConfirm")
 
 }
