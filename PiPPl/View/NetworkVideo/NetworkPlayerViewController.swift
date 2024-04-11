@@ -15,7 +15,7 @@ class NetworkPlayerViewController: UIViewController {
     private var webView: WKWebView!
 
     private let searchTextField: UITextField = {
-        $0.placeholder = AppText.searchFieldPlaceholder.localized()
+        $0.placeholder = AppText.searchFieldPlaceholder
         $0.borderStyle = .roundedRect
         return $0
     }(UITextField())
@@ -70,7 +70,7 @@ class NetworkPlayerViewController: UIViewController {
     }
 
     private func configureNavigationItem() {
-        navigationItem.title = AppText.networkVideo.localized()
+        navigationItem.title = AppText.networkVideo
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pip.enter"), primaryAction: UIAction { _ in
             guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist") else { return }
             guard let property = NSDictionary(contentsOfFile: filePath) else { return }

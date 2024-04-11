@@ -24,7 +24,7 @@ class AppInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.title = AppText.appInfo.localized()
+        navigationItem.title = AppText.appInfo
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCollectionViewLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
@@ -50,7 +50,7 @@ class AppInfoViewController: UIViewController {
             var content = cell.defaultContentConfiguration()
             content.text = item
 
-            if item == AppText.versionInfo.localized() {
+            if item == AppText.versionInfo {
                 let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
                 content.secondaryText = version
                 content.secondaryTextProperties.font = .systemFont(ofSize: 16)
@@ -67,7 +67,7 @@ class AppInfoViewController: UIViewController {
 
         var snapshot = NSDiffableDataSourceSnapshot<String, String>()
         snapshot.appendSections(["앱 정보"])
-        snapshot.appendItems([AppText.notice.localized(), AppText.developerInfo.localized(), AppText.customerService.localized(), AppText.license.localized(), AppText.versionInfo.localized()], toSection: "앱 정보")
+        snapshot.appendItems([AppText.notice, AppText.developerInfo, AppText.customerService, AppText.license, AppText.versionInfo], toSection: "앱 정보")
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -123,30 +123,30 @@ extension AppInfoViewController: UICollectionViewDelegate {
 extension AppInfoViewController: MFMailComposeViewControllerDelegate {
     func openCustomerServiceCenter() {
         if !MFMailComposeViewController.canSendMail() {
-            let alertViewController = UIAlertController(title: AppText.cantSendMailAlertTitle.localized(), message: AppText.cantSendMailAlertBody.localized(), preferredStyle: .alert)
+            let alertViewController = UIAlertController(title: AppText.cantSendMailAlertTitle, message: AppText.cantSendMailAlertBody, preferredStyle: .alert)
             present(alertViewController, animated: true)
         }
 
         let customerServiceMail = MFMailComposeViewController()
         customerServiceMail.mailComposeDelegate = self
         customerServiceMail.setToRecipients(["meenu170808@gmail.com"])
-        customerServiceMail.setSubject("[PiPPl] \(AppText.mailTitle.localized())")
+        customerServiceMail.setSubject("[PiPPl] \(AppText.mailTitle)")
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
         let customerServiceBody = """
 
         ----------------------------------------
 
-        - \(AppText.name.localized()):
-        - \(AppText.mail.localized()):
-        - \(AppText.date.localized()): \(Date())
-        - \(AppText.device.localized()): \(UIDevice.current.model)
-        - \(AppText.os.localized()): \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)
-        - \(AppText.appVersion.localized()): \(version)
-        - \(AppText.mailBody.localized()):
+        - \(AppText.name):
+        - \(AppText.mail):
+        - \(AppText.date): \(Date())
+        - \(AppText.device): \(UIDevice.current.model)
+        - \(AppText.os): \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)
+        - \(AppText.appVersion)): \(version)
+        - \(AppText.mailBody):
 
         ----------------------------------------
 
-        \(AppText.mailComment.localized())
+        \(AppText.mailComment)
 
         """
         customerServiceMail.setMessageBody(customerServiceBody, isHTML: false)

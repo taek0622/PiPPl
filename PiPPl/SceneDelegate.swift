@@ -24,9 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if UIDevice.current.systemName == "iOS" {
             let tabbar = UITabBarController()
 
-            localPlayerView.tabBarItem = UITabBarItem(title: AppText.localVideo.localized(), image: UIImage(systemName: "play.square"), selectedImage: UIImage(systemName: "play.square.fill"))
-            networkPlayerView.tabBarItem = UITabBarItem(title: AppText.networkVideo.localized(), image: UIImage(systemName: "globe"), selectedImage: UIImage(systemName: "globe"))
-            appInfoView.tabBarItem = UITabBarItem(title: AppText.appInfo.localized(), image: UIImage(systemName: "info.circle"), selectedImage: UIImage(systemName: "info.circle.fill"))
+            localPlayerView.tabBarItem = UITabBarItem(title: AppText.localVideo, image: UIImage(systemName: "play.square"), selectedImage: UIImage(systemName: "play.square.fill"))
+            networkPlayerView.tabBarItem = UITabBarItem(title: AppText.networkVideo, image: UIImage(systemName: "globe"), selectedImage: UIImage(systemName: "globe"))
+            appInfoView.tabBarItem = UITabBarItem(title: AppText.appInfo, image: UIImage(systemName: "info.circle"), selectedImage: UIImage(systemName: "info.circle.fill"))
             tabbar.setViewControllers(views, animated: true)
 
             window?.rootViewController = tabbar

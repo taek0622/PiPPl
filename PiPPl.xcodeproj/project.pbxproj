@@ -17,7 +17,6 @@
 		26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AC2BA736A800823338 /* NoticeModel.swift */; };
 		26B742AF2BA736C200823338 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AE2BA736C200823338 /* NetworkManager.swift */; };
 		26DA7D4C2BB5D059002AF316 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26DA7D4B2BB5D059002AF316 /* Localizable.xcstrings */; };
-		26DA7D4F2BB5D328002AF316 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DA7D4E2BB5D328002AF316 /* String+.swift */; };
 		26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DA7D502BB5D3A3002AF316 /* AppText.swift */; };
 		26DA7D532BB5DD77002AF316 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */; };
 		26EB7EDA2B56AA1000282354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7ED92B56AA1000282354 /* AppDelegate.swift */; };
@@ -42,7 +41,6 @@
 		26B742AE2BA736C200823338 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		26DA7D492BB5CF53002AF316 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		26DA7D4B2BB5D059002AF316 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		26DA7D4E2BB5D328002AF316 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		26DA7D502BB5D3A3002AF316 /* AppText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
 		26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		26EB7ED62B56AA1000282354 /* PiPPl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPPl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,14 +126,6 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		26DA7D4D2BB5D310002AF316 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				26DA7D4E2BB5D328002AF316 /* String+.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		26EB7ECD2B56AA1000282354 = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +150,6 @@
 				263F037C2B598DA400EAC60E /* View */,
 				26B742AB2BA7368D00823338 /* Model */,
 				263F037D2B598DC400EAC60E /* Utility */,
-				26DA7D4D2BB5D310002AF316 /* Extension */,
 				26DA7D4A2BB5CF83002AF316 /* Resource */,
 				26EB7EE22B56AA1300282354 /* Assets.xcassets */,
 				26EB7EE42B56AA1300282354 /* LaunchScreen.storyboard */,
@@ -258,7 +247,6 @@
 				263F037F2B598DFB00EAC60E /* LocalVideoPlayer.swift in Sources */,
 				26EBB1962BC728B600C83CA2 /* AppVersionManager.swift in Sources */,
 				26EB7EDA2B56AA1000282354 /* AppDelegate.swift in Sources */,
-				26DA7D4F2BB5D328002AF316 /* String+.swift in Sources */,
 				26EB7EDC2B56AA1000282354 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
