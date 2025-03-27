@@ -14,7 +14,7 @@ class LocalVideoPlayer {
 
     static let shared = LocalVideoPlayer()
 
-    private lazy var player: AVPlayer = {
+    lazy var player: AVPlayer = {
         $0.actionAtItemEnd = .pause
         return $0
     }(AVPlayer())
