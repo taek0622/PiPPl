@@ -38,7 +38,7 @@ struct LocalVideoGalleryView: View {
             } else {
                 GeometryReader { geo in
                     ScrollView {
-                        LazyVGrid(columns: [GridItem(.fixed(geo.size.width/3), spacing: 0), GridItem(.fixed(geo.size.width/3), spacing: 0), GridItem(.fixed(geo.size.width/3), spacing: 0)], spacing: 0) {
+                        LazyVGrid(columns: [GridItem(.fixed(geo.size.width/3), spacing: 1), GridItem(.fixed(geo.size.width/3), spacing: 1), GridItem(.fixed(geo.size.width/3), spacing: 0)], spacing: 1) {
                             ForEach(videos, id: \.self) { video in
                                 NavigationLink {
                                     LocalVideoPlayView(asset: video)
