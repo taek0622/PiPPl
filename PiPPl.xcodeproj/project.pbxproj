@@ -11,6 +11,7 @@
 		2609D8D62B7B6A3D00CD3BFF /* Properties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2609D8D52B7B6A3D00CD3BFF /* Properties.plist */; };
 		263F037A2B5984D800EAC60E /* LegacyLocalPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F03792B5984D800EAC60E /* LegacyLocalPlayerViewController.swift */; };
 		263F037F2B598DFB00EAC60E /* LocalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F037E2B598DFB00EAC60E /* LocalVideoPlayer.swift */; };
+		2649A4BD2C066280007FCC55 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649A4BC2C066280007FCC55 /* NoticeView.swift */; };
 		2664066A2B5ED862004B6F8D /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266406692B5ED862004B6F8D /* AppInfoViewController.swift */; };
 		2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */; };
 		26B742A22BA62AA300823338 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742A12BA62AA300823338 /* NoticeViewController.swift */; };
@@ -34,6 +35,7 @@
 		2609D8D52B7B6A3D00CD3BFF /* Properties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Properties.plist; sourceTree = "<group>"; };
 		263F03792B5984D800EAC60E /* LegacyLocalPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyLocalPlayerViewController.swift; sourceTree = "<group>"; };
 		263F037E2B598DFB00EAC60E /* LocalVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoPlayer.swift; sourceTree = "<group>"; };
+		2649A4BC2C066280007FCC55 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		266406692B5ED862004B6F8D /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
 		2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoLibraryManager.swift; sourceTree = "<group>"; };
 		26B742A12BA62AA300823338 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				266406692B5ED862004B6F8D /* AppInfoViewController.swift */,
+				2649A4BC2C066280007FCC55 /* NoticeView.swift */,
 				26B742A12BA62AA300823338 /* NoticeViewController.swift */,
 				263F03782B5984A200EAC60E /* LocalVideo */,
 				263F037B2B5984E300EAC60E /* NetworkVideo */,
@@ -238,6 +241,7 @@
 				26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */,
 				26EB7EF52B57256200282354 /* LocalVideoThumbnailCell.swift in Sources */,
 				26074FD22BACA3D100A5649E /* ViewListViewController.swift in Sources */,
+				2649A4BD2C066280007FCC55 /* NoticeView.swift in Sources */,
 				263F037A2B5984D800EAC60E /* LegacyLocalPlayerViewController.swift in Sources */,
 				26EB7EEE2B56AB7700282354 /* LocalVideoGalleryViewController.swift in Sources */,
 				26B742A22BA62AA300823338 /* NoticeViewController.swift in Sources */,
