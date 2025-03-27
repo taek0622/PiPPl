@@ -189,8 +189,10 @@ class LocalVideoGalleryViewController: UIViewController {
 extension LocalVideoGalleryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         playerView.player = AVPlayer()
+        let option = PHVideoRequestOptions()
+        option.isNetworkAccessAllowed = true
 
-        PHCachingImageManager().requestAVAsset(forVideo: videoDataSource.snapshot().itemIdentifiers[indexPath.item], options: PHVideoRequestOptions()) { asset, audioMix, info in
+        PHCachingImageManager().requestAVAsset(forVideo: videoDataSource.snapshot().itemIdentifiers[indexPath.item], options: option) { asset, audioMix, info in
             guard let asset else { return }
             self.playerView.player?.replaceCurrentItem(with: AVPlayerItem(asset: asset))
         }
