@@ -43,7 +43,7 @@ struct AppInfoView: View {
             SafariView(url: url)
         })
         .alert(AppText.latestVersionAlertTitle, isPresented: $isSelectAppVersion) {
-            Button("확인") {
+            Button(AppText.latestVersionAlertAction) {
                 isSelectAppVersion = false
             }
         } message: {

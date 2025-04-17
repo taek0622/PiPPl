@@ -469,16 +469,6 @@
           }
         }
       }
-    },
-    "확인" : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "확인"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"
