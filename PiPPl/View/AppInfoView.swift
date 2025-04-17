@@ -23,31 +23,31 @@ struct AppInfoView: View {
 
     var body: some View {
         List {
-            NavigationLink("공지사항") {
+            NavigationLink(AppText.notice) {
                 NoticeView()
             }
-            Button("개발자 정보") {
+            Button(AppText.developerInfo) {
                 url = URL(string: "https://github.com/taek0622")!
                 isOpenSafariView = true
             }
-            Text("고객센터")
-            Button("라이센스") {
+            Text(AppText.customerService)
+            Button(AppText.license) {
                 url = URL(string: "https://pippl.notion.site/e318bd246e894b348ece6387e68270de")!
                 isOpenSafariView = true
             }
-            Button("버전 정보") {
+            Button(AppText.versionInfo) {
                 isSelectAppVersion = true
             }
         }
         .fullScreenCover(isPresented: $isOpenSafariView, content: {
             SafariView(url: url)
         })
-        .alert("최신 버전", isPresented: $isSelectAppVersion) {
+        .alert(AppText.latestVersionAlertTitle, isPresented: $isSelectAppVersion) {
             Button("확인") {
                 isSelectAppVersion = false
             }
         } message: {
-            Text("앱이 최신 버전입니다.")
+            Text(AppText.latestVersionAlertBody)
         }
     }
 }

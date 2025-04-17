@@ -17,33 +17,33 @@ struct ContentView: View {
             TabView {
                 NavigationStack {
                     localVideoGalleryView
-                        .navigationTitle("로컬 비디오")
+                        .navigationTitle(AppText.localVideo)
                         .navigationBarTitleDisplayMode(.inline)
                 }
-                .tabItem { Label("로컬 비디오", systemImage: "play.square") }
+                .tabItem { Label(AppText.localVideo, systemImage: "play.square") }
                 networkPlayerView
-                    .tabItem { Label("네트워크 비디오", systemImage: "globe") }
+                    .tabItem { Label(AppText.networkVideo, systemImage: "globe") }
                 NavigationStack {
                     appInfoView
                 }
-                .tabItem { Label("앱 정보", systemImage: "info.circle") }
+                .tabItem { Label(AppText.appInfo, systemImage: "info.circle") }
             }
         } else {
             NavigationSplitView {
                 NavigationLink {
                     localVideoGalleryView
                 } label: {
-                    Label("로컬 비디오", systemImage: "play.squre")
+                    Label(AppText.localVideo, systemImage: "play.squre")
                 }
                 NavigationLink {
                     networkPlayerView
                 } label: {
-                    Label("네트워크 비디오", systemImage: "globe")
+                    Label(AppText.networkVideo, systemImage: "globe")
                 }
                 NavigationLink {
                     appInfoView
                 } label: {
-                    Label("앱 정보", systemImage: "info.circle")
+                    Label(AppText.appInfo, systemImage: "info.circle")
                 }
             } detail: {
                 localVideoGalleryView

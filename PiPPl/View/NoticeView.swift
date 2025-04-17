@@ -29,7 +29,7 @@ struct NoticeView: View {
             }
         }
         .listStyle(.grouped)
-        .navigationTitle("공지사항")
+        .navigationTitle(AppText.notice)
         .onAppear {
             networkManager.requestNoticeData { notices in
                 for notice in notices {
