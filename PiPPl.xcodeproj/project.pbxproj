@@ -83,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				26EB7EED2B56AB7700282354 /* LocalVideoGalleryViewController.swift */,
+				26EBB1C72BDFF0EB00C83CA2 /* LocalVideoGalleryView.swift */,
+				26EBB1CD2BE26A3500C83CA2 /* LocalVideoPlayView.swift */,
 				26EB7EF42B57256200282354 /* LocalVideoThumbnailCell.swift */,
 				263F03792B5984D800EAC60E /* LegacyLocalPlayerViewController.swift */,
 			);
@@ -108,8 +110,6 @@
 				263F037B2B5984E300EAC60E /* NetworkVideo */,
 				26074FD12BACA3D100A5649E /* ViewListViewController.swift */,
 				26EBB1C52BDFE8B700C83CA2 /* ContentView.swift */,
-				26EBB1C72BDFF0EB00C83CA2 /* LocalVideoGalleryView.swift */,
-				26EBB1CD2BE26A3500C83CA2 /* LocalVideoPlayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
