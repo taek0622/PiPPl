@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26074FD22BACA3D100A5649E /* ViewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26074FD12BACA3D100A5649E /* ViewListViewController.swift */; };
 		2609D8D62B7B6A3D00CD3BFF /* Properties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2609D8D52B7B6A3D00CD3BFF /* Properties.plist */; };
 		263F037A2B5984D800EAC60E /* LegacyLocalPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F03792B5984D800EAC60E /* LegacyLocalPlayerViewController.swift */; };
 		263F037F2B598DFB00EAC60E /* LocalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263F037E2B598DFB00EAC60E /* LocalVideoPlayer.swift */; };
@@ -35,7 +34,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		26074FD12BACA3D100A5649E /* ViewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewListViewController.swift; sourceTree = "<group>"; };
 		2609D8D52B7B6A3D00CD3BFF /* Properties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Properties.plist; sourceTree = "<group>"; };
 		263F03792B5984D800EAC60E /* LegacyLocalPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyLocalPlayerViewController.swift; sourceTree = "<group>"; };
 		263F037E2B598DFB00EAC60E /* LocalVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoPlayer.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 				2649A4BC2C066280007FCC55 /* NoticeView.swift */,
 				263F03782B5984A200EAC60E /* LocalVideo */,
 				263F037B2B5984E300EAC60E /* NetworkVideo */,
-				26074FD12BACA3D100A5649E /* ViewListViewController.swift */,
 				26EBB1C52BDFE8B700C83CA2 /* ContentView.swift */,
 			);
 			path = View;
@@ -253,7 +250,6 @@
 				26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */,
 				26E801D12DB5193100CE20BB /* LocalPlayerViewController.swift in Sources */,
 				26EB7EF52B57256200282354 /* LocalVideoThumbnailCell.swift in Sources */,
-				26074FD22BACA3D100A5649E /* ViewListViewController.swift in Sources */,
 				26EBB1CE2BE26A3500C83CA2 /* LocalVideoPlayView.swift in Sources */,
 				2649A4BD2C066280007FCC55 /* NoticeView.swift in Sources */,
 				263F037A2B5984D800EAC60E /* LegacyLocalPlayerViewController.swift in Sources */,
