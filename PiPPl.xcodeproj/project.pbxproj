@@ -22,8 +22,6 @@
 		26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DA7D502BB5D3A3002AF316 /* AppText.swift */; };
 		26DA7D532BB5DD77002AF316 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */; };
 		26E801D12DB5193100CE20BB /* LocalPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E801D02DB5192900CE20BB /* LocalPlayerViewController.swift */; };
-		26EB7EDA2B56AA1000282354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7ED92B56AA1000282354 /* AppDelegate.swift */; };
-		26EB7EDC2B56AA1000282354 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */; };
 		26EB7EE32B56AA1300282354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26EB7EE22B56AA1300282354 /* Assets.xcassets */; };
 		26EB7EE62B56AA1300282354 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26EB7EE42B56AA1300282354 /* LaunchScreen.storyboard */; };
 		26EB7EEE2B56AB7700282354 /* LocalVideoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7EED2B56AB7700282354 /* LocalVideoGalleryViewController.swift */; };
@@ -54,8 +52,6 @@
 		26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		26E801D02DB5192900CE20BB /* LocalPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayerViewController.swift; sourceTree = "<group>"; };
 		26EB7ED62B56AA1000282354 /* PiPPl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPPl.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		26EB7ED92B56AA1000282354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		26EB7EE22B56AA1300282354 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26EB7EE52B56AA1300282354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26EB7EE72B56AA1300282354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -165,8 +161,6 @@
 		26EB7ED82B56AA1000282354 /* PiPPl */ = {
 			isa = PBXGroup;
 			children = (
-				26EB7ED92B56AA1000282354 /* AppDelegate.swift */,
-				26EB7EDB2B56AA1000282354 /* SceneDelegate.swift */,
 				26EBB1C32BDFE88900C83CA2 /* PiPPlApp.swift */,
 				263F037C2B598DA400EAC60E /* View */,
 				26B742AB2BA7368D00823338 /* Model */,
@@ -273,8 +267,6 @@
 				26EBB1C82BDFF0EB00C83CA2 /* LocalVideoGalleryView.swift in Sources */,
 				26EBB1962BC728B600C83CA2 /* AppVersionManager.swift in Sources */,
 				2649A4AF2BFF8D2B007FCC55 /* NetworkPlayerView.swift in Sources */,
-				26EB7EDA2B56AA1000282354 /* AppDelegate.swift in Sources */,
-				26EB7EDC2B56AA1000282354 /* SceneDelegate.swift in Sources */,
 				26EBB1C42BDFE88900C83CA2 /* PiPPlApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
