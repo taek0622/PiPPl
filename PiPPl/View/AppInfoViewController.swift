@@ -77,7 +77,8 @@ extension AppInfoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath {
         case [0, 0]:
-            navigationController?.pushViewController(NoticeViewController(), animated: true)
+//            navigationController?.pushViewController(NoticeViewController(), animated: true)
+                break
         case [0, 1]:
             guard let url = URL(string: "https://github.com/taek0622") else { return }
             let developerInfo = SFSafariViewController(url: url)

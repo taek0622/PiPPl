@@ -23,9 +23,11 @@ struct NoticeView: View {
             VStack(alignment: .leading) {
                 if item.date != nil {
                     Text(item.date!)
+                    //14포인트, 회색
                 }
 
                 Text(item.title)
+                //17포인트
             }
         }
         .listStyle(.grouped)
