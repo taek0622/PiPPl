@@ -89,7 +89,6 @@ class NetworkPlayerViewController: UIViewController {
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.allowsBackForwardNavigationGestures = true
-        webView.scrollView.delegate = self
         webView.navigationDelegate = self
     }
 
@@ -270,35 +269,6 @@ extension NetworkPlayerViewController: UITextFieldDelegate {
         loadURLWeb(textField.text ?? "")
         webView.becomeFirstResponder()
         return true
-    }
-
-}
-
-extension NetworkPlayerViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        guard let tabbarHeight = self.tabBarController?.tabBar.frame.height else { return }
-//        guard let navigationHeight = self.navigationController?.navigationBar.frame.height else { return }
-//        let screenHeight = UIScreen.main.bounds.height
-        if UIDevice.current.systemName == "iOS" {
-            if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-                UIView.animate(withDuration: 0.5) {
-    //                if (self.tabBarController?.tabBar.frame.origin.y)! <= screenHeight - tabbarHeight {
-    //                    self.tabBarController?.tabBar.frame.origin.y = screenHeight
-    //                }
-
-                    self.navigationController?.navigationBar.isHidden = false
-                }
-            } else {
-                UIView.animate(withDuration: 0.5) {
-    //                if (self.tabBarController?.tabBar.frame.origin.y)! > screenHeight - tabbarHeight {
-    //                    self.tabBarController?.tabBar.frame.origin.y = screenHeight - tabbarHeight
-    //                }
-
-                    self.navigationController?.navigationBar.isHidden = true
-                }
-            }
-        }
     }
 
 }

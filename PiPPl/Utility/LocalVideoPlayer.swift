@@ -14,7 +14,7 @@ class LocalVideoPlayer {
 
     static let shared = LocalVideoPlayer()
 
-    private lazy var player: AVPlayer = {
+    lazy var player: AVPlayer = {
         $0.actionAtItemEnd = .pause
         return $0
     }(AVPlayer())
@@ -32,7 +32,12 @@ class LocalVideoPlayer {
     // MARK: - Method
 
     func configureVideo(_ asset: PHAsset) {
-        PHCachingImageManager().requestAVAsset(forVideo: asset, options: PHVideoRequestOptions()) { asset, audioMix, info in
+        let option = PHVideoRequestOptions()
+        option.isNetworkAccessAllowed = true
+        option.version = .original
+        option.deliveryMode = .highQualityFormat
+
+        PHCachingImageManager().requestAVAsset(forVideo: asset, options: option) { asset, audioMix, info in
             guard let asset else { return }
             self.player.replaceCurrentItem(with: AVPlayerItem(asset: asset))
         }

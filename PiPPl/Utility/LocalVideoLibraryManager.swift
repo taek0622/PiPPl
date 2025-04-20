@@ -8,7 +8,9 @@
 import Foundation
 import Photos
 
-class LocalVideoLibraryManager {
+class LocalVideoLibraryManager: ObservableObject {
+
+    @Published var videos = [PHAsset]()
 
     static let shared = LocalVideoLibraryManager()
     var status: PHAuthorizationStatus {
