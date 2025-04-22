@@ -12,7 +12,6 @@ struct LocalVideoGalleryView: View {
     @State private var status = false
     @State private var videos = [PHAsset]()
     private let libraryManager = LocalVideoLibraryManager.shared
-    var colors: [Color] = [.red, .orange, .yellow, .green, .blue, .purple, .brown, .gray, .black, .cyan, .pink, .mint, .teal]
 
     var body: some View {
         VStack {
