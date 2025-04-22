@@ -12,6 +12,23 @@ struct LocalVideoGalleryView: View {
     @State private var status = false
     @State private var videos = [PHAsset]()
     private let libraryManager = LocalVideoLibraryManager.shared
+    var rowItemCount: Double {
+        if UIDevice.current.systemName == "iOS" {
+            if UIDevice.current.orientation == .portrait {
+                return 3
+            } else {
+                return 5
+            }
+        } else if UIDevice.current.systemName == "iPadOS" {
+            if UIDevice.current.orientation == .portrait {
+                return 5
+            } else {
+                return 7
+            }
+        }
+
+        return 3
+    }
 
     var body: some View {
         VStack {
@@ -37,7 +54,7 @@ struct LocalVideoGalleryView: View {
             } else {
                 GeometryReader { geo in
                     ScrollView {
-                        LazyVGrid(columns: [GridItem(.fixed(geo.size.width/3), spacing: 1), GridItem(.fixed(geo.size.width/3), spacing: 1), GridItem(.fixed(geo.size.width/3), spacing: 0)], spacing: 1) {
+                        LazyVGrid(columns: Array(repeating: GridItem(.fixed(geo.size.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
                             ForEach(videos, id: \.self) { video in
                                 NavigationLink {
                                     LocalVideoPlayView(asset: video)
@@ -46,6 +63,7 @@ struct LocalVideoGalleryView: View {
                                     ZStack(alignment: .bottomTrailing) {
                                         configureThumbnail(video)
                                             .resizable()
+                                            .frame(height: geo.size.width/rowItemCount)
 
                                         let duration = Int(video.duration)
                                         Text("\(duration / 60):\(String(format: "%02d", duration % 60))")
