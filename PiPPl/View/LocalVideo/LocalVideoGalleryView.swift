@@ -91,7 +91,7 @@ struct LocalVideoGalleryView: View {
             Text(AppText.oldVersionAlertBody)
         }
         .onAppear {
-            switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+            switch libraryManager.status {
             case .notDetermined, .restricted, .denied:
                 status = false
             case .authorized, .limited:
