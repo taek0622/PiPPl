@@ -10,6 +10,14 @@ import Foundation
 class AppVersionManager {
 
     static let shared = AppVersionManager()
+    var iTunesID: String {
+        guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
+              let property = NSDictionary(contentsOfFile: filePath),
+              let iTunesID = property["iTunesID"] as? String
+        else { return "" }
+
+        return iTunesID
+    }
 
     private init() {}
 
@@ -28,10 +36,7 @@ class AppVersionManager {
     }
 
     private func getLatestAppStoreVersion() async throws -> String {
-        guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
-              let property = NSDictionary(contentsOfFile: filePath),
-              let iTunesID = property["iTunesID"] as? String,
-              let url = URL(string: "https://itunes.apple.com/lookup?id=\(iTunesID)")
+        guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(iTunesID)")
         else { return "" }
 
         let (data, response) = try await URLSession.shared.data(from: url)
