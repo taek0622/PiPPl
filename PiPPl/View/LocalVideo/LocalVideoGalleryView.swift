@@ -11,7 +11,9 @@ import SwiftUI
 struct LocalVideoGalleryView: View {
     @State private var status = false
     @State private var videos = [PHAsset]()
+    @State private var isOldVersion: Bool = false
     private let libraryManager = LocalVideoLibraryManager.shared
+    private let appVersionManager = AppVersionManager.shared
     var rowItemCount: Double {
         if UIDevice.current.systemName == "iOS" {
             if UIDevice.current.orientation == .portrait {
@@ -77,6 +79,17 @@ struct LocalVideoGalleryView: View {
                 }
             }
         }
+        .alert(AppText.oldVersionAlertTitle, isPresented: $isOldVersion) {
+            Button(AppText.oldVersionAlertAction) {
+                let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
+                guard let url = URL(string: appStoreOpenURL) else { return }
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+            }
+        } message: {
+            Text(AppText.oldVersionAlertBody)
+        }
         .onAppear {
             switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
             case .notDetermined, .restricted, .denied:
@@ -91,6 +104,10 @@ struct LocalVideoGalleryView: View {
                 }
             @unknown default:
                 break
+            }
+
+            Task {
+                isOldVersion = await appVersionManager.checkNewUpdate()
             }
         }
     }
