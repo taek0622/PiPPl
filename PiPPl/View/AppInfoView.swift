@@ -61,6 +61,17 @@ struct AppInfoView: View {
         } message: {
             Text(AppText.latestVersionAlertBody)
         }
+        .alert(AppText.oldVersionAlertTitle, isPresented: $isOldVersion) {
+            Button(AppText.oldVersionAlertAction) {
+                let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
+                guard let url = URL(string: appStoreOpenURL) else { return }
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+            }
+        } message: {
+            Text(AppText.oldVersionAlertBody)
+        }
     }
 }
 
