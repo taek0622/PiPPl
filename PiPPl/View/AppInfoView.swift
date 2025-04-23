@@ -37,8 +37,18 @@ struct AppInfoView: View {
                 url = URL(string: "https://pippl.notion.site/e318bd246e894b348ece6387e68270de")!
                 isOpenSafariView = true
             }
-            Button(AppText.versionInfo) {
-                isSelectAppVersion = true
+            Button {
+                Task {
+                    isOldVersion = await appVersionManager.checkNewUpdate()
+                    isSelectAppVersion = !isOldVersion
+                }
+            } label: {
+                HStack {
+                    Text(AppText.versionInfo)
+                    Spacer()
+                    Text(appVersionManager.downloadedAppVersion)
+                        .foregroundStyle(.gray)
+                }
             }
         }
         .fullScreenCover(isPresented: $isOpenSafariView, content: {
