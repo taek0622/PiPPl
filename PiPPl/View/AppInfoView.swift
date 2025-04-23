@@ -63,6 +63,9 @@ struct AppInfoView: View {
         .fullScreenCover(isPresented: $isOpenSafariView, content: {
             SafariView(url: url)
         })
+        .sheet(isPresented: $isMailSend, content: {
+            CustomerServiceMailView()
+        })
         .alert(AppText.latestVersionAlertTitle, isPresented: $isSelectAppVersion) {
             Button(AppText.confirm) {
                 isSelectAppVersion = false
