@@ -22,6 +22,8 @@ struct AppInfoView: View {
     @State private var isSelectAppVersion = false
     @State private var isOldVersion = false
     @State private var url = URL(string: "https://www.google.com")!
+    @State private var isMailSend = false
+    @State private var isUnavailableMail = false
     let appVersionManager = AppVersionManager.shared
 
     var body: some View {
@@ -34,6 +36,11 @@ struct AppInfoView: View {
                 isOpenSafariView = true
             }
             Button(AppText.customerService) {
+                if !MFMailComposeViewController.canSendMail() {
+                    isUnavailableMail = true
+                } else {
+                    isMailSend = true
+                }
             }
             Button(AppText.license) {
                 url = URL(string: "https://pippl.notion.site/e318bd246e894b348ece6387e68270de")!
