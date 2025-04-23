@@ -23,9 +23,12 @@ struct NoticeView: View {
             VStack(alignment: .leading) {
                 if item.date != nil {
                     Text(item.date!)
+                        .font(.system(size: 14))
+                        .foregroundStyle(.gray)
                 }
 
                 Text(item.title)
+                    .font(.system(size: 17))
             }
         }
         .listStyle(.grouped)
