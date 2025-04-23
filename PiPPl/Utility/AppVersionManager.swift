@@ -42,7 +42,7 @@ class AppVersionManager {
         guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(iTunesID)")
         else { return "" }
 
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let (data, _) = try await URLSession.shared.data(from: url)
         guard let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
               let results = json["results"] as? [[String: Any]],
               let latestAppStoreVersion = results[0]["version"] as? String
