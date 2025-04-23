@@ -66,6 +66,13 @@ struct AppInfoView: View {
         .sheet(isPresented: $isMailSend, content: {
             CustomerServiceMailView()
         })
+        .alert(AppText.cantSendMailAlertTitle, isPresented: $isUnavailableMail, actions: {
+            Button(AppText.confirm) {
+                isUnavailableMail = false
+            }
+        }, message: {
+            Text(AppText.cantSendMailAlertBody)
+        })
         .alert(AppText.latestVersionAlertTitle, isPresented: $isSelectAppVersion) {
             Button(AppText.confirm) {
                 isSelectAppVersion = false
