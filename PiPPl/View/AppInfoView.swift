@@ -21,6 +21,7 @@ struct AppInfoView: View {
     @State private var isSelectAppVersion = false
     @State private var isOldVersion = false
     @State private var url = URL(string: "https://www.google.com")!
+    let appVersionManager = AppVersionManager.shared
 
     var body: some View {
         List {
