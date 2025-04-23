@@ -57,6 +57,7 @@ struct AppInfoView: View {
                     Spacer()
                     Text(appVersionManager.downloadedAppVersion)
                         .foregroundStyle(.gray)
+                        .font(.system(size: 16))
                 }
             }
         }
