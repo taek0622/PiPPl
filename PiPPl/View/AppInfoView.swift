@@ -32,7 +32,8 @@ struct AppInfoView: View {
                 url = URL(string: "https://github.com/taek0622")!
                 isOpenSafariView = true
             }
-            Text(AppText.customerService)
+            Button(AppText.customerService) {
+            }
             Button(AppText.license) {
                 url = URL(string: "https://pippl.notion.site/e318bd246e894b348ece6387e68270de")!
                 isOpenSafariView = true
