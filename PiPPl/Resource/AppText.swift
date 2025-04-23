@@ -50,6 +50,9 @@ enum AppText {
 
     static let latestVersionAlertTitle = String(localized: "LatestVersionAlertTitle")
     static let latestVersionAlertBody = String(localized: "LatestVersionAlertBody")
-    static let latestVersionAlertAction = String(localized: "LatestVersionAlertConfirm")
+
+    // MARK: - Global Text
+
+    static let confirm = String(localized: "Confirm")
 
 }

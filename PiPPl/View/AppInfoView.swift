@@ -55,7 +55,7 @@ struct AppInfoView: View {
             SafariView(url: url)
         })
         .alert(AppText.latestVersionAlertTitle, isPresented: $isSelectAppVersion) {
-            Button(AppText.latestVersionAlertAction) {
+            Button(AppText.confirm) {
                 isSelectAppVersion = false
             }
         } message: {
