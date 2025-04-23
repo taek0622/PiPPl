@@ -5,8 +5,9 @@
 //  Created by 김민택 on 5/23/24.
 //
 
-import SwiftUI
+import MessageUI
 import SafariServices
+import SwiftUI
 
 struct AppInfoView: View {
     enum AppInfoAction {
