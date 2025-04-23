@@ -91,12 +91,10 @@
 		263F037C2B598DA400EAC60E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2649A4B02BFF900A007FCC55 /* AppInfoView.swift */,
-				2649A4BC2C066280007FCC55 /* NoticeView.swift */,
+				26EBB1C52BDFE8B700C83CA2 /* ContentView.swift */,
 				263F03782B5984A200EAC60E /* LocalVideo */,
 				263F037B2B5984E300EAC60E /* NetworkVideo */,
-				26EBB1C52BDFE8B700C83CA2 /* ContentView.swift */,
-				26E801D82DB9190500CE20BB /* CustomerServiceMailView.swift */,
+				26E801DA2DB925B900CE20BB /* AppInfo */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -128,6 +126,16 @@
 				26DA7D502BB5D3A3002AF316 /* AppText.swift */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		26E801DA2DB925B900CE20BB /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				2649A4B02BFF900A007FCC55 /* AppInfoView.swift */,
+				2649A4BC2C066280007FCC55 /* NoticeView.swift */,
+				26E801D82DB9190500CE20BB /* CustomerServiceMailView.swift */,
+			);
+			path = AppInfo;
 			sourceTree = "<group>";
 		};
 		26EB7ECD2B56AA1000282354 = {
