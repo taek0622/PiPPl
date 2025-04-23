@@ -7,6 +7,10 @@
 
 enum AppText {
 
+    // MARK: - Global Text
+
+    static let confirm = String(localized: "Confirm")
+
     // MARK: - TabBar or SideBar Text
 
     static let localVideo = String(localized: "LocalVideo")
@@ -50,9 +54,5 @@ enum AppText {
 
     static let latestVersionAlertTitle = String(localized: "LatestVersionAlertTitle")
     static let latestVersionAlertBody = String(localized: "LatestVersionAlertBody")
-
-    // MARK: - Global Text
-
-    static let confirm = String(localized: "Confirm")
 
 }
