@@ -18,11 +18,14 @@ class AppVersionManager {
 
         return iTunesID
     }
+    var downloadedAppVersion: String {
+        guard let downloadedAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "" }
+        return downloadedAppVersion
+    }
 
     private init() {}
 
     func checkNewUpdate() async -> Bool {
-        guard let downloadedAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
         guard let latestAppStoreVersion = try? await getLatestAppStoreVersion() else { return false }
 
         let compareResult = downloadedAppVersion.compare(latestAppStoreVersion, options: .numeric)
