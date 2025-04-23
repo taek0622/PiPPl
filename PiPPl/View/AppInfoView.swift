@@ -19,6 +19,7 @@ struct AppInfoView: View {
 
     @State private var isOpenSafariView = false
     @State private var isSelectAppVersion = false
+    @State private var isOldVersion = false
     @State private var url = URL(string: "https://www.google.com")!
 
     var body: some View {
