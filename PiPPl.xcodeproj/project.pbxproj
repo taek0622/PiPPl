@@ -12,7 +12,6 @@
 		2649A4AF2BFF8D2B007FCC55 /* NetworkPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649A4AE2BFF8D2B007FCC55 /* NetworkPlayerView.swift */; };
 		2649A4B12BFF900A007FCC55 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649A4B02BFF900A007FCC55 /* AppInfoView.swift */; };
 		2649A4BD2C066280007FCC55 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649A4BC2C066280007FCC55 /* NoticeView.swift */; };
-		2664066A2B5ED862004B6F8D /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266406692B5ED862004B6F8D /* AppInfoViewController.swift */; };
 		2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */; };
 		26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AC2BA736A800823338 /* NoticeModel.swift */; };
 		26B742AF2BA736C200823338 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AE2BA736C200823338 /* NetworkManager.swift */; };
@@ -36,7 +35,6 @@
 		2649A4AE2BFF8D2B007FCC55 /* NetworkPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPlayerView.swift; sourceTree = "<group>"; };
 		2649A4B02BFF900A007FCC55 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		2649A4BC2C066280007FCC55 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
-		266406692B5ED862004B6F8D /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
 		2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoLibraryManager.swift; sourceTree = "<group>"; };
 		26B742AC2BA736A800823338 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
 		26B742AE2BA736C200823338 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 		263F037C2B598DA400EAC60E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				266406692B5ED862004B6F8D /* AppInfoViewController.swift */,
 				2649A4B02BFF900A007FCC55 /* AppInfoView.swift */,
 				2649A4BC2C066280007FCC55 /* NoticeView.swift */,
 				263F03782B5984A200EAC60E /* LocalVideo */,
@@ -237,7 +234,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				26B742AF2BA736C200823338 /* NetworkManager.swift in Sources */,
-				2664066A2B5ED862004B6F8D /* AppInfoViewController.swift in Sources */,
 				26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */,
 				26E801D12DB5193100CE20BB /* LocalPlayerViewController.swift in Sources */,
 				26EBB1CE2BE26A3500C83CA2 /* LocalVideoPlayView.swift in Sources */,
