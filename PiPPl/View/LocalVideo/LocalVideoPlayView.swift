@@ -17,7 +17,6 @@ struct LocalVideoPlayView: View {
         }
         .onAppear {
             LocalVideoPlayer.shared.configureVideo(asset)
-            LocalVideoPlayer.shared.play()
         }
         .onDisappear {
             LocalVideoPlayer.shared.pause()
