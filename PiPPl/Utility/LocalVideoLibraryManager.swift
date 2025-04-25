@@ -9,6 +9,12 @@ import Foundation
 import Photos
 import UIKit
 
+struct Video: Identifiable {
+    let id = UUID()
+    var asset: PHAsset
+    var thumbnail: UIImage?
+}
+
 class LocalVideoLibraryManager: ObservableObject {
 
     @Published var videos = [PHAsset]()
