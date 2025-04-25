@@ -37,9 +37,8 @@ class LocalVideoPlayer {
         option.version = .original
         option.deliveryMode = .highQualityFormat
 
-        PHCachingImageManager().requestAVAsset(forVideo: asset, options: option) { asset, audioMix, info in
-            guard let asset else { return }
-            self.player.replaceCurrentItem(with: AVPlayerItem(asset: asset))
+        PHImageManager.default().requestPlayerItem(forVideo: asset, options: option) { playerItem, info in
+            self.player.replaceCurrentItem(with: playerItem)
         }
     }
 
