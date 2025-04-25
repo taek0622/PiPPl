@@ -39,6 +39,7 @@ class LocalVideoPlayer {
 
         PHImageManager.default().requestPlayerItem(forVideo: asset, options: option) { playerItem, info in
             self.player.replaceCurrentItem(with: playerItem)
+            self.play()
         }
     }
 
