@@ -51,18 +51,17 @@ struct LocalVideoGalleryView: View {
                     }
                 }
             } else {
-                GeometryReader { geo in
-                    ScrollView {
-                        LazyVGrid(columns: Array(repeating: GridItem(.fixed(geo.size.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
-                            ForEach(videos, id: \.self) { video in
-                                NavigationLink {
-                                    LocalVideoPlayView(asset: video)
-                                        .toolbar(.hidden, for: .tabBar)
-                                } label: {
-                                    ZStack(alignment: .bottomTrailing) {
-                                        configureThumbnail(video)
-                                            .resizable()
-                                            .frame(height: geo.size.width/rowItemCount)
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(UIScreen.main.bounds.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
+                        ForEach(libraryManager.videos, id: \.id) { video in
+                            NavigationLink {
+                                LocalVideoPlayView(asset: video.asset)
+                                    .toolbar(.hidden, for: .tabBar)
+                            } label: {
+                                ZStack(alignment: .bottomTrailing) {
+                                    Image(uiImage: video.thumbnail ?? UIImage(ciImage: CIImage(color: .gray)))
+                                        .resizable()
+                                        .frame(height: UIScreen.main.bounds.width/rowItemCount)
 
                                         let duration = Int(video.duration)
                                         Text("\(duration / 60):\(String(format: "%02d", duration % 60))")
