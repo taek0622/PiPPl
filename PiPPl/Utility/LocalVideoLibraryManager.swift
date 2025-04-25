@@ -17,7 +17,7 @@ struct Video: Identifiable {
 
 class LocalVideoLibraryManager: ObservableObject {
 
-    @Published var videos = [PHAsset]()
+    @Published var videos = [Video]()
 
     static let shared = LocalVideoLibraryManager()
     var status: PHAuthorizationStatus {
