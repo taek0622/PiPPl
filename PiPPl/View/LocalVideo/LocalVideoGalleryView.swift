@@ -67,11 +67,10 @@ struct LocalVideoGalleryView: View {
                                         .resizable()
                                         .frame(height: UIScreen.main.bounds.width/rowItemCount)
 
-                                        let duration = Int(video.duration)
-                                        Text("\(duration / 60):\(String(format: "%02d", duration % 60))")
-                                            .foregroundStyle(.white)
-                                            .padding(4)
-                                    }
+                                    let duration = Int(video.asset.duration)
+                                    Text("\(duration / 60):\(String(format: "%02d", duration % 60))")
+                                        .foregroundStyle(.white)
+                                        .padding(4)
                                 }
                             }
                         }
