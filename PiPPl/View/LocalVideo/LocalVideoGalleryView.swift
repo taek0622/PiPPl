@@ -43,7 +43,11 @@ struct LocalVideoGalleryView: View {
                             status = true
                             let collection = libraryManager.requestVideoAlbums()
                             let assets = libraryManager.requestVideos(in: collection.firstObject ?? PHAssetCollection())
+                                libraryManager.videos = []
                             assets.enumerateObjects { asset, _, _ in
+                                var video = Video(asset: asset)
+                                video.thumbnail = libraryManager.requestThumbnail(asset)
+                                libraryManager.videos.append(video)
                             }
                         @unknown default:
                             break
@@ -92,9 +96,14 @@ struct LocalVideoGalleryView: View {
                 status = false
             case .authorized, .limited:
                 status = true
-                let collection = libraryManager.requestVideoAlbums()
-                let assets = libraryManager.requestVideos(in: collection.firstObject ?? PHAssetCollection())
-                assets.enumerateObjects { asset, _, _ in
+                if libraryManager.videos.isEmpty {
+                    let collection = libraryManager.requestVideoAlbums()
+                    let assets = libraryManager.requestVideos(in: collection.firstObject ?? PHAssetCollection())
+                    assets.enumerateObjects { asset, _, _ in
+                        var video = Video(asset: asset)
+                        video.thumbnail = libraryManager.requestThumbnail(asset)
+                        libraryManager.videos.append(video)
+                    }
                 }
             @unknown default:
                 break
