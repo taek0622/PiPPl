@@ -106,22 +106,6 @@ struct LocalVideoGalleryView: View {
             }
         }
     }
-
-    private func configureThumbnail(_ asset: PHAsset) -> Image {
-        let manager = PHImageManager.default()
-        var thumbnail = Image(uiImage: UIImage(ciImage: CIImage(color: .gray)))
-        let thumbnailOption = PHImageRequestOptions()
-        thumbnailOption.isSynchronous = true
-        thumbnailOption.resizeMode = .exact
-        let size = UIScreen.main.bounds.width / 3
-
-        manager.requestImage(for: asset, targetSize: CGSize(width: size, height: size), contentMode: .aspectFill, options: thumbnailOption) { result, info in
-            guard let result else { return }
-            thumbnail = Image(uiImage: result)
-        }
-
-        return thumbnail
-    }
 }
 
 #Preview {
