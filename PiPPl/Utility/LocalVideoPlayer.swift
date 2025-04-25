@@ -48,6 +48,7 @@ class LocalVideoPlayer {
     }
 
     func pause() {
+        self.player.replaceCurrentItem(with: nil)
         player.pause()
     }
 
