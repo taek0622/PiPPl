@@ -7,6 +7,7 @@
 
 import Foundation
 import Photos
+import UIKit
 
 class LocalVideoLibraryManager: ObservableObject {
 
@@ -27,5 +28,21 @@ class LocalVideoLibraryManager: ObservableObject {
 
     func requestVideos(in collection: PHAssetCollection) -> PHFetchResult<PHAsset> {
         return PHAsset.fetchAssets(in: collection, options: PHFetchOptions())
+    }
+
+    func requestThumbnail(_ asset: PHAsset) -> UIImage {
+        let manager = PHImageManager.default()
+        let thumbnailOption = PHImageRequestOptions()
+        thumbnailOption.isSynchronous = true
+        thumbnailOption.resizeMode = .exact
+        let size = UIScreen.main.bounds.width / 3
+        var thumbnail = UIImage()
+
+        manager.requestImage(for: asset, targetSize: CGSize(width: size, height: size), contentMode: .aspectFill, options: thumbnailOption) { result, info in
+            guard let result else { return }
+            thumbnail = result
+        }
+
+        return thumbnail
     }
 }
