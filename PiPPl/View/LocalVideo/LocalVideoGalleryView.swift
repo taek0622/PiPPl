@@ -10,7 +10,6 @@ import SwiftUI
 
 struct LocalVideoGalleryView: View {
     @State private var status = false
-    @State private var videos = [PHAsset]()
     @State private var isOldVersion: Bool = false
     private let libraryManager = LocalVideoLibraryManager.shared
     private let appVersionManager = AppVersionManager.shared
@@ -44,9 +43,11 @@ struct LocalVideoGalleryView: View {
                             status = true
                             let collection = libraryManager.requestVideoAlbums()
                             let assets = libraryManager.requestVideos(in: collection.firstObject ?? PHAssetCollection())
-                            videos = []
+                                libraryManager.videos = []
                             assets.enumerateObjects { asset, _, _ in
-                                videos.append(asset)
+                                var video = Video(asset: asset)
+                                video.thumbnail = libraryManager.requestThumbnail(asset)
+                                libraryManager.videos.append(video)
                             }
                         @unknown default:
                             break
@@ -54,24 +55,22 @@ struct LocalVideoGalleryView: View {
                     }
                 }
             } else {
-                GeometryReader { geo in
-                    ScrollView {
-                        LazyVGrid(columns: Array(repeating: GridItem(.fixed(geo.size.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
-                            ForEach(videos, id: \.self) { video in
-                                NavigationLink {
-                                    LocalVideoPlayView(asset: video)
-                                        .toolbar(.hidden, for: .tabBar)
-                                } label: {
-                                    ZStack(alignment: .bottomTrailing) {
-                                        configureThumbnail(video)
-                                            .resizable()
-                                            .frame(height: geo.size.width/rowItemCount)
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(UIScreen.main.bounds.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
+                        ForEach(libraryManager.videos, id: \.id) { video in
+                            NavigationLink {
+                                LocalVideoPlayView(asset: video.asset)
+                                    .toolbar(.hidden, for: .tabBar)
+                            } label: {
+                                ZStack(alignment: .bottomTrailing) {
+                                    Image(uiImage: video.thumbnail ?? UIImage(ciImage: CIImage(color: .gray)))
+                                        .resizable()
+                                        .frame(height: UIScreen.main.bounds.width/rowItemCount)
 
-                                        let duration = Int(video.duration)
-                                        Text("\(duration / 60):\(String(format: "%02d", duration % 60))")
-                                            .foregroundStyle(.white)
-                                            .padding(4)
-                                    }
+                                    let duration = Int(video.asset.duration)
+                                    Text("\(duration / 60):\(String(format: "%02d", duration % 60))")
+                                        .foregroundStyle(.white)
+                                        .padding(4)
                                 }
                             }
                         }
@@ -96,11 +95,14 @@ struct LocalVideoGalleryView: View {
                 status = false
             case .authorized, .limited:
                 status = true
-                let collection = libraryManager.requestVideoAlbums()
-                let assets = libraryManager.requestVideos(in: collection.firstObject ?? PHAssetCollection())
-                videos = []
-                assets.enumerateObjects { asset, _, _ in
-                    videos.append(asset)
+                if libraryManager.videos.isEmpty {
+                    let collection = libraryManager.requestVideoAlbums()
+                    let assets = libraryManager.requestVideos(in: collection.firstObject ?? PHAssetCollection())
+                    assets.enumerateObjects { asset, _, _ in
+                        var video = Video(asset: asset)
+                        video.thumbnail = libraryManager.requestThumbnail(asset)
+                        libraryManager.videos.append(video)
+                    }
                 }
             @unknown default:
                 break
@@ -110,22 +112,6 @@ struct LocalVideoGalleryView: View {
                 isOldVersion = await appVersionManager.checkNewUpdate()
             }
         }
-    }
-
-    private func configureThumbnail(_ asset: PHAsset) -> Image {
-        let manager = PHImageManager.default()
-        var thumbnail = Image(uiImage: UIImage(ciImage: CIImage(color: .gray)))
-        let thumbnailOption = PHImageRequestOptions()
-        thumbnailOption.isSynchronous = true
-        thumbnailOption.resizeMode = .exact
-        let size = UIScreen.main.bounds.width / 3
-
-        manager.requestImage(for: asset, targetSize: CGSize(width: size, height: size), contentMode: .aspectFill, options: thumbnailOption) { result, info in
-            guard let result else { return }
-            thumbnail = Image(uiImage: result)
-        }
-
-        return thumbnail
     }
 }
 
