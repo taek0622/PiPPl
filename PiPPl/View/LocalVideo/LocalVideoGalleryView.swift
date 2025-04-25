@@ -10,7 +10,6 @@ import SwiftUI
 
 struct LocalVideoGalleryView: View {
     @State private var status = false
-    @State private var videos = [PHAsset]()
     @State private var isOldVersion: Bool = false
     private let libraryManager = LocalVideoLibraryManager.shared
     private let appVersionManager = AppVersionManager.shared
@@ -44,9 +43,7 @@ struct LocalVideoGalleryView: View {
                             status = true
                             let collection = libraryManager.requestVideoAlbums()
                             let assets = libraryManager.requestVideos(in: collection.firstObject ?? PHAssetCollection())
-                            videos = []
                             assets.enumerateObjects { asset, _, _ in
-                                videos.append(asset)
                             }
                         @unknown default:
                             break
@@ -98,9 +95,7 @@ struct LocalVideoGalleryView: View {
                 status = true
                 let collection = libraryManager.requestVideoAlbums()
                 let assets = libraryManager.requestVideos(in: collection.firstObject ?? PHAssetCollection())
-                videos = []
                 assets.enumerateObjects { asset, _, _ in
-                    videos.append(asset)
                 }
             @unknown default:
                 break
