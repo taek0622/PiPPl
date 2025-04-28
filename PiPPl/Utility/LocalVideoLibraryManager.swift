@@ -28,6 +28,19 @@ class LocalVideoLibraryManager: ObservableObject {
 
     private init() {}
 
+    func configureGallery() {
+        guard let collection = requestVideoAlbums().firstObject else { return }
+        let assets = requestVideos(in: collection)
+        var newVideos = [Video]()
+
+        assets.enumerateObjects { asset, _, _ in
+            let thumbnail = self.requestThumbnail(asset)
+            newVideos.append(.init(asset: asset, thumbnail: thumbnail))
+        }
+
+        videos = newVideos
+    }
+
     func requestVideoAlbums() -> PHFetchResult<PHAssetCollection> {
         return PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumVideos, options: PHFetchOptions())
     }
