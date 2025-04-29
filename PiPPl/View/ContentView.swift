@@ -30,21 +30,24 @@ struct ContentView: View {
             }
         } else {
             NavigationSplitView {
-                NavigationLink {
-                    localVideoGalleryView
-                } label: {
-                    Label(AppText.localVideo, systemImage: "play.squre")
+                List {
+                    NavigationLink {
+                        localVideoGalleryView
+                    } label: {
+                        Label(AppText.localVideo, systemImage: "play.square")
+                    }
+                    NavigationLink {
+                        networkPlayerView
+                    } label: {
+                        Label(AppText.networkVideo, systemImage: "globe")
+                    }
+                    NavigationLink {
+                        appInfoView
+                    } label: {
+                        Label(AppText.appInfo, systemImage: "info.circle")
+                    }
                 }
-                NavigationLink {
-                    networkPlayerView
-                } label: {
-                    Label(AppText.networkVideo, systemImage: "globe")
-                }
-                NavigationLink {
-                    appInfoView
-                } label: {
-                    Label(AppText.appInfo, systemImage: "info.circle")
-                }
+                .listStyle(.plain)
             } detail: {
                 localVideoGalleryView
             }
