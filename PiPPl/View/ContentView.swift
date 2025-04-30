@@ -25,6 +25,7 @@ struct ContentView: View {
                     .tabItem { Label(AppText.networkVideo, systemImage: "globe") }
                 NavigationStack {
                     appInfoView
+                        .navigationTitle(AppText.appInfo)
                 }
                 .tabItem { Label(AppText.appInfo, systemImage: "info.circle") }
             }
@@ -42,7 +43,10 @@ struct ContentView: View {
                         Label(AppText.networkVideo, systemImage: "globe")
                     }
                     NavigationLink {
-                        appInfoView
+                        NavigationStack {
+                            appInfoView
+                                .navigationTitle(AppText.appInfo)
+                        }
                     } label: {
                         Label(AppText.appInfo, systemImage: "info.circle")
                     }
