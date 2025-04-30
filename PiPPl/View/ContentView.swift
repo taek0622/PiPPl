@@ -25,6 +25,7 @@ struct ContentView: View {
                     .tabItem { Label(AppText.networkVideo, systemImage: "globe") }
                 NavigationStack {
                     appInfoView
+                        .navigationTitle(AppText.appInfo)
                 }
                 .tabItem { Label(AppText.appInfo, systemImage: "info.circle") }
             }
@@ -32,7 +33,10 @@ struct ContentView: View {
             NavigationSplitView {
                 List {
                     NavigationLink {
-                        localVideoGalleryView
+                        NavigationStack {
+                            localVideoGalleryView
+                                .navigationTitle(AppText.localVideo)
+                        }
                     } label: {
                         Label(AppText.localVideo, systemImage: "play.square")
                     }
@@ -42,14 +46,20 @@ struct ContentView: View {
                         Label(AppText.networkVideo, systemImage: "globe")
                     }
                     NavigationLink {
-                        appInfoView
+                        NavigationStack {
+                            appInfoView
+                                .navigationTitle(AppText.appInfo)
+                        }
                     } label: {
                         Label(AppText.appInfo, systemImage: "info.circle")
                     }
                 }
                 .listStyle(.plain)
             } detail: {
-                localVideoGalleryView
+                NavigationStack {
+                    localVideoGalleryView
+                        .navigationTitle(AppText.localVideo)
+                }
             }
         }
     }

@@ -16,11 +16,7 @@ struct NetworkPlayerView: View {
 
 struct WebView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        if UIDevice.current.systemName == "iOS" {
-            return UINavigationController(rootViewController: NetworkPlayerViewController())
-        }
-
-        return NetworkPlayerViewController()
+        return UINavigationController(rootViewController: NetworkPlayerViewController())
     }
 
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
