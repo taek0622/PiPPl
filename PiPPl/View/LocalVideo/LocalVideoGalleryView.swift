@@ -47,6 +47,10 @@ struct LocalVideoGalleryView: View {
                         }
                     }
                 }
+            } else if libraryManager.videos.isEmpty {
+                Button(AppText.photoGalleryNoVideoButtonText) {
+                    libraryManager.configureGallery()
+                }
             } else {
                 ScrollView {
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed(UIScreen.main.bounds.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
