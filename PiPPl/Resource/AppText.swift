@@ -20,6 +20,7 @@ enum AppText {
     // MARK: - Local Video View Text
 
     static let photoGalleryAccessPermissionButtonText = String(localized: "PhotoGalleryAccessPermissionText")
+    static let photoGalleryNoVideoButtonText = String(localized: "PhotoGalleryNoVideoText")
 
     // MARK: - Network Video View Text
 

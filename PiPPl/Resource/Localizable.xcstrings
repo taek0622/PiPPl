@@ -463,6 +463,22 @@
         }
       }
     },
+    "PhotoGalleryNoVideoText" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are no videos saved on your device.\nPlease save the videos in the Photos app and then tap here to try again."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기기에 저장된 영상이 없습니다.\n사진 앱에 영상을 저장한 뒤, 여기를 눌러 다시 시도해 주십시오."
+          }
+        }
+      }
+    },
     "SearchFieldPlaceholder" : {
       "extractionState" : "manual",
       "localizations" : {
