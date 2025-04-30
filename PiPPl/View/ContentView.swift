@@ -33,7 +33,10 @@ struct ContentView: View {
             NavigationSplitView {
                 List {
                     NavigationLink {
-                        localVideoGalleryView
+                        NavigationStack {
+                            localVideoGalleryView
+                                .navigationTitle(AppText.localVideo)
+                        }
                     } label: {
                         Label(AppText.localVideo, systemImage: "play.square")
                     }
@@ -53,7 +56,10 @@ struct ContentView: View {
                 }
                 .listStyle(.plain)
             } detail: {
-                localVideoGalleryView
+                NavigationStack {
+                    localVideoGalleryView
+                        .navigationTitle(AppText.localVideo)
+                }
             }
         }
     }
