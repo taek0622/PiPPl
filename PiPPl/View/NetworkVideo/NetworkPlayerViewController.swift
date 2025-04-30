@@ -10,6 +10,10 @@ import WebKit
 
 class NetworkPlayerViewController: UIViewController {
 
+    // MARK: - Proeprties
+
+    private let appVersionManager = AppVersionManager.shared
+
     // MARK: - View
 
     private var webView: WKWebView!
@@ -35,14 +39,9 @@ class NetworkPlayerViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         Task {
-            switch await AppVersionManager.shared.checkNewUpdate() {
+            switch await appVersionManager.checkNewUpdate() {
             case true:
-                guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
-                      let property = NSDictionary(contentsOfFile: filePath),
-                      let iTunesID = property["iTunesID"] as? String
-                else { return }
-
-                let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(iTunesID)"
+                let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 let alert = UIAlertController(title: AppText.oldVersionAlertTitle, message: AppText.oldVersionAlertBody, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: AppText.oldVersionAlertAction, style: .default, handler: { action in
                     guard let url = URL(string: appStoreOpenURL) else { return }
