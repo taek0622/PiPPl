@@ -260,6 +260,10 @@ class NetworkPlayerViewController: UIViewController {
         webView.load(request)
     }
 
+    func pauseVideo() {
+        webView.load(URLRequest(url: URL(string: "https://www.google.com/")!))
+    }
+
 }
 
 extension NetworkPlayerViewController: UITextFieldDelegate {
