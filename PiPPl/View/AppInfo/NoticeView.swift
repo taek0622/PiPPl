@@ -19,7 +19,7 @@ struct NoticeView: View {
     @State private var item = [NoticeItem]()
 
     var body: some View {
-        List(item, children: \.content) { item in
+        List(item.reversed(), children: \.content) { item in
             VStack(alignment: .leading) {
                 if item.date != nil {
                     Text(item.date!)
@@ -34,13 +34,13 @@ struct NoticeView: View {
         .listStyle(.grouped)
         .navigationTitle(AppText.notice)
         .onAppear {
+            item = []
+
             networkManager.requestNoticeData { notices in
                 for notice in notices {
                     item.append(NoticeItem(title: notice.title, date: notice.createDate, content: [NoticeItem(title: notice.content)]))
                 }
             }
-
-            item.reverse()
         }
     }
 }
