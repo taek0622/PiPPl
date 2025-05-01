@@ -40,8 +40,8 @@ struct LocalVideoGalleryView: View {
                         case .notDetermined, .restricted, .denied:
                             status = false
                         case .authorized, .limited:
-                            status = true
                             libraryManager.configureGallery()
+                            status = true
                         @unknown default:
                             break
                         }
