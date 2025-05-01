@@ -34,6 +34,8 @@ struct NoticeView: View {
         .listStyle(.grouped)
         .navigationTitle(AppText.notice)
         .onAppear {
+            item = []
+
             networkManager.requestNoticeData { notices in
                 for notice in notices {
                     item.append(NoticeItem(title: notice.title, date: notice.createDate, content: [NoticeItem(title: notice.content)]))
