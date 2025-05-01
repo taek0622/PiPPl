@@ -8,6 +8,7 @@
 import Foundation
 import Photos
 import UIKit
+import Dispatch
 
 struct Video: Identifiable {
     let id = UUID()
@@ -18,6 +19,8 @@ struct Video: Identifiable {
 class LocalVideoLibraryManager: ObservableObject {
 
     @Published var videos = [Video]()
+    @Published var videoLoadingProgress: Double = 0.0
+    @Published var isLoading = false
 
     static let shared = LocalVideoLibraryManager()
     var status: PHAuthorizationStatus {
@@ -32,13 +35,24 @@ class LocalVideoLibraryManager: ObservableObject {
         guard let collection = requestVideoAlbums().firstObject else { return }
         let assets = requestVideos(in: collection)
         var newVideos = [Video]()
+        var loadedCount = 0
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
 
         assets.enumerateObjects { asset, _, _ in
             let thumbnail = self.requestThumbnail(asset)
             newVideos.append(.init(asset: asset, thumbnail: thumbnail))
+            loadedCount += 1
+            DispatchQueue.main.async {
+                self.videoLoadingProgress = Double(loadedCount) / Double(assets.count)
+            }
         }
 
-        videos = newVideos
+        DispatchQueue.main.async {
+            self.videos = newVideos
+            self.isLoading = false
+        }
     }
 
     func requestVideoAlbums() -> PHFetchResult<PHAssetCollection> {

@@ -11,6 +11,9 @@
         }
       }
     },
+    "%lld%%" : {
+
+    },
     "AppInfo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -459,6 +462,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "사진 앨범 접근 권한을 허용해주세요"
+          }
+        }
+      }
+    },
+    "PhotoGalleryLoadText" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading videos stored on your device."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기기에 저장된 영상을 불러오는 중 입니다."
           }
         }
       }
