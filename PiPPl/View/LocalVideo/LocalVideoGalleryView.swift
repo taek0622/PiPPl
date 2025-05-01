@@ -11,7 +11,8 @@ import SwiftUI
 struct LocalVideoGalleryView: View {
     @State private var status = false
     @State private var isOldVersion: Bool = false
-    private let libraryManager = LocalVideoLibraryManager.shared
+    @StateObject private var libraryManager = LocalVideoLibraryManager.shared
+    @Environment(\.colorScheme) private var colorScheme
     private let appVersionManager = AppVersionManager.shared
     var rowItemCount: Double {
         if UIDevice.current.systemName == "iOS" {
@@ -32,7 +33,7 @@ struct LocalVideoGalleryView: View {
     }
 
     var body: some View {
-        VStack {
+        ZStack {
             if !status {
                 Button(AppText.photoGalleryAccessPermissionButtonText) {
                     PHPhotoLibrary.requestAuthorization(for: .readWrite) { stat in
@@ -71,6 +72,24 @@ struct LocalVideoGalleryView: View {
                                 }
                             }
                         }
+                    }
+                }
+            }
+
+            if libraryManager.isLoading {
+                VStack {
+                    ZStack {
+                        Color(colorScheme == .light ? #colorLiteral(red: 0.2196078431, green: 0.2196078431, blue: 0.2196078431, alpha: 1) : #colorLiteral(red: 0.5490196078, green: 0.5490196078, blue: 0.5490196078, alpha: 1))
+                        Color(colorScheme == .light ? #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 0.82) : #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.1450980392, alpha: 0.82))
+                        VStack {
+                            HStack {
+                                Text(AppText.photoGalleryLoadText)
+                                Spacer()
+                                Text("\(Int(libraryManager.videoLoadingProgress * 100))%")
+                            }
+                            ProgressView(value: libraryManager.videoLoadingProgress)
+                        }
+                        .frame(width: UIScreen.main.bounds.width / 3)
                     }
                 }
             }
