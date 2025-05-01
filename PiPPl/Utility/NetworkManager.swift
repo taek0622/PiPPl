@@ -11,8 +11,6 @@ final class NetworkManager {
 
     static let shared = NetworkManager()
 
-    var notices = [Notice]()
-
     private init() {}
 
     func requestNoticeData(completion: @escaping ([Notice]) -> Void) {
