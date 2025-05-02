@@ -89,7 +89,8 @@ struct LocalVideoGalleryView: View {
                             }
                             ProgressView(value: libraryManager.videoLoadingProgress)
                         }
-                        .frame(width: UIScreen.main.bounds.width / 3)
+                        .padding()
+                        .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? UIScreen.main.bounds.width : UIScreen.main.bounds.width / 5 * 3)
                     }
                 }
             }
