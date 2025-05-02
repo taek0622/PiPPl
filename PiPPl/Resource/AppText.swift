@@ -17,6 +17,10 @@ enum AppText {
     static let networkVideo = String(localized: "NetworkVideo")
     static let appInfo = String(localized: "AppInfo")
 
+    // MARK: - Content View Text
+
+    static let notSupportDevice = String(localized: "NotSupportDevice")
+
     // MARK: - Local Video View Text
 
     static let photoGalleryAccessPermissionButtonText = String(localized: "PhotoGalleryAccessPermissionText")

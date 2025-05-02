@@ -398,6 +398,22 @@
         }
       }
     },
+    "NotSupportDevice" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app is only supported on iPhone and iPad.\nPlease check your device model."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해당 앱은 iPhone과 iPad에서만 지원합니다.\n기기의 기종을 확인해주세요."
+          }
+        }
+      }
+    },
     "OldVersionAlertAction" : {
       "extractionState" : "manual",
       "localizations" : {
