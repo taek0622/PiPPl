@@ -11,6 +11,7 @@ import SwiftUI
 
 struct LocalVideoPlayView: View {
     @StateObject private var localVideoPlayer = LocalVideoPlayer.shared
+    @Environment(\.colorScheme) var colorScheme
     var asset: PHAsset
 
     var body: some View {
