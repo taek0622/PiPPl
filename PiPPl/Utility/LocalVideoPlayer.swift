@@ -6,11 +6,16 @@
 //
 
 import AVFoundation
+import Combine
 import Photos
 
-class LocalVideoPlayer {
+class LocalVideoPlayer: ObservableObject {
 
     // MARK: - Property
+
+    @Published var isVideoLoading = false
+    @Published var videoLoadProgress: Double = 0.0
+    private var statusCancellable: AnyCancellable?
 
     static let shared = LocalVideoPlayer()
 
@@ -36,11 +41,29 @@ class LocalVideoPlayer {
         option.isNetworkAccessAllowed = true
         option.version = .original
         option.deliveryMode = .highQualityFormat
+        self.isVideoLoading = true
+        self.videoLoadProgress = 0.0
+
+        option.progressHandler = { progress, _, _, _ in
+            DispatchQueue.main.async {
+                self.videoLoadProgress = Double(progress)
+            }
+        }
 
         PHImageManager.default().requestPlayerItem(forVideo: asset, options: option) { playerItem, info in
+            guard let playerItem else { return }
             self.player.replaceCurrentItem(with: playerItem)
-            self.play()
+
+            self.statusCancellable = playerItem.publisher(for: \.status)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] status in
+                    if status == .readyToPlay {
+                        self?.isVideoLoading = false
+                        self?.play()
+                    }
+                }
         }
+
     }
 
     func play() {
