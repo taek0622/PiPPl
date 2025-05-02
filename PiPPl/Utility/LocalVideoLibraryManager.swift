@@ -30,7 +30,14 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         }
     }
 
-    private init() {}
+    override private init() {
+        super.init()
+        PHPhotoLibrary.shared().register(self)
+    }
+
+    deinit {
+        PHPhotoLibrary.shared().unregisterChangeObserver(self)
+    }
 
     func configureGallery() {
         guard let collection = requestVideoAlbums().firstObject else { return }
@@ -78,5 +85,8 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         }
 
         return thumbnail
+    }
+
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
     }
 }
