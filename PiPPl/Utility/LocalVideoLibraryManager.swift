@@ -92,5 +92,38 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
     }
 
     func photoLibraryDidChange(_ changeInstance: PHChange) {
+        guard let assetsFetchResult = assetFetchResult, let changes = changeInstance.changeDetails(for: assetsFetchResult) else { return }
+
+        DispatchQueue.main.async {
+            self.assetFetchResult = changes.fetchResultAfterChanges
+
+            if changes.hasIncrementalChanges {
+                if let removed = changes.removedIndexes {
+                    for idx in removed.reversed() {
+                        self.videos.remove(at: idx)
+                    }
+                }
+
+                if let inserted = changes.insertedIndexes {
+                    for idx in inserted {
+                        let asset = changes.fetchResultAfterChanges.object(at: idx)
+                        let thumbnail = self.requestThumbnail(asset)
+                        let video = Video(asset: asset, thumbnail: thumbnail)
+                        self.videos.insert(video, at: idx)
+                    }
+                }
+
+                if let changed = changes.changedIndexes {
+                    for idx in changed {
+                        let asset = changes.fetchResultAfterChanges.object(at: idx)
+                        let thumbnail = self.requestThumbnail(asset)
+                        let video = Video(asset: asset, thumbnail: thumbnail)
+                        self.videos[idx] = video
+                    }
+                }
+            } else {
+                self.updateVideos(changes.fetchResultAfterChanges)
+            }
+        }
     }
 }
