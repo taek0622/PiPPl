@@ -18,6 +18,20 @@ struct LocalVideoPlayView: View {
         ZStack {
             LocalPlayerView(player: localVideoPlayer.player)
 
+            if localVideoPlayer.isVideoLoading {
+                Color(colorScheme == .light ? #colorLiteral(red: 0.2196078431, green: 0.2196078431, blue: 0.2196078431, alpha: 1) : #colorLiteral(red: 0.5490196078, green: 0.5490196078, blue: 0.5490196078, alpha: 1))
+                Color(colorScheme == .light ? #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 0.82) : #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.1450980392, alpha: 0.82))
+                VStack {
+                    HStack {
+                        Text(AppText.videoLoadText)
+                        Spacer()
+                        Text("\(Int(localVideoPlayer.videoLoadProgress * 100))%")
+                    }
+                    ProgressView(value: localVideoPlayer.videoLoadProgress)
+                }
+                .padding()
+                .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? UIScreen.main.bounds.width : UIScreen.main.bounds.width / 5 * 3)
+            }
         }
         .onAppear {
             localVideoPlayer.configureVideo(asset)
