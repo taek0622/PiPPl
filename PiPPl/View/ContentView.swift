@@ -61,6 +61,8 @@ struct ContentView: View {
                         .navigationTitle(AppText.localVideo)
                 }
             }
+        } else {
+            Text(AppText.notSupportDevice)
         }
     }
 }
