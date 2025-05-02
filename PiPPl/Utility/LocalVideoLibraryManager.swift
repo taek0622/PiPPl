@@ -21,6 +21,7 @@ class LocalVideoLibraryManager: ObservableObject {
     @Published var videos = [Video]()
     @Published var videoLoadingProgress: Double = 0.0
     @Published var isLoading = false
+    private var assetFetchResult: PHFetchResult<PHAsset>?
 
     static let shared = LocalVideoLibraryManager()
     var status: PHAuthorizationStatus {
