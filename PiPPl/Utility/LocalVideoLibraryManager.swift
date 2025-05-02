@@ -42,9 +42,16 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
     func configureGallery() {
         guard let collection = requestVideoAlbums().firstObject else { return }
         let assets = requestVideos(in: collection)
-        var newVideos = [Video]()
         self.assetFetchResult = assets
         updateVideos(assets)
+    }
+
+    func requestVideoAlbums() -> PHFetchResult<PHAssetCollection> {
+        return PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumVideos, options: PHFetchOptions())
+    }
+
+    func requestVideos(in collection: PHAssetCollection) -> PHFetchResult<PHAsset> {
+        return PHAsset.fetchAssets(in: collection, options: PHFetchOptions())
     }
 
     func updateVideos(_ assets: PHFetchResult<PHAsset>) {
@@ -66,14 +73,6 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
             self.videos = updatedVideos
             self.isLoading = false
         }
-    }
-
-    func requestVideoAlbums() -> PHFetchResult<PHAssetCollection> {
-        return PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumVideos, options: PHFetchOptions())
-    }
-
-    func requestVideos(in collection: PHAssetCollection) -> PHFetchResult<PHAsset> {
-        return PHAsset.fetchAssets(in: collection, options: PHFetchOptions())
     }
 
     func requestThumbnail(_ asset: PHAsset) -> UIImage {
