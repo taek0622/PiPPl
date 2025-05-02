@@ -16,7 +16,7 @@ struct Video: Identifiable {
     var thumbnail: UIImage?
 }
 
-class LocalVideoLibraryManager: ObservableObject {
+class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChangeObserver {
 
     @Published var videos = [Video]()
     @Published var videoLoadingProgress: Double = 0.0
