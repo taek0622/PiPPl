@@ -43,22 +43,27 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         guard let collection = requestVideoAlbums().firstObject else { return }
         let assets = requestVideos(in: collection)
         var newVideos = [Video]()
+        self.assetFetchResult = assets
+        updateVideos(assets)
+    }
+
+    func updateVideos(_ assets: PHFetchResult<PHAsset>) {
+        var updatedVideos = [Video]()
         var loadedCount = 0
-        DispatchQueue.main.async {
-            self.isLoading = true
-        }
+        self.isLoading = true
 
         assets.enumerateObjects { asset, _, _ in
             let thumbnail = self.requestThumbnail(asset)
-            newVideos.append(.init(asset: asset, thumbnail: thumbnail))
+            updatedVideos.append(.init(asset: asset, thumbnail: thumbnail))
             loadedCount += 1
+
             DispatchQueue.main.async {
                 self.videoLoadingProgress = Double(loadedCount) / Double(assets.count)
             }
         }
 
         DispatchQueue.main.async {
-            self.videos = newVideos
+            self.videos = updatedVideos
             self.isLoading = false
         }
     }
