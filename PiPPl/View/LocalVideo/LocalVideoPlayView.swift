@@ -10,16 +10,19 @@ import Photos
 import SwiftUI
 
 struct LocalVideoPlayView: View {
+    @StateObject private var localVideoPlayer = LocalVideoPlayer.shared
     var asset: PHAsset
+
     var body: some View {
-            LocalPlayerView(player: LocalVideoPlayer.shared.player)
         ZStack {
+            LocalPlayerView(player: localVideoPlayer.player)
+
         }
         .onAppear {
-            LocalVideoPlayer.shared.configureVideo(asset)
+            localVideoPlayer.configureVideo(asset)
         }
         .onDisappear {
-            LocalVideoPlayer.shared.pause()
+            localVideoPlayer.pause()
         }
     }
 }
