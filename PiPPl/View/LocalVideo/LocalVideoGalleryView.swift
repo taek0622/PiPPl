@@ -83,13 +83,14 @@ struct LocalVideoGalleryView: View {
                         Color(colorScheme == .light ? #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 0.82) : #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.1450980392, alpha: 0.82))
                         VStack {
                             HStack {
-                                Text(AppText.photoGalleryLoadText)
+                                Text(AppText.videoLoadText)
                                 Spacer()
                                 Text("\(Int(libraryManager.videoLoadingProgress * 100))%")
                             }
                             ProgressView(value: libraryManager.videoLoadingProgress)
                         }
-                        .frame(width: UIScreen.main.bounds.width / 3)
+                        .padding()
+                        .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? UIScreen.main.bounds.width : UIScreen.main.bounds.width / 5 * 3)
                     }
                 }
             }

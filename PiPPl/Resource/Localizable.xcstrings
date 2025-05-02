@@ -482,22 +482,6 @@
         }
       }
     },
-    "PhotoGalleryLoadText" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Loading videos stored on your device."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기기에 저장된 영상을 불러오는 중 입니다."
-          }
-        }
-      }
-    },
     "PhotoGalleryNoVideoText" : {
       "localizations" : {
         "en" : {
@@ -527,6 +511,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "여기에 주소를 입력해주세요."
+          }
+        }
+      }
+    },
+    "VideoLoadText" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The video is loading."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영상을 불러오는 중 입니다."
           }
         }
       }
