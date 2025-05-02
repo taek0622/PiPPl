@@ -12,8 +12,8 @@ import SwiftUI
 struct LocalVideoPlayView: View {
     var asset: PHAsset
     var body: some View {
-        VStack {
             LocalPlayerView(player: LocalVideoPlayer.shared.player)
+        ZStack {
         }
         .onAppear {
             LocalVideoPlayer.shared.configureVideo(asset)
