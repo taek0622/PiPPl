@@ -15,13 +15,13 @@ struct LocalVideoGalleryView: View {
     @Environment(\.colorScheme) private var colorScheme
     private let appVersionManager = AppVersionManager.shared
     var rowItemCount: Double {
-        if UIDevice.current.systemName == "iOS" {
+        if UIDevice.current.userInterfaceIdiom == .phone {
             if UIDevice.current.orientation == .portrait {
                 return 3
             } else {
                 return 5
             }
-        } else if UIDevice.current.systemName == "iPadOS" {
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
             if UIDevice.current.orientation == .portrait {
                 return 5
             } else {

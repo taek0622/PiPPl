@@ -13,7 +13,7 @@ struct ContentView: View {
     let appInfoView = AppInfoView()
 
     var body: some View {
-        if UIDevice.current.systemName == "iOS" {
+        if UIDevice.current.userInterfaceIdiom == .phone {
             TabView {
                 NavigationStack {
                     localVideoGalleryView
@@ -29,7 +29,7 @@ struct ContentView: View {
                 }
                 .tabItem { Label(AppText.appInfo, systemImage: "info.circle") }
             }
-        } else {
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
             NavigationSplitView {
                 List {
                     NavigationLink {
@@ -61,6 +61,8 @@ struct ContentView: View {
                         .navigationTitle(AppText.localVideo)
                 }
             }
+        } else {
+            Text(AppText.notSupportDevice)
         }
     }
 }
