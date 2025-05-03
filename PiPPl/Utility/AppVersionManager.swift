@@ -60,3 +60,11 @@ class AppVersionManager {
         return latestAppStoreVersion
     }
 }
+
+extension String {
+    func stringToVersion() -> (major: Int, minor: Int, patch: Int)? {
+        let versions = self.split(separator: ".").map { Int($0)! }
+        guard versions.count >= 3 else { return nil }
+        return (versions[0], versions[1], versions[2])
+    }
+}
