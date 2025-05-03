@@ -26,7 +26,7 @@ class AppVersionManager {
     private init() {}
 
     func checkNewUpdate() async -> Bool {
-        guard let latestAppStoreVersion = try? await getLatestAppStoreVersion() else { return false }
+        guard let latestAppStoreVersion = try? await requestLatestAppStoreVersion() else { return false }
 
         let compareResult = downloadedAppVersion.compare(latestAppStoreVersion, options: .numeric)
 
@@ -38,7 +38,7 @@ class AppVersionManager {
         }
     }
 
-    private func getLatestAppStoreVersion() async throws -> String {
+    private func requestLatestAppStoreVersion() async throws -> String {
         guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(iTunesID)")
         else { return "" }
 
