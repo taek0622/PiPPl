@@ -12,4 +12,17 @@ enum UpdateState {
     case available
     case recommended
     case required
+
+    func stateNoticeColor() -> Color {
+        switch self {
+            case .latest:
+                .clear
+            case .available:
+                .accentColor
+            case .recommended:
+                .yellow
+            case .required:
+                .red
+        }
+    }
 }
