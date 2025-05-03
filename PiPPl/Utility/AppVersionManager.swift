@@ -8,6 +8,7 @@
 import Foundation
 
 class AppVersionManager {
+    typealias Version = (major: Int, minor: Int, patch: Int)
 
     static let shared = AppVersionManager()
     let iTunesID: String
