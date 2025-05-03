@@ -9,8 +9,9 @@ import Photos
 import SwiftUI
 
 struct LocalVideoGalleryView: View {
-    @State private var status = false
-    @State private var isOldVersion: Bool = false
+    @State private var isPermissionAccessable = false
+    @State private var updateState: UpdateState = .latest
+    @State private var isUpdateAlertOpen = false
     @StateObject private var libraryManager = LocalVideoLibraryManager.shared
     @Environment(\.colorScheme) private var colorScheme
     private let appVersionManager = AppVersionManager.shared
@@ -34,15 +35,15 @@ struct LocalVideoGalleryView: View {
 
     var body: some View {
         ZStack {
-            if !status {
+            if !isPermissionAccessable {
                 Button(AppText.photoGalleryAccessPermissionButtonText) {
                     PHPhotoLibrary.requestAuthorization(for: .readWrite) { stat in
                         switch stat {
                         case .notDetermined, .restricted, .denied:
-                            status = false
+                            isPermissionAccessable = false
                         case .authorized, .limited:
                             libraryManager.configureGallery()
-                            status = true
+                            isPermissionAccessable = true
                         @unknown default:
                             break
                         }
@@ -95,7 +96,18 @@ struct LocalVideoGalleryView: View {
                 }
             }
         }
-        .alert(AppText.oldVersionAlertTitle, isPresented: $isOldVersion) {
+        .toolbar {
+            if updateState != .latest {
+                Button {
+                    isUpdateAlertOpen = true
+                } label: {
+                    Image(systemName: "arrow.up.square.fill")
+                        .foregroundStyle(updateState.stateNoticeColor())
+                }
+
+            }
+        }
+        .alert(AppText.oldVersionAlertTitle, isPresented: $isUpdateAlertOpen) {
             Button(AppText.oldVersionAlertAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 guard let url = URL(string: appStoreOpenURL) else { return }
@@ -109,9 +121,9 @@ struct LocalVideoGalleryView: View {
         .onAppear {
             switch libraryManager.status {
             case .notDetermined, .restricted, .denied:
-                status = false
+                isPermissionAccessable = false
             case .authorized, .limited:
-                status = true
+                isPermissionAccessable = true
                 if libraryManager.videos.isEmpty {
                     libraryManager.configureGallery()
                 }
@@ -120,7 +132,7 @@ struct LocalVideoGalleryView: View {
             }
 
             Task {
-                isOldVersion = await appVersionManager.checkNewUpdate()
+                updateState = await appVersionManager.checkNewUpdate()
             }
         }
     }
