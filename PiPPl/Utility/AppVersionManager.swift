@@ -27,17 +27,20 @@ class AppVersionManager {
         } else { self.downloadedAppVersion = (0, 0, 0) }
     }
 
-    func checkNewUpdate() async -> Bool {
-        guard let latestAppStoreVersion = try? await requestLatestAppStoreVersion() else { return false }
+    func checkNewUpdate() async -> UpdateState {
+        guard let requireVersion = try? await requestRequiredVersion() else { return . latest }
+        guard let latestAppStoreVersion = try? await requestLatestAppStoreVersion() else { return .latest }
 
-        let compareResult = downloadedAppVersion.compare(latestAppStoreVersion, options: .numeric)
-
-        switch compareResult {
-        case .orderedAscending:
-            return true
-        default:
-            return false
+        if downloadedAppVersion == latestAppStoreVersion {
+            return .latest
+        } else if requireVersion > downloadedAppVersion || latestAppStoreVersion.major > downloadedAppVersion.major || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor > downloadedAppVersion.minor + 4) || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor == downloadedAppVersion.minor && latestAppStoreVersion.patch > downloadedAppVersion.patch + 8) {
+            return .required
+        } else if (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor > downloadedAppVersion.minor + 2) || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor == downloadedAppVersion.minor && latestAppStoreVersion.patch > downloadedAppVersion.patch + 4) {
+            return .recommended
         }
+        print(requireVersion, latestAppStoreVersion, downloadedAppVersion)
+
+        return .available
     }
 
     private func requestRequiredVersion() async throws -> Version {
