@@ -19,8 +19,9 @@ struct AppInfoView: View {
     }
 
     @State private var isOpenSafariView = false
-    @State private var isSelectAppVersion = false
     @State private var isOldVersion = false
+    @State private var isSelectAppVersion = false
+    @State private var updateState: UpdateState = .latest
     @State private var url = URL(string: "https://www.google.com")!
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
@@ -48,14 +49,19 @@ struct AppInfoView: View {
             }
             Button {
                 Task {
-                    isOldVersion = await appVersionManager.checkNewUpdate()
-                    isSelectAppVersion = !isOldVersion
+                    updateState = await appVersionManager.checkNewUpdate()
+
+                    if updateState == .latest {
+                        isSelectAppVersion = true
+                    } else {
+                        isOldVersion = true
+                    }
                 }
             } label: {
                 HStack {
                     Text(AppText.versionInfo)
                     Spacer()
-                    Text(appVersionManager.downloadedAppVersion)
+                    Text("\(appVersionManager.downloadedAppVersion.major).\(appVersionManager.downloadedAppVersion.minor).\(appVersionManager.downloadedAppVersion.patch)")
                         .foregroundStyle(.gray)
                         .font(.system(size: 16))
                 }
