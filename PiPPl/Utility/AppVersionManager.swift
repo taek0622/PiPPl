@@ -10,20 +10,18 @@ import Foundation
 class AppVersionManager {
 
     static let shared = AppVersionManager()
-    var iTunesID: String {
-        guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
-              let property = NSDictionary(contentsOfFile: filePath),
-              let iTunesID = property["iTunesID"] as? String
-        else { return "" }
+    let iTunesID: String
+    let downloadedAppVersion: String
 
-        return iTunesID
-    }
-    var downloadedAppVersion: String {
-        guard let downloadedAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "" }
-        return downloadedAppVersion
-    }
+    private init() {
+        if let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
+           let property = NSDictionary(contentsOfFile: filePath),
+           let iTunesID = property["iTunesID"] as? String {
+            self.iTunesID = iTunesID
+        } else { self.iTunesID = "" }
 
-    private init() {}
+        self.downloadedAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+    }
 
     func checkNewUpdate() async -> Bool {
         guard let latestAppStoreVersion = try? await requestLatestAppStoreVersion() else { return false }
