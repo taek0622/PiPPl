@@ -9,10 +9,22 @@
             "value" : "%1$lld:%2$@"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
+    },
+    "%lld.%lld.%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld.%2$lld.%3$lld"
+          }
+        }
+      },
+      "shouldTranslate" : false
     },
     "%lld%%" : {
-
+      "shouldTranslate" : false
     },
     "AppInfo" : {
       "extractionState" : "manual",
