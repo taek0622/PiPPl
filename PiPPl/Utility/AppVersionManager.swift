@@ -12,7 +12,7 @@ class AppVersionManager {
 
     static let shared = AppVersionManager()
     let iTunesID: String
-    let downloadedAppVersion: String
+    let downloadedAppVersion: Version
 
     private init() {
         if let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
@@ -21,7 +21,10 @@ class AppVersionManager {
             self.iTunesID = iTunesID
         } else { self.iTunesID = "" }
 
-        self.downloadedAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        if let downloadedVersionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+           let versions = downloadedVersionString.stringToVersion() {
+            self.downloadedAppVersion = versions
+        } else { self.downloadedAppVersion = (0, 0, 0) }
     }
 
     func checkNewUpdate() async -> Bool {
