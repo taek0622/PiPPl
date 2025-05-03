@@ -36,6 +36,16 @@ class AppVersionManager {
         }
     }
 
+    private func requestRequiredVersion() async throws -> String {
+        guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Version/refs/heads/main/PiPPl.json") else { return "" }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
+              let requiredVersion = json["requiredVersion"] as? String
+        else { return "" }
+
+        return requiredVersion
+    }
+
     private func requestLatestAppStoreVersion() async throws -> String {
         guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(iTunesID)")
         else { return "" }
