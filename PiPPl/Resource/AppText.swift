@@ -58,6 +58,11 @@ enum AppText {
     static let oldVersionAlertBody = String(localized: "OldVersionAlertBody")
     static let oldVersionAlertAction = String(localized: "OldVersionAlertAction")
 
+    static let updateAvailableAlertTitle = String(localized: "UpdateAvailableAlertTitle")
+    static let updateAvailableAlertBody = String(localized: "UpdateAvailableAlertBody")
+    static let updateAvailableAlertUpdateAction = String(localized: "UpdateAvailableAlertUpdateAction")
+    static let updateAvailableAlertPostponeAction = String(localized: "UpdateAvailableAlertPostponeAction")
+
     static let latestVersionAlertTitle = String(localized: "LatestVersionAlertTitle")
     static let latestVersionAlertBody = String(localized: "LatestVersionAlertBody")
 
