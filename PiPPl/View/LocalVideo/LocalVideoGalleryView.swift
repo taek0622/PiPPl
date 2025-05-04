@@ -115,6 +115,10 @@ struct LocalVideoGalleryView: View {
                     UIApplication.shared.open(url)
                 }
             }
+
+            if updateState == .recommended || updateState == .available {
+                Button(AppText.updateAvailableAlertPostponeAction) {}
+            }
         } message: {
             Text(updateState.updateAlertBody)
         }
