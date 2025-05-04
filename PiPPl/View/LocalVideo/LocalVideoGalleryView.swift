@@ -107,8 +107,8 @@ struct LocalVideoGalleryView: View {
 
             }
         }
-        .alert(AppText.oldVersionAlertTitle, isPresented: $isUpdateAlertOpen) {
-            Button(AppText.oldVersionAlertAction) {
+        .alert(updateState.updateAlertTitle, isPresented: $isUpdateAlertOpen) {
+            Button(updateState.updateAlertPrimaryAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 guard let url = URL(string: appStoreOpenURL) else { return }
                 if UIApplication.shared.canOpenURL(url) {
@@ -116,7 +116,7 @@ struct LocalVideoGalleryView: View {
                 }
             }
         } message: {
-            Text(AppText.oldVersionAlertBody)
+            Text(updateState.updateAlertBody)
         }
         .onAppear {
             switch libraryManager.status {
