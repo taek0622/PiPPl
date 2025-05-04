@@ -25,4 +25,37 @@ enum UpdateState {
                 .red
         }
     }
+
+    var updateAlertTitle: String {
+        switch self {
+            case .latest:
+                AppText.latestVersionAlertTitle
+            case .available, .recommended:
+                AppText.updateAvailableAlertTitle
+            case .required:
+                AppText.oldVersionAlertTitle
+        }
+    }
+
+    var updateAlertBody: String {
+        switch self {
+            case .latest:
+                AppText.latestVersionAlertBody
+            case .available, .recommended:
+                AppText.updateAvailableAlertBody
+            case .required:
+                AppText.oldVersionAlertBody
+        }
+    }
+
+    var updateAlertPrimaryAction: String {
+        switch self {
+            case .latest:
+                AppText.confirm
+            case .available, .recommended:
+                AppText.updateAvailableAlertUpdateAction
+            case .required:
+                AppText.oldVersionAlertAction
+        }
+    }
 }
