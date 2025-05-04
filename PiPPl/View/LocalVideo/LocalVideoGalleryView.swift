@@ -102,7 +102,7 @@ struct LocalVideoGalleryView: View {
                     isUpdateAlertOpen = true
                 } label: {
                     Image(systemName: "arrow.up.square.fill")
-                        .foregroundStyle(updateState.stateNoticeColor())
+                        .foregroundStyle(updateState.updateNotificationColor)
                 }
 
             }

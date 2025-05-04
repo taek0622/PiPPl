@@ -13,7 +13,7 @@ enum UpdateState {
     case recommended
     case required
 
-    func stateNoticeColor() -> Color {
+    var updateNotificationColor: Color {
         switch self {
             case .latest:
                 .clear
