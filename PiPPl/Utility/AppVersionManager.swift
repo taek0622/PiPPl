@@ -40,7 +40,6 @@ struct Version: Comparable {
 
 class AppVersionManager: ObservableObject {
 
-    static let shared = AppVersionManager()
     let iTunesID: String
     let downloadedAppVersion: Version
 
