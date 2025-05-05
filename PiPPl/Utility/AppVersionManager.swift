@@ -28,6 +28,11 @@ struct Version: Comparable {
         self.init(major: versions[0], minor: versions[1], patch: versions[2])
     }
 
+    static func < (lhs: Version, rhs: Version) -> Bool {
+        if lhs.major != rhs.major { return lhs.major < rhs.major }
+        if lhs.minor != rhs.minor { return lhs.minor < rhs.minor }
+        return lhs.patch < rhs.patch
+    }
 }
 
 class AppVersionManager: ObservableObject {
