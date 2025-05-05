@@ -7,8 +7,8 @@
 
 import Foundation
 
-class AppVersionManager {
     typealias Version = (major: Int, minor: Int, patch: Int)
+class AppVersionManager: ObservableObject {
 
     static let shared = AppVersionManager()
     let iTunesID: String
