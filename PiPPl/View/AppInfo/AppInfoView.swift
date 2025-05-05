@@ -61,7 +61,7 @@ struct AppInfoView: View {
                 HStack {
                     Text(AppText.versionInfo)
                     Spacer()
-                    Text("\(appVersionManager.downloadedAppVersion.major).\(appVersionManager.downloadedAppVersion.minor).\(appVersionManager.downloadedAppVersion.patch)")
+                    Text(appVersionManager.downloadedAppVersion.versionString)
                         .foregroundStyle(.gray)
                         .font(.system(size: 16))
                 }
