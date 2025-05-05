@@ -44,7 +44,7 @@ class AppVersionManager: ObservableObject {
     let iTunesID: String
     let downloadedAppVersion: Version
 
-    private init() {
+    init() {
         if let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
            let property = NSDictionary(contentsOfFile: filePath),
            let iTunesID = property["iTunesID"] as? String {
