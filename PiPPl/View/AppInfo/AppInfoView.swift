@@ -18,6 +18,7 @@ struct AppInfoView: View {
         case versionInfo
     }
 
+    @EnvironmentObject var appVersionManager: AppVersionManager
     @State private var isOpenSafariView = false
     @State private var isOldVersion = false
     @State private var isSelectAppVersion = false
@@ -25,7 +26,6 @@ struct AppInfoView: View {
     @State private var url = URL(string: "https://www.google.com")!
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
-    let appVersionManager = AppVersionManager.shared
 
     var body: some View {
         List {

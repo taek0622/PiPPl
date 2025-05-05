@@ -13,8 +13,8 @@ struct LocalVideoGalleryView: View {
     @State private var updateState: UpdateState = .latest
     @State private var isUpdateAlertOpen = false
     @StateObject private var libraryManager = LocalVideoLibraryManager.shared
+    @EnvironmentObject var appVersionManager: AppVersionManager
     @Environment(\.colorScheme) private var colorScheme
-    private let appVersionManager = AppVersionManager.shared
     var rowItemCount: Double {
         if UIDevice.current.userInterfaceIdiom == .phone {
             if UIDevice.current.orientation == .portrait {

@@ -10,6 +10,7 @@ import SwiftUI
 
 @main
 struct PiPPlApp: App {
+    @StateObject private var appVersionManager = AppVersionManager()
 
     init() {
         let audioSession = AVAudioSession.sharedInstance()
@@ -24,6 +25,7 @@ struct PiPPlApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appVersionManager)
         }
     }
 }
