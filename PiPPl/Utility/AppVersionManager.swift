@@ -11,6 +11,17 @@ struct Version: Comparable {
     var major: Int
     var minor: Int
     var patch: Int
+
+    init(major: Int, minor: Int, patch: Int) {
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+    }
+
+    init(_ major: Int, _ minor: Int, _ patch: Int) {
+        self.init(major: major, minor: minor, patch: patch)
+    }
+
 }
 
 class AppVersionManager: ObservableObject {
