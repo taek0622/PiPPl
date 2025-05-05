@@ -19,6 +19,7 @@
 		26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DA7D502BB5D3A3002AF316 /* AppText.swift */; };
 		26DA7D532BB5DD77002AF316 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */; };
 		26E63A642DC6571E000D2C53 /* UpdateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E63A632DC65719000D2C53 /* UpdateState.swift */; };
+		26E63A6A2DC939B4000D2C53 /* VersionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E63A692DC939B1000D2C53 /* VersionModel.swift */; };
 		26E801D12DB5193100CE20BB /* LocalPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E801D02DB5192900CE20BB /* LocalPlayerViewController.swift */; };
 		26E801D92DB9190500CE20BB /* CustomerServiceMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E801D82DB9190500CE20BB /* CustomerServiceMailView.swift */; };
 		26EB7EE32B56AA1300282354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26EB7EE22B56AA1300282354 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		26DA7D502BB5D3A3002AF316 /* AppText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
 		26DA7D522BB5DD77002AF316 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		26E63A632DC65719000D2C53 /* UpdateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateState.swift; sourceTree = "<group>"; };
+		26E63A692DC939B1000D2C53 /* VersionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionModel.swift; sourceTree = "<group>"; };
 		26E801D02DB5192900CE20BB /* LocalPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayerViewController.swift; sourceTree = "<group>"; };
 		26E801D82DB9190500CE20BB /* CustomerServiceMailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceMailView.swift; sourceTree = "<group>"; };
 		26EB7ED62B56AA1000282354 /* PiPPl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiPPl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 		26B742AB2BA7368D00823338 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				26E63A692DC939B1000D2C53 /* VersionModel.swift */,
 				26E63A632DC65719000D2C53 /* UpdateState.swift */,
 				26B742AC2BA736A800823338 /* NoticeModel.swift */,
 			);
@@ -255,6 +258,7 @@
 				26EBB1C62BDFE8B700C83CA2 /* ContentView.swift in Sources */,
 				2649A4B12BFF900A007FCC55 /* AppInfoView.swift in Sources */,
 				26E801D92DB9190500CE20BB /* CustomerServiceMailView.swift in Sources */,
+				26E63A6A2DC939B4000D2C53 /* VersionModel.swift in Sources */,
 				26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */,
 				26EB7EF02B56AB8100282354 /* NetworkPlayerViewController.swift in Sources */,
 				2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */,
