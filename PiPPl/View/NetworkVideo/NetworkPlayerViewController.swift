@@ -10,10 +10,6 @@ import WebKit
 
 class NetworkPlayerViewController: UIViewController {
 
-    // MARK: - Proeprties
-
-    private let appVersionManager = AppVersionManager.shared
-
     // MARK: - View
 
     private var webView: WKWebView!
