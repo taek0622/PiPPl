@@ -139,13 +139,13 @@ struct LocalVideoGalleryView: View {
             Task {
                 updateState = await appVersionManager.checkNewUpdate()
 
-                if updateState == .required && !appVersionManager.isUpdateAlertOpen {
+                if updateState == .required && !appVersionManager.isUpdateAlertOpened {
                     isUpdateAlertOpen = true
-                    appVersionManager.isUpdateAlertOpen = true
-                } else if updateState == .recommended && !appVersionManager.isUpdateAlertOpen {
+                    appVersionManager.isUpdateAlertOpened = true
+                } else if updateState == .recommended && !appVersionManager.isUpdateAlertOpened {
                     if updateAlertCount == 0 {
                         isUpdateAlertOpen = true
-                        appVersionManager.isUpdateAlertOpen = true
+                        appVersionManager.isUpdateAlertOpened = true
                     }
 
                     updateAlertCount += 1

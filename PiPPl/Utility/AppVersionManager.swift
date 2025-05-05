@@ -9,7 +9,7 @@ import Foundation
 
 class AppVersionManager: ObservableObject {
     @Published var updateState = UpdateState.latest
-    @Published var isUpdateAlertOpen = false
+    @Published var isUpdateAlertOpened = false
 
     let iTunesID: String
     let downloadedAppVersion: Version
