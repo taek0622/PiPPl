@@ -7,7 +7,6 @@
 
 import Foundation
 
-    typealias Version = (major: Int, minor: Int, patch: Int)
 class AppVersionManager: ObservableObject {
 
     static let shared = AppVersionManager()
