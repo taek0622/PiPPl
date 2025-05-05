@@ -51,7 +51,6 @@ class NetworkPlayerViewController: UIViewController {
             guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist") else { return }
             guard let property = NSDictionary(contentsOfFile: filePath) else { return }
             guard let pipLogic = property["PiPLogic"] as? String else { return }
-            print(pipLogic)
             self.webView.evaluateJavaScript(pipLogic)
         })
         navigationItem.titleView = searchTextField
@@ -228,7 +227,6 @@ class NetworkPlayerViewController: UIViewController {
                 urlString = "https://" + urlString
             } else {
                 urlString = "https://www.google.com/search?q=" + urlString
-                print(splitDomain.last!)
             }
         }
 

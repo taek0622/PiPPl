@@ -69,7 +69,6 @@ class AppVersionManager: ObservableObject {
         } else if (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor > downloadedAppVersion.minor + 2) || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor == downloadedAppVersion.minor && latestAppStoreVersion.patch > downloadedAppVersion.patch + 4) {
             return .recommended
         }
-        print(requireVersion, latestAppStoreVersion, downloadedAppVersion)
 
         return .available
     }

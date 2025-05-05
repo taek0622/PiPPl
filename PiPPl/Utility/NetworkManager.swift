@@ -20,7 +20,6 @@ final class NetworkManager {
 
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error {
-                print(error)
                 return
             }
 
