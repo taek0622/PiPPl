@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct Version: Comparable {
+    var major: Int
+    var minor: Int
+    var patch: Int
+}
+
 class AppVersionManager: ObservableObject {
 
     static let shared = AppVersionManager()
