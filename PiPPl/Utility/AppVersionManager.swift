@@ -11,6 +11,9 @@ struct Version: Comparable {
     var major: Int
     var minor: Int
     var patch: Int
+    var versionString: String {
+        "\(major).\(minor).\(patch)"
+    }
 
     init(major: Int, minor: Int, patch: Int) {
         self.major = major
