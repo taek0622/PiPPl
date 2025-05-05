@@ -51,9 +51,9 @@ class AppVersionManager: ObservableObject {
         } else { self.iTunesID = "" }
 
         if let downloadedVersionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
-           let versions = downloadedVersionString.stringToVersion() {
+           let versions = Version(downloadedVersionString) {
             self.downloadedAppVersion = versions
-        } else { self.downloadedAppVersion = (0, 0, 0) }
+        } else { self.downloadedAppVersion = .init(0, 0, 0) }
     }
 
     func checkNewUpdate() async -> UpdateState {
@@ -73,26 +73,26 @@ class AppVersionManager: ObservableObject {
     }
 
     private func requestRequiredVersion() async throws -> Version {
-        guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Version/refs/heads/main/PiPPl.json") else { return (0, 0, 0) }
+        guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Version/refs/heads/main/PiPPl.json") else { return .init(major: 0, minor: 0, patch: 0) }
         let (data, _) = try await URLSession.shared.data(from: url)
         guard let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
               let requiredVersionString = json["requiredVersion"] as? String,
-              let requiredVersion = requiredVersionString.stringToVersion()
-        else { return (0, 0, 0) }
+              let requiredVersion = Version(requiredVersionString)
+        else { return .init(0, 0, 0) }
 
         return requiredVersion
     }
 
     private func requestLatestAppStoreVersion() async throws -> Version {
         guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(iTunesID)")
-        else { return (0, 0, 0) }
+        else { return .init(0, 0, 0) }
 
         let (data, _) = try await URLSession.shared.data(from: url)
         guard let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
               let results = json["results"] as? [[String: Any]],
               let latestAppStoreVersionString = results[0]["version"] as? String,
-              let latestAppStoreVersion = latestAppStoreVersionString.stringToVersion()
-        else { return (0, 0, 0) }
+              let latestAppStoreVersion = Version(latestAppStoreVersionString)
+        else { return .init(0, 0, 0) }
 
         return latestAppStoreVersion
     }
