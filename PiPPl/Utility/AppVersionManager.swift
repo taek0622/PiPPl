@@ -39,6 +39,7 @@ struct Version: Comparable {
 }
 
 class AppVersionManager: ObservableObject {
+    @Published var updateState = UpdateState.latest
 
     let iTunesID: String
     let downloadedAppVersion: Version
