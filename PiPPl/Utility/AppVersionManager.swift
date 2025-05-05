@@ -7,46 +7,62 @@
 
 import Foundation
 
-class AppVersionManager {
+class AppVersionManager: ObservableObject {
+    @Published var updateState = UpdateState.latest
+    @Published var isUpdateAlertOpened = false
 
-    static let shared = AppVersionManager()
-    var iTunesID: String {
-        guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
-              let property = NSDictionary(contentsOfFile: filePath),
-              let iTunesID = property["iTunesID"] as? String
-        else { return "" }
+    let iTunesID: String
+    let downloadedAppVersion: Version
 
-        return iTunesID
+    init() {
+        if let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist"),
+           let property = NSDictionary(contentsOfFile: filePath),
+           let iTunesID = property["iTunesID"] as? String {
+            self.iTunesID = iTunesID
+        } else { self.iTunesID = "" }
+
+        if let downloadedVersionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+           let versions = Version(downloadedVersionString) {
+            self.downloadedAppVersion = versions
+        } else { self.downloadedAppVersion = .init(0, 0, 0) }
     }
-    var downloadedAppVersion: String {
-        guard let downloadedAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "" }
-        return downloadedAppVersion
-    }
 
-    private init() {}
+    func checkNewUpdate() async -> UpdateState {
+        guard let requireVersion = try? await requestRequiredVersion() else { return . latest }
+        guard let latestAppStoreVersion = try? await requestLatestAppStoreVersion() else { return .latest }
 
-    func checkNewUpdate() async -> Bool {
-        guard let latestAppStoreVersion = try? await getLatestAppStoreVersion() else { return false }
-
-        let compareResult = downloadedAppVersion.compare(latestAppStoreVersion, options: .numeric)
-
-        switch compareResult {
-        case .orderedAscending:
-            return true
-        default:
-            return false
+        if downloadedAppVersion == latestAppStoreVersion {
+            return .latest
+        } else if requireVersion > downloadedAppVersion || latestAppStoreVersion.major > downloadedAppVersion.major || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor > downloadedAppVersion.minor + 4) || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor == downloadedAppVersion.minor && latestAppStoreVersion.patch > downloadedAppVersion.patch + 8) {
+            return .required
+        } else if (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor > downloadedAppVersion.minor + 2) || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor == downloadedAppVersion.minor && latestAppStoreVersion.patch > downloadedAppVersion.patch + 4) {
+            return .recommended
         }
+
+        return .available
     }
 
-    private func getLatestAppStoreVersion() async throws -> String {
+    private func requestRequiredVersion() async throws -> Version {
+        guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Version/refs/heads/main/PiPPl.json") else { return .init(major: 0, minor: 0, patch: 0) }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
+              let requiredVersionString = json["requiredVersion"] as? String,
+              let requiredVersion = Version(requiredVersionString)
+        else { return .init(0, 0, 0) }
+
+        return requiredVersion
+    }
+
+    private func requestLatestAppStoreVersion() async throws -> Version {
         guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(iTunesID)")
-        else { return "" }
+        else { return .init(0, 0, 0) }
 
         let (data, _) = try await URLSession.shared.data(from: url)
         guard let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
               let results = json["results"] as? [[String: Any]],
-              let latestAppStoreVersion = results[0]["version"] as? String
-        else { return "" }
+              let latestAppStoreVersionString = results[0]["version"] as? String,
+              let latestAppStoreVersion = Version(latestAppStoreVersionString)
+        else { return .init(0, 0, 0) }
 
         return latestAppStoreVersion
     }

@@ -9,11 +9,13 @@ import Photos
 import SwiftUI
 
 struct LocalVideoGalleryView: View {
-    @State private var status = false
-    @State private var isOldVersion: Bool = false
+    @AppStorage("updateAlertCount") var updateAlertCount: Int = 0
+    @State private var isPermissionAccessable = false
+    @State private var updateState: UpdateState = .latest
+    @State private var isUpdateAlertOpen = false
     @StateObject private var libraryManager = LocalVideoLibraryManager.shared
+    @EnvironmentObject var appVersionManager: AppVersionManager
     @Environment(\.colorScheme) private var colorScheme
-    private let appVersionManager = AppVersionManager.shared
     var rowItemCount: Double {
         if UIDevice.current.userInterfaceIdiom == .phone {
             if UIDevice.current.orientation == .portrait {
@@ -34,15 +36,15 @@ struct LocalVideoGalleryView: View {
 
     var body: some View {
         ZStack {
-            if !status {
+            if !isPermissionAccessable {
                 Button(AppText.photoGalleryAccessPermissionButtonText) {
                     PHPhotoLibrary.requestAuthorization(for: .readWrite) { stat in
                         switch stat {
                         case .notDetermined, .restricted, .denied:
-                            status = false
+                            isPermissionAccessable = false
                         case .authorized, .limited:
                             libraryManager.configureGallery()
-                            status = true
+                            isPermissionAccessable = true
                         @unknown default:
                             break
                         }
@@ -95,23 +97,38 @@ struct LocalVideoGalleryView: View {
                 }
             }
         }
-        .alert(AppText.oldVersionAlertTitle, isPresented: $isOldVersion) {
-            Button(AppText.oldVersionAlertAction) {
+        .toolbar {
+            if updateState != .latest {
+                Button {
+                    isUpdateAlertOpen = true
+                } label: {
+                    Image(systemName: "arrow.up.square.fill")
+                        .foregroundStyle(updateState.updateNotificationColor)
+                }
+
+            }
+        }
+        .alert(updateState.updateAlertTitle, isPresented: $isUpdateAlertOpen) {
+            Button(updateState.updateAlertPrimaryAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 guard let url = URL(string: appStoreOpenURL) else { return }
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url)
                 }
             }
+
+            if updateState == .recommended || updateState == .available {
+                Button(AppText.updateAvailableAlertPostponeAction) {}
+            }
         } message: {
-            Text(AppText.oldVersionAlertBody)
+            Text(updateState.updateAlertBody)
         }
         .onAppear {
             switch libraryManager.status {
             case .notDetermined, .restricted, .denied:
-                status = false
+                isPermissionAccessable = false
             case .authorized, .limited:
-                status = true
+                isPermissionAccessable = true
                 if libraryManager.videos.isEmpty {
                     libraryManager.configureGallery()
                 }
@@ -120,7 +137,21 @@ struct LocalVideoGalleryView: View {
             }
 
             Task {
-                isOldVersion = await appVersionManager.checkNewUpdate()
+                updateState = await appVersionManager.checkNewUpdate()
+
+                if updateState == .required && !appVersionManager.isUpdateAlertOpened {
+                    isUpdateAlertOpen = true
+                    appVersionManager.isUpdateAlertOpened = true
+                } else if updateState == .recommended && !appVersionManager.isUpdateAlertOpened {
+                    if updateAlertCount == 0 {
+                        isUpdateAlertOpen = true
+                        appVersionManager.isUpdateAlertOpened = true
+                    }
+
+                    updateAlertCount += 1
+
+                    if updateAlertCount == 3 { updateAlertCount = 0 }
+                }
             }
         }
     }

@@ -9,10 +9,11 @@
             "value" : "%1$lld:%2$@"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "%lld%%" : {
-
+      "shouldTranslate" : false
     },
     "AppInfo" : {
       "extractionState" : "manual",
@@ -437,13 +438,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A new version of the app has been released.\nPlease update the app."
+            "value" : "The app is outdated or has an important update.\nPlease update the app."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "새로운 버전의 앱이 출시 되었습니다.\n업데이트 이후 사용해주세요."
+            "state" : "needs_review",
+            "value" : "사용하는 앱이 오래되었거나, 중요한 업데이트가 있습니다.\n업데이트 후 사용해주세요."
           }
         }
       }
@@ -454,13 +455,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Old Version"
+            "value" : "Important Update"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "구버전 알림"
+            "state" : "needs_review",
+            "value" : "중요 업데이트 알림"
           }
         }
       }
@@ -511,6 +512,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "여기에 주소를 입력해주세요."
+          }
+        }
+      }
+    },
+    "UpdateAvailableAlertBody" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A new version of the app has been released.\nPlease update the app."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로운 버전의 앱이 출시 되었습니다.\n업데이트 후 사용해주세요."
+          }
+        }
+      }
+    },
+    "UpdateAvailableAlertPostponeAction" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "다음에 하기"
+          }
+        }
+      }
+    },
+    "UpdateAvailableAlertTitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Update"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "업데이트 알림"
+          }
+        }
+      }
+    },
+    "UpdateAvailableAlertUpdateAction" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Now Update"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "지금 업데이트"
           }
         }
       }

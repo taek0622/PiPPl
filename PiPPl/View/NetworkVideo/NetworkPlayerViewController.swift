@@ -10,10 +10,6 @@ import WebKit
 
 class NetworkPlayerViewController: UIViewController {
 
-    // MARK: - Proeprties
-
-    private let appVersionManager = AppVersionManager.shared
-
     // MARK: - View
 
     private var webView: WKWebView!
@@ -37,25 +33,6 @@ class NetworkPlayerViewController: UIViewController {
         loadURLWeb("https://www.google.com")
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        Task {
-            switch await appVersionManager.checkNewUpdate() {
-            case true:
-                let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
-                let alert = UIAlertController(title: AppText.oldVersionAlertTitle, message: AppText.oldVersionAlertBody, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: AppText.oldVersionAlertAction, style: .default, handler: { action in
-                    guard let url = URL(string: appStoreOpenURL) else { return }
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url)
-                    }
-                }))
-                present(alert, animated: true)
-            case false:
-                break
-            }
-        }
-    }
-
     // MARK: - Method
 
     private func layout() {
@@ -74,7 +51,6 @@ class NetworkPlayerViewController: UIViewController {
             guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist") else { return }
             guard let property = NSDictionary(contentsOfFile: filePath) else { return }
             guard let pipLogic = property["PiPLogic"] as? String else { return }
-            print(pipLogic)
             self.webView.evaluateJavaScript(pipLogic)
         })
         navigationItem.titleView = searchTextField
@@ -251,7 +227,6 @@ class NetworkPlayerViewController: UIViewController {
                 urlString = "https://" + urlString
             } else {
                 urlString = "https://www.google.com/search?q=" + urlString
-                print(splitDomain.last!)
             }
         }
 

@@ -18,13 +18,14 @@ struct AppInfoView: View {
         case versionInfo
     }
 
+    @EnvironmentObject var appVersionManager: AppVersionManager
     @State private var isOpenSafariView = false
-    @State private var isSelectAppVersion = false
     @State private var isOldVersion = false
+    @State private var isSelectAppVersion = false
+    @State private var updateState: UpdateState = .latest
     @State private var url = URL(string: "https://www.google.com")!
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
-    let appVersionManager = AppVersionManager.shared
 
     var body: some View {
         List {
@@ -48,14 +49,19 @@ struct AppInfoView: View {
             }
             Button {
                 Task {
-                    isOldVersion = await appVersionManager.checkNewUpdate()
-                    isSelectAppVersion = !isOldVersion
+                    updateState = await appVersionManager.checkNewUpdate()
+
+                    if updateState == .latest {
+                        isSelectAppVersion = true
+                    } else {
+                        isOldVersion = true
+                    }
                 }
             } label: {
                 HStack {
                     Text(AppText.versionInfo)
                     Spacer()
-                    Text(appVersionManager.downloadedAppVersion)
+                    Text(appVersionManager.downloadedAppVersion.versionString)
                         .foregroundStyle(.gray)
                         .font(.system(size: 16))
                 }
@@ -81,16 +87,20 @@ struct AppInfoView: View {
         } message: {
             Text(AppText.latestVersionAlertBody)
         }
-        .alert(AppText.oldVersionAlertTitle, isPresented: $isOldVersion) {
-            Button(AppText.oldVersionAlertAction) {
+        .alert(updateState.updateAlertTitle, isPresented: $isOldVersion) {
+            Button(updateState.updateAlertPrimaryAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 guard let url = URL(string: appStoreOpenURL) else { return }
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url)
                 }
             }
+
+            if updateState == .recommended || updateState == .available {
+                Button(AppText.updateAvailableAlertPostponeAction) {}
+            }
         } message: {
-            Text(AppText.oldVersionAlertBody)
+            Text(updateState.updateAlertBody)
         }
     }
 }
