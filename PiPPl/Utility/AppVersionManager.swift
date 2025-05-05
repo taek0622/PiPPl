@@ -22,6 +22,12 @@ struct Version: Comparable {
         self.init(major: major, minor: minor, patch: patch)
     }
 
+    init?(_ string: String) {
+        let versions = string.split(separator: ".").map { Int($0)! }
+        guard versions.count >= 3 else { return nil }
+        self.init(major: versions[0], minor: versions[1], patch: versions[2])
+    }
+
 }
 
 class AppVersionManager: ObservableObject {
@@ -82,13 +88,5 @@ class AppVersionManager: ObservableObject {
         else { return (0, 0, 0) }
 
         return latestAppStoreVersion
-    }
-}
-
-extension String {
-    func stringToVersion() -> (major: Int, minor: Int, patch: Int)? {
-        let versions = self.split(separator: ".").map { Int($0)! }
-        guard versions.count >= 3 else { return nil }
-        return (versions[0], versions[1], versions[2])
     }
 }
