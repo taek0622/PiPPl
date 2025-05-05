@@ -9,6 +9,7 @@ import Photos
 import SwiftUI
 
 struct LocalVideoGalleryView: View {
+    @AppStorage("updateAlertCount") var updateAlertCount: Int = 0
     @State private var isPermissionAccessable = false
     @State private var updateState: UpdateState = .latest
     @State private var isUpdateAlertOpen = false
@@ -141,6 +142,15 @@ struct LocalVideoGalleryView: View {
                 if updateState == .required && !appVersionManager.isUpdateAlertOpen {
                     isUpdateAlertOpen = true
                     appVersionManager.isUpdateAlertOpen = true
+                } else if updateState == .recommended && !appVersionManager.isUpdateAlertOpen {
+                    if updateAlertCount == 0 {
+                        isUpdateAlertOpen = true
+                        appVersionManager.isUpdateAlertOpen = true
+                    }
+
+                    updateAlertCount += 1
+
+                    if updateAlertCount == 3 { updateAlertCount = 0 }
                 }
             }
         }
