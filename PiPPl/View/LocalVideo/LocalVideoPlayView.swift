@@ -16,7 +16,7 @@ struct LocalVideoPlayView: View {
 
     var body: some View {
         ZStack {
-            LocalPlayerView(player: localVideoPlayer.playerInstance)
+            LocalPlayerView(player: localVideoPlayer.player)
 
             if localVideoPlayer.isVideoLoading {
                 Color(colorScheme == .light ? #colorLiteral(red: 0.2196078431, green: 0.2196078431, blue: 0.2196078431, alpha: 1) : #colorLiteral(red: 0.5490196078, green: 0.5490196078, blue: 0.5490196078, alpha: 1))

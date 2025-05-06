@@ -17,14 +17,10 @@ class LocalVideoPlayer: ObservableObject {
     @Published var videoLoadProgress: Double = 0.0
     private var statusCancellable: AnyCancellable?
 
-    private lazy var player: AVPlayer = {
+    lazy var player: AVPlayer = {
         $0.actionAtItemEnd = .pause
         return $0
     }(AVPlayer())
-
-    var playerInstance: AVPlayer {
-        return player
-    }
 
     var status: AVPlayer.TimeControlStatus {
         player.timeControlStatus
