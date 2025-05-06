@@ -82,21 +82,4 @@ class LocalVideoPlayer: ObservableObject {
         }
     }
 
-    func changePlayingFrame(_ playingProgress: Double) {
-        guard let duration = self.player.currentItem?.duration.seconds else { return }
-        player.seek(to: CMTime(value: CMTimeValue(duration * playingProgress), timescale: 1))
-    }
-
-    func playForward(_ playingProgress: Double) {
-        guard let duration = self.player.currentItem?.duration.seconds else { return }
-        let chaingingTime = CMTimeAdd(CMTime(value: CMTimeValue(duration * playingProgress), timescale: 1), CMTime(value: 10, timescale: 1))
-        player.seek(to: chaingingTime)
-    }
-
-    func playBackward(_ playingProgress: Double) {
-        guard let duration = self.player.currentItem?.duration.seconds else { return }
-        let chaingTime = CMTimeSubtract(CMTime(value: CMTimeValue(duration * playingProgress), timescale: 1), CMTime(value: 10, timescale: 1))
-        player.seek(to: chaingTime)
-    }
-
 }
