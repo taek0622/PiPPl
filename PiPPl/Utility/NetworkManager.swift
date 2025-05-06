@@ -18,11 +18,7 @@ final class NetworkManager {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
 
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            if let error {
-                return
-            }
-
+        URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
             guard let data = data else { return }
             let responseData = try! JSONDecoder().decode([Notice].self, from: data)
             completion(responseData)
