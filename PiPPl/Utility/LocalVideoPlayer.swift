@@ -17,8 +17,6 @@ class LocalVideoPlayer: ObservableObject {
     @Published var videoLoadProgress: Double = 0.0
     private var statusCancellable: AnyCancellable?
 
-    static let shared = LocalVideoPlayer()
-
     lazy var player: AVPlayer = {
         $0.actionAtItemEnd = .pause
         return $0
@@ -29,10 +27,6 @@ class LocalVideoPlayer: ObservableObject {
     var status: AVPlayer.TimeControlStatus {
         player.timeControlStatus
     }
-
-    // MARK: - Initializer
-
-    private init() {}
 
     // MARK: - Method
 
