@@ -28,7 +28,6 @@ class LocalVideoPlayer: ObservableObject {
 
     // MARK: - Method
 
-    func configureVideo(_ asset: PHAsset) {
         let option = PHVideoRequestOptions()
         option.isNetworkAccessAllowed = true
         option.version = .original
@@ -40,6 +39,7 @@ class LocalVideoPlayer: ObservableObject {
             DispatchQueue.main.async {
                 self.videoLoadProgress = Double(progress)
             }
+    func configureVideo(_ asset: PHAsset) async {
         }
 
         PHImageManager.default().requestPlayerItem(forVideo: asset, options: option) { playerItem, info in

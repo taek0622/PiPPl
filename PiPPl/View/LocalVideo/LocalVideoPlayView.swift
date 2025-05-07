@@ -36,7 +36,9 @@ struct LocalVideoPlayView: View {
         }
         .onAppear {
             if !isPresented {
-                localVideoPlayer.configureVideo(asset)
+                Task {
+                    await localVideoPlayer.configureVideo(asset)
+                }
             }
         }
         .onDisappear {
