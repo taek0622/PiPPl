@@ -43,8 +43,10 @@ struct LocalVideoGalleryView: View {
                         case .notDetermined, .restricted, .denied:
                             isPermissionAccessable = false
                         case .authorized, .limited:
-                            libraryManager.configureGallery()
-                            isPermissionAccessable = true
+                            Task {
+                                await libraryManager.configureGallery()
+                                isPermissionAccessable = true
+                            }
                         @unknown default:
                             break
                         }
@@ -52,7 +54,9 @@ struct LocalVideoGalleryView: View {
                 }
             } else if libraryManager.videos.isEmpty {
                 Button(AppText.photoGalleryNoVideoButtonText) {
-                    libraryManager.configureGallery()
+                    Task {
+                        await libraryManager.configureGallery()
+                    }
                 }
             } else {
                 ScrollView {
@@ -130,7 +134,9 @@ struct LocalVideoGalleryView: View {
             case .authorized, .limited:
                 isPermissionAccessable = true
                 if libraryManager.videos.isEmpty {
-                    libraryManager.configureGallery()
+                    Task {
+                        await libraryManager.configureGallery()
+                    }
                 }
             @unknown default:
                 break
