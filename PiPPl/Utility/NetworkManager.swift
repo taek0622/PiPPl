@@ -12,16 +12,18 @@ final class NetworkManager: ObservableObject {
 
     private init() {}
 
-    func requestNoticeData(completion: @escaping ([Notice]) -> Void) {
+    func requestNoticeData() async {
         guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Notice/main/notice.json") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
 
-        URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
-            guard let data = data else { return }
-            let responseData = try! JSONDecoder().decode([Notice].self, from: data)
-            completion(responseData)
+        do {
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            let responseData = try JSONDecoder().decode([Notice].self, from: data)
+
+            self.notices = responseData.map { NoticeItem(title: $0.title, date: $0.createDate, content: [NoticeItem(title: $0.content)]) }
+        } catch {
+            print("error")
         }
-        .resume()
     }
 }
