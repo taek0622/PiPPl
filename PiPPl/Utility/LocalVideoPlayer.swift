@@ -29,17 +29,45 @@ class LocalVideoPlayer: ObservableObject {
     // MARK: - Method
 
     func configureVideo(_ asset: PHAsset) async {
+        await MainActor.run {
+            self.videoLoadProgress = 0
+            self.isVideoLoading = true
         }
 
+        do {
+            let playerItem = try await requestPlayerItem(asset: asset)
 
-            self.statusCancellable = playerItem.publisher(for: \.status)
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] status in
-                    if status == .readyToPlay {
-                        self?.isVideoLoading = false
-                        self?.player.play()
+            await MainActor.run {
+                self.player.replaceCurrentItem(with: playerItem)
+
+                let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
+                timer.schedule(deadline: .now(), repeating: 0.1)
+                timer.setEventHandler { [weak self] in
+                    guard let self else { return }
+
+                    if self.videoLoadProgress <= 0.95 {
+                        self.videoLoadProgress += 0.01
+                    } else {
+                        timer.cancel()
                     }
                 }
+                timer.resume()
+
+                self.statusCancellable = playerItem.publisher(for: \.status)
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] status in
+                        if status == .readyToPlay {
+                            timer.cancel()
+                            self?.videoLoadProgress = 1.0
+                            self?.isVideoLoading = false
+                            self?.player.play()
+                        }
+                    }
+            }
+        } catch {
+            await MainActor.run {
+                self.isVideoLoading = false
+            }
         }
     }
 
