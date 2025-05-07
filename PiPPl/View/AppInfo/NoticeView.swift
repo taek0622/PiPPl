@@ -8,12 +8,6 @@
 import SwiftUI
 
 struct NoticeView: View {
-    struct NoticeItem: Hashable, Identifiable {
-        var id: Self { self }
-        var title: String
-        var date: String? = nil
-        var content: [NoticeItem]? = nil
-    }
 
     let networkManager = NetworkManager.shared
     @State private var item = [NoticeItem]()
