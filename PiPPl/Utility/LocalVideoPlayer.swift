@@ -51,15 +51,11 @@ class LocalVideoPlayer: ObservableObject {
                 .sink { [weak self] status in
                     if status == .readyToPlay {
                         self?.isVideoLoading = false
-                        self?.play()
+                        self?.player.play()
                     }
                 }
         }
 
-    }
-
-    func play() {
-        player.play()
     }
 
     func pause() {
