@@ -41,11 +41,11 @@ class LocalVideoPlayer: ObservableObject {
                 self.player.replaceCurrentItem(with: playerItem)
 
                 let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
-                timer.schedule(deadline: .now(), repeating: 0.1)
+                timer.schedule(deadline: .now(), repeating: 0.05)
                 timer.setEventHandler { [weak self] in
                     guard let self else { return }
 
-                    if self.videoLoadProgress <= 0.95 {
+                    if self.videoLoadProgress <= 0.96 {
                         self.videoLoadProgress += 0.01
                     } else {
                         timer.cancel()
@@ -79,7 +79,7 @@ class LocalVideoPlayer: ObservableObject {
             options.deliveryMode = .highQualityFormat
             options.progressHandler = { progress, _, _, _ in
                 Task { @MainActor in
-                    self.videoLoadProgress = Double(progress) * 0.5
+                    self.videoLoadProgress = Double(progress) * 0.2
                 }
             }
 
