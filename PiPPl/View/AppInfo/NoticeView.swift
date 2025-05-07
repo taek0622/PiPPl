@@ -9,10 +9,10 @@ import SwiftUI
 
 struct NoticeView: View {
 
-    @StateObject var networkManager = NetworkManager()
+    @StateObject var noticeViewModel = NoticeViewModel()
 
     var body: some View {
-        List(networkManager.notices.reversed(), children: \.content) { item in
+        List(noticeViewModel.notices.reversed(), children: \.content) { item in
             VStack(alignment: .leading) {
                 if item.date != nil {
                     Text(item.date!)
@@ -25,7 +25,7 @@ struct NoticeView: View {
             }
         }
         .task {
-            await networkManager.requestNoticeData()
+            await noticeViewModel.requestNoticeData()
         }
         .listStyle(.grouped)
         .navigationTitle(AppText.notice)

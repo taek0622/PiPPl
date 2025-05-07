@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class NetworkManager: ObservableObject {
+final class NoticeViewModel: ObservableObject {
 
     @Published var notices = [NoticeItem]()
 
