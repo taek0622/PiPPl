@@ -28,23 +28,9 @@ class LocalVideoPlayer: ObservableObject {
 
     // MARK: - Method
 
-        let option = PHVideoRequestOptions()
-        option.isNetworkAccessAllowed = true
-        option.version = .original
-        option.deliveryMode = .highQualityFormat
-        self.isVideoLoading = true
-        self.videoLoadProgress = 0.0
-
-        option.progressHandler = { progress, _, _, _ in
-            DispatchQueue.main.async {
-                self.videoLoadProgress = Double(progress)
-            }
     func configureVideo(_ asset: PHAsset) async {
         }
 
-        PHImageManager.default().requestPlayerItem(forVideo: asset, options: option) { playerItem, info in
-            guard let playerItem else { return }
-            self.player.replaceCurrentItem(with: playerItem)
 
             self.statusCancellable = playerItem.publisher(for: \.status)
                 .receive(on: DispatchQueue.main)
@@ -58,6 +44,25 @@ class LocalVideoPlayer: ObservableObject {
     }
 
     func requestPlayerItem(asset: PHAsset) async throws -> AVPlayerItem {
+        try await withCheckedThrowingContinuation { continuation in
+            let options = PHVideoRequestOptions()
+            options.isNetworkAccessAllowed = true
+            options.version = .original
+            options.deliveryMode = .highQualityFormat
+            options.progressHandler = { progress, _, _, _ in
+                Task { @MainActor in
+                    self.videoLoadProgress = Double(progress) * 0.5
+                }
+            }
+
+            PHImageManager.default().requestPlayerItem(forVideo: asset, options: options) { playerItem, info in
+                if let item = playerItem {
+                    continuation.resume(returning: item)
+                } else {
+                    continuation.resume(throwing: NSError(domain: "VideoLoad", code: 0))
+                }
+            }
+        }
     }
 
     func pause() {
