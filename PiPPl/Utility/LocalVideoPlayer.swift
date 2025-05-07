@@ -59,8 +59,11 @@ class LocalVideoPlayer: ObservableObject {
                         if status == .readyToPlay {
                             timer.cancel()
                             self?.videoLoadProgress = 1.0
-                            self?.isVideoLoading = false
-                            self?.player.play()
+                            Task { @MainActor in
+                                try await Task.sleep(nanoseconds: 50_000_000)
+                                self?.isVideoLoading = false
+                                self?.player.play()
+                            }
                         }
                     }
             }
