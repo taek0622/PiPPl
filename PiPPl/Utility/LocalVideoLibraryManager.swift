@@ -65,7 +65,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 let asset = assets.object(at: idx)
 
                 group.addTask {
-                    let thumbnail = self.requestThumbnail(asset)
+                    let thumbnail = await self.requestThumbnail(asset)
                     return (idx, Video(asset: asset, thumbnail: thumbnail))
                 }
             }
@@ -90,20 +90,31 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         }
     }
 
-    func requestThumbnail(_ asset: PHAsset) -> UIImage {
-        let manager = PHImageManager.default()
-        let thumbnailOption = PHImageRequestOptions()
-        thumbnailOption.isSynchronous = true
-        thumbnailOption.resizeMode = .exact
-        let size = UIScreen.main.bounds.width / 3
-        var thumbnail = UIImage()
+    func requestThumbnail(_ asset: PHAsset) async -> UIImage {
+        await withCheckedContinuation { continuation in
+            Task { @MainActor in
+                let manager = PHImageManager.default()
+                let thumbnailOption = PHImageRequestOptions()
+                thumbnailOption.isSynchronous = false
+                thumbnailOption.resizeMode = .exact
+                thumbnailOption.deliveryMode = .highQualityFormat
+                thumbnailOption.isNetworkAccessAllowed = true
+                let size = UIScreen.main.bounds.width / 3
+                var didResume = false
 
-        manager.requestImage(for: asset, targetSize: CGSize(width: size, height: size), contentMode: .aspectFill, options: thumbnailOption) { result, info in
-            guard let result else { return }
-            thumbnail = result
+                manager.requestImage(for: asset, targetSize: CGSize(width: size, height: size), contentMode: .aspectFill, options: thumbnailOption) { result, info in
+                    if let result = result, !didResume {
+                        didResume = true
+                        continuation.resume(returning: result)
+                    }
+
+                    if result == nil, !didResume {
+                        didResume = true
+                        continuation.resume(returning: UIImage(ciImage: CIImage(color: .gray)))
+                    }
+                }
+            }
         }
-
-        return thumbnail
     }
 
     func photoLibraryDidChange(_ changeInstance: PHChange) {
@@ -122,7 +133,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 if let inserted = changes.insertedIndexes {
                     for idx in inserted {
                         let asset = changes.fetchResultAfterChanges.object(at: idx)
-                        let thumbnail = self.requestThumbnail(asset)
+                        let thumbnail = await self.requestThumbnail(asset)
                         let video = Video(asset: asset, thumbnail: thumbnail)
                         self.videos.insert(video, at: idx)
                     }
@@ -131,7 +142,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 if let changed = changes.changedIndexes {
                     for idx in changed {
                         let asset = changes.fetchResultAfterChanges.object(at: idx)
-                        let thumbnail = self.requestThumbnail(asset)
+                        let thumbnail = await self.requestThumbnail(asset)
                         let video = Video(asset: asset, thumbnail: thumbnail)
                         self.videos[idx] = video
                     }
