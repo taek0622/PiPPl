@@ -9,8 +9,8 @@ import SwiftUI
 
 struct NoticeView: View {
 
-    let networkManager = NetworkManager.shared
     @State private var item = [NoticeItem]()
+    @StateObject var networkManager = NetworkManager()
 
     var body: some View {
         List(item.reversed(), children: \.content) { item in
