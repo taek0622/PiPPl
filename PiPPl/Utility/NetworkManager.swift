@@ -7,9 +7,8 @@
 
 import Foundation
 
-final class NetworkManager {
+final class NetworkManager: ObservableObject {
 
-    static let shared = NetworkManager()
 
     private init() {}
 
