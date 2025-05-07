@@ -10,8 +10,6 @@ import Foundation
 final class NetworkManager: ObservableObject {
 
 
-    private init() {}
-
     func requestNoticeData() async {
         guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Notice/main/notice.json") else { return }
         var urlRequest = URLRequest(url: url)
