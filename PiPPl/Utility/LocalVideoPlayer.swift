@@ -55,7 +55,9 @@ class LocalVideoPlayer: ObservableObject {
                     }
                 }
         }
+    }
 
+    func requestPlayerItem(asset: PHAsset) async throws -> AVPlayerItem {
     }
 
     func pause() {
