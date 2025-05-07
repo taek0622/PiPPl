@@ -39,11 +39,11 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
 
-    func configureGallery() {
+    func configureGallery() async {
         guard let collection = requestVideoAlbums().firstObject else { return }
         let assets = requestVideos(in: collection)
         self.assetFetchResult = assets
-        updateVideos(assets)
+        await updateVideos(assets)
     }
 
     func requestVideoAlbums() -> PHFetchResult<PHAssetCollection> {
@@ -54,24 +54,39 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         return PHAsset.fetchAssets(in: collection, options: PHFetchOptions())
     }
 
-    func updateVideos(_ assets: PHFetchResult<PHAsset>) {
-        var updatedVideos = [Video]()
-        var loadedCount = 0
-        self.isLoading = true
-
-        assets.enumerateObjects { asset, _, _ in
-            let thumbnail = self.requestThumbnail(asset)
-            updatedVideos.append(.init(asset: asset, thumbnail: thumbnail))
-            loadedCount += 1
-
-            DispatchQueue.main.async {
-                self.videoLoadingProgress = Double(loadedCount) / Double(assets.count)
-            }
+    func updateVideos(_ assets: PHFetchResult<PHAsset>) async {
+        await MainActor.run {
+            self.videoLoadingProgress = 0
+            self.isLoading = true
         }
 
-        DispatchQueue.main.async {
-            self.videos = updatedVideos
-            self.isLoading = false
+        await withTaskGroup(of: (Int, Video).self) { group in
+            for idx in 0..<assets.count {
+                let asset = assets.object(at: idx)
+
+                group.addTask {
+                    let thumbnail = self.requestThumbnail(asset)
+                    return (idx, Video(asset: asset, thumbnail: thumbnail))
+                }
+            }
+
+            var updatedResults = [(Int, Video)]()
+
+            for await (idx, video) in group {
+                updatedResults.append((idx, video))
+                let progress = Double(updatedResults.count) / Double(assets.count)
+
+                await MainActor.run {
+                    self.videoLoadingProgress = progress
+                }
+            }
+
+            let updatedVideos = updatedResults.sorted(by: { $0.0 < $1.0 }).map { $0.1 }
+
+            await MainActor.run {
+                self.videos = updatedVideos
+                self.isLoading = false
+            }
         }
     }
 
@@ -94,7 +109,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         guard let assetsFetchResult = assetFetchResult, let changes = changeInstance.changeDetails(for: assetsFetchResult) else { return }
 
-        DispatchQueue.main.async {
+        Task {
             self.assetFetchResult = changes.fetchResultAfterChanges
 
             if changes.hasIncrementalChanges {
@@ -122,7 +137,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                     }
                 }
             } else {
-                self.updateVideos(changes.fetchResultAfterChanges)
+                await self.updateVideos(changes.fetchResultAfterChanges)
             }
         }
     }
