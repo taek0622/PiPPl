@@ -9,11 +9,10 @@ import SwiftUI
 
 struct NoticeView: View {
 
-    @State private var item = [NoticeItem]()
     @StateObject var networkManager = NetworkManager()
 
     var body: some View {
-        List(item.reversed(), children: \.content) { item in
+        List(networkManager.notices.reversed(), children: \.content) { item in
             VStack(alignment: .leading) {
                 if item.date != nil {
                     Text(item.date!)

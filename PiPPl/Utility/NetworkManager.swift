@@ -10,6 +10,7 @@ import Foundation
 @MainActor
 final class NetworkManager: ObservableObject {
 
+    @Published var notices = [NoticeItem]()
 
     func requestNoticeData() async {
         guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Notice/main/notice.json") else { return }
