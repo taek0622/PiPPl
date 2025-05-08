@@ -17,57 +17,83 @@ class LocalVideoPlayer: ObservableObject {
     @Published var videoLoadProgress: Double = 0.0
     private var statusCancellable: AnyCancellable?
 
-    static let shared = LocalVideoPlayer()
-
     lazy var player: AVPlayer = {
         $0.actionAtItemEnd = .pause
         return $0
     }(AVPlayer())
 
-    lazy var playerLayer = AVPlayerLayer(player: player)
-
     var status: AVPlayer.TimeControlStatus {
         player.timeControlStatus
     }
 
-    // MARK: - Initializer
-
-    private init() {}
-
     // MARK: - Method
 
-    func configureVideo(_ asset: PHAsset) {
-        let option = PHVideoRequestOptions()
-        option.isNetworkAccessAllowed = true
-        option.version = .original
-        option.deliveryMode = .highQualityFormat
-        self.isVideoLoading = true
-        self.videoLoadProgress = 0.0
-
-        option.progressHandler = { progress, _, _, _ in
-            DispatchQueue.main.async {
-                self.videoLoadProgress = Double(progress)
-            }
+    func configureVideo(_ asset: PHAsset) async {
+        await MainActor.run {
+            self.videoLoadProgress = 0
+            self.isVideoLoading = true
         }
 
-        PHImageManager.default().requestPlayerItem(forVideo: asset, options: option) { playerItem, info in
-            guard let playerItem else { return }
-            self.player.replaceCurrentItem(with: playerItem)
+        do {
+            let playerItem = try await requestPlayerItem(asset: asset)
 
-            self.statusCancellable = playerItem.publisher(for: \.status)
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] status in
-                    if status == .readyToPlay {
-                        self?.isVideoLoading = false
-                        self?.play()
+            await MainActor.run {
+                self.player.replaceCurrentItem(with: playerItem)
+
+                let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
+                timer.schedule(deadline: .now(), repeating: 0.05)
+                timer.setEventHandler { [weak self] in
+                    guard let self else { return }
+
+                    if self.videoLoadProgress <= 0.96 {
+                        self.videoLoadProgress += 0.01
+                    } else {
+                        timer.cancel()
                     }
                 }
-        }
+                timer.resume()
 
+                self.statusCancellable = playerItem.publisher(for: \.status)
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] status in
+                        if status == .readyToPlay {
+                            timer.cancel()
+                            self?.videoLoadProgress = 1.0
+                            Task { @MainActor in
+                                try await Task.sleep(nanoseconds: 50_000_000)
+                                self?.isVideoLoading = false
+                                self?.player.play()
+                            }
+                        }
+                    }
+            }
+        } catch {
+            await MainActor.run {
+                self.isVideoLoading = false
+            }
+        }
     }
 
-    func play() {
-        player.play()
+    func requestPlayerItem(asset: PHAsset) async throws -> AVPlayerItem {
+        try await withCheckedThrowingContinuation { continuation in
+            let options = PHVideoRequestOptions()
+            options.isNetworkAccessAllowed = true
+            options.version = .original
+            options.deliveryMode = .highQualityFormat
+            options.progressHandler = { progress, _, _, _ in
+                Task { @MainActor in
+                    self.videoLoadProgress = Double(progress) * 0.2
+                }
+            }
+
+            PHImageManager.default().requestPlayerItem(forVideo: asset, options: options) { playerItem, info in
+                if let item = playerItem {
+                    continuation.resume(returning: item)
+                } else {
+                    continuation.resume(throwing: NSError(domain: "VideoLoad", code: 0))
+                }
+            }
+        }
     }
 
     func pause() {
@@ -86,23 +112,6 @@ class LocalVideoPlayer: ObservableObject {
                 closurePerInterval(seconds, duration)
             }
         }
-    }
-
-    func changePlayingFrame(_ playingProgress: Double) {
-        guard let duration = self.player.currentItem?.duration.seconds else { return }
-        player.seek(to: CMTime(value: CMTimeValue(duration * playingProgress), timescale: 1))
-    }
-
-    func playForward(_ playingProgress: Double) {
-        guard let duration = self.player.currentItem?.duration.seconds else { return }
-        let chaingingTime = CMTimeAdd(CMTime(value: CMTimeValue(duration * playingProgress), timescale: 1), CMTime(value: 10, timescale: 1))
-        player.seek(to: chaingingTime)
-    }
-
-    func playBackward(_ playingProgress: Double) {
-        guard let duration = self.player.currentItem?.duration.seconds else { return }
-        let chaingTime = CMTimeSubtract(CMTime(value: CMTimeValue(duration * playingProgress), timescale: 1), CMTime(value: 10, timescale: 1))
-        player.seek(to: chaingTime)
     }
 
 }

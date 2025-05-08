@@ -10,8 +10,9 @@ import Photos
 import SwiftUI
 
 struct LocalVideoPlayView: View {
-    @StateObject private var localVideoPlayer = LocalVideoPlayer.shared
+    @StateObject private var localVideoPlayer = LocalVideoPlayer()
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.isPresented) var isPresented
     var asset: PHAsset
 
     var body: some View {
@@ -34,10 +35,16 @@ struct LocalVideoPlayView: View {
             }
         }
         .onAppear {
-            localVideoPlayer.configureVideo(asset)
+            if !isPresented {
+                Task {
+                    await localVideoPlayer.configureVideo(asset)
+                }
+            }
         }
         .onDisappear {
-            localVideoPlayer.pause()
+            if !isPresented {
+                localVideoPlayer.pause()
+            }
         }
     }
 }

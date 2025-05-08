@@ -443,7 +443,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "사용하는 앱이 오래되었거나, 중요한 업데이트가 있습니다.\n업데이트 후 사용해주세요."
           }
         }
@@ -460,7 +460,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "중요 업데이트 알림"
           }
         }
@@ -542,7 +542,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "다음에 하기"
           }
         }
@@ -558,7 +558,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "업데이트 알림"
           }
         }
@@ -574,7 +574,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "지금 업데이트"
           }
         }
