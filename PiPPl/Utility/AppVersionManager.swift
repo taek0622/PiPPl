@@ -31,7 +31,7 @@ class AppVersionManager: ObservableObject {
         guard let requireVersion = try? await requestRequiredVersion() else { return . latest }
         guard let latestAppStoreVersion = try? await requestLatestAppStoreVersion() else { return .latest }
 
-        if downloadedAppVersion == latestAppStoreVersion {
+        if downloadedAppVersion >= latestAppStoreVersion {
             return .latest
         } else if requireVersion > downloadedAppVersion || latestAppStoreVersion.major > downloadedAppVersion.major || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor > downloadedAppVersion.minor + 4) || (latestAppStoreVersion.major == downloadedAppVersion.major && latestAppStoreVersion.minor == downloadedAppVersion.minor && latestAppStoreVersion.patch > downloadedAppVersion.patch + 8) {
             return .required
