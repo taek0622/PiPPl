@@ -16,6 +16,7 @@ final class NoticeViewModel: ObservableObject {
         guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Notice/main/notice.json") else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
+        urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
 
         do {
             let (data, _) = try await URLSession.shared.data(for: urlRequest)

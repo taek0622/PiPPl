@@ -44,7 +44,10 @@ class AppVersionManager: ObservableObject {
 
     private func requestRequiredVersion() async throws -> Version {
         guard let url = URL(string: "https://raw.githubusercontent.com/taek0622/Version/refs/heads/main/PiPPl.json") else { return .init(major: 0, minor: 0, patch: 0) }
-        let (data, _) = try await URLSession.shared.data(from: url)
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
         guard let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
               let requiredVersionString = json["requiredVersion"] as? String,
               let requiredVersion = Version(requiredVersionString)
@@ -56,8 +59,11 @@ class AppVersionManager: ObservableObject {
     private func requestLatestAppStoreVersion() async throws -> Version {
         guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(iTunesID)")
         else { return .init(0, 0, 0) }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
 
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let (data, _) = try await URLSession.shared.data(for: urlRequest)
         guard let json = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any],
               let results = json["results"] as? [[String: Any]],
               let latestAppStoreVersionString = results[0]["version"] as? String,
