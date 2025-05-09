@@ -13,7 +13,7 @@ struct LocalVideoPlayView: View {
     @StateObject private var localVideoPlayer = LocalVideoPlayer()
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.isPresented) var isPresented
-    var asset: PHAsset
+    var video: Video
 
     var body: some View {
         ZStack {
@@ -37,7 +37,7 @@ struct LocalVideoPlayView: View {
         .onAppear {
             if !isPresented {
                 Task {
-                    await localVideoPlayer.configureVideo(asset)
+                    await localVideoPlayer.configureVideo(video.asset)
                 }
             }
         }
@@ -63,6 +63,6 @@ struct LocalPlayerView: UIViewControllerRepresentable {
 
 #Preview {
     NavigationView {
-        LocalVideoPlayView(asset: PHAsset())
+        LocalVideoPlayView(video: Video(asset: PHAsset()))
     }
 }
