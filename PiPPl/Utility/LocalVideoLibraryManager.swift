@@ -68,7 +68,8 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
 
                 group.addTask {
                     let thumbnail = await self.requestThumbnail(asset)
-                    return (idx, Video(asset: asset, thumbnail: thumbnail))
+                    let fileName = self.requestFileName(asset)
+                    return (idx, Video(asset: asset, thumbnail: thumbnail, fileName: fileName, creationDate: asset.creationDate))
                 }
             }
 
