@@ -117,6 +117,12 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         }
     }
 
+    func requestFileName(_ asset: PHAsset) -> String {
+        let resources = PHAssetResource.assetResources(for: asset)
+        guard let resource = resources.first else { return "" }
+        return resource.originalFilename
+    }
+
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         guard let assetsFetchResult = assetFetchResult, let changes = changeInstance.changeDetails(for: assetsFetchResult) else { return }
 
