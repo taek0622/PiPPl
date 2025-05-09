@@ -14,6 +14,8 @@ struct Video: Identifiable {
     let id = UUID()
     var asset: PHAsset
     var thumbnail: UIImage?
+    var fileName: String?
+    var creationDate: Date?
 }
 
 class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChangeObserver {
