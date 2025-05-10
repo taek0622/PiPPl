@@ -13,7 +13,6 @@ import Dispatch
 struct Video: Identifiable {
     var id: String { asset.localIdentifier }
     var asset: PHAsset
-    var thumbnail: UIImage?
 }
 
 class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChangeObserver {
@@ -64,8 +63,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 let asset = assets.object(at: idx)
 
                 group.addTask {
-                    let thumbnail = await self.requestThumbnail(asset)
-                    return (idx, Video(asset: asset, thumbnail: thumbnail))
+                    return (idx, Video(asset: asset))
                 }
             }
 
@@ -132,8 +130,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 if let inserted = changes.insertedIndexes {
                     for idx in inserted {
                         let asset = changes.fetchResultAfterChanges.object(at: idx)
-                        let thumbnail = await self.requestThumbnail(asset)
-                        let video = Video(asset: asset, thumbnail: thumbnail)
+                        let video = Video(asset: asset)
                         self.videos.insert(video, at: idx)
                     }
                 }
@@ -141,8 +138,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 if let changed = changes.changedIndexes {
                     for idx in changed {
                         let asset = changes.fetchResultAfterChanges.object(at: idx)
-                        let thumbnail = await self.requestThumbnail(asset)
-                        let video = Video(asset: asset, thumbnail: thumbnail)
+                        let video = Video(asset: asset)
                         self.videos[idx] = video
                     }
                 }
