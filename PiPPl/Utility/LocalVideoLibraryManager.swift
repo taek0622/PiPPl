@@ -68,6 +68,11 @@ class ThumbnailDiskCache {
 
     func loadThumbnail(for asset: PHAsset) -> UIImage? {
         let url = fileURL(for: asset)
+
+        if !fileManager.fileExists(atPath: cacheDirectoryURL.path) {
+            try? fileManager.createDirectory(at: cacheDirectoryURL, withIntermediateDirectories: true)
+        }
+
         guard fileManager.fileExists(atPath: url.path),
               let data = try? Data(contentsOf: url),
               let image = UIImage(data: data)
