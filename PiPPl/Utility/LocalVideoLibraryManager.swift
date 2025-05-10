@@ -156,6 +156,22 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         }
     }
 
+    func thumbnail(for asset: PHAsset) async -> UIImage {
+        if let cachedImage = ThumbnailMemoryCache.shared.thumbnail(for: asset) {
+            return cachedImage
+        }
+
+        if let diskImage = ThumbnailDiskCache.shared.loadThumbnail(for: asset) {
+            ThumbnailMemoryCache.shared.setThumbnail(diskImage, for: asset)
+            return diskImage
+        }
+
+        let requestedImage = await requestThumbnail(for: asset)
+        ThumbnailDiskCache.shared.saveThumbnail(requestedImage, for: asset)
+        ThumbnailMemoryCache.shared.setThumbnail(requestedImage, for: asset)
+        return requestedImage
+    }
+
     func requestThumbnail(for asset: PHAsset) async -> UIImage {
         await withCheckedContinuation { continuation in
             Task { @MainActor in
