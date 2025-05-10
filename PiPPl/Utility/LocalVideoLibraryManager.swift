@@ -14,8 +14,6 @@ struct Video: Identifiable {
     let id = UUID()
     var asset: PHAsset
     var thumbnail: UIImage?
-    var fileName: String?
-    var creationDate: Date?
 }
 
 class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChangeObserver {
@@ -69,7 +67,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 group.addTask {
                     let thumbnail = await self.requestThumbnail(asset)
                     let fileName = self.requestFileName(asset)
-                    return (idx, Video(asset: asset, thumbnail: thumbnail, fileName: fileName, creationDate: asset.creationDate))
+                    return (idx, Video(asset: asset, thumbnail: thumbnail))
                 }
             }
 
