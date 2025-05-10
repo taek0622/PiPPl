@@ -208,6 +208,8 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
             if changes.hasIncrementalChanges {
                 if let removed = changes.removedIndexes {
                     for idx in removed.reversed() {
+                        ThumbnailDiskCache.shared.removeThumbnail(for: self.videos[idx].asset)
+                        ThumbnailMemoryCache.shared.removeThumbnail(for: self.videos[idx].asset)
                         self.videos.remove(at: idx)
                     }
                 }
