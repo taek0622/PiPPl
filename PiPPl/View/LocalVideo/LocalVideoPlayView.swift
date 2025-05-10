@@ -34,6 +34,17 @@ struct LocalVideoPlayView: View {
                 .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? UIScreen.main.bounds.width : UIScreen.main.bounds.width / 5 * 3)
             }
         }
+        .toolbar(content: {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text(asset.creationDate!, style: .date)
+                        .font(.system(size: 15, weight: .semibold))
+                    Text(asset.creationDate!, style: .time)
+                        .foregroundStyle(.gray)
+                        .font(.system(size: 12))
+                }
+            }
+        })
         .onAppear {
             if !isPresented {
                 Task {
