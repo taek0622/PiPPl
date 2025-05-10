@@ -35,6 +35,10 @@ class ThumbnailMemoryCache {
         thumbnailCache.removeObject(forKey: asset.localIdentifier as NSString)
     }
 
+    func removeAllThumbnails() {
+        thumbnailCache.removeAllObjects()
+    }
+
 }
 
 class ThumbnailDiskCache {
@@ -75,6 +79,12 @@ class ThumbnailDiskCache {
     func removeThumbnail(for asset: PHAsset) {
         let url = fileURL(for: asset)
         try? fileManager.removeItem(at: url)
+    }
+
+    func removeAllThumbnails() {
+        guard fileManager.fileExists(atPath: cacheDirectoryURL.path) else { return }
+        try? fileManager.removeItem(at: cacheDirectoryURL)
+        try? fileManager.createDirectory(at: cacheDirectoryURL, withIntermediateDirectories: true)
     }
 
     private func fileURL(for asset: PHAsset) -> URL {
