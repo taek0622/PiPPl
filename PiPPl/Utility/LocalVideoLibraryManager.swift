@@ -23,14 +23,13 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
     @Published var isLoading = false
     private var assetFetchResult: PHFetchResult<PHAsset>?
 
-    static let shared = LocalVideoLibraryManager()
     var status: PHAuthorizationStatus {
         get {
             PHPhotoLibrary.authorizationStatus(for: .readWrite)
         }
     }
 
-    override private init() {
+    override init() {
         super.init()
         PHPhotoLibrary.shared().register(self)
     }
