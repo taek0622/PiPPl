@@ -67,8 +67,7 @@ struct LocalVideoGalleryView: View {
                                     .toolbar(.hidden, for: .tabBar)
                             } label: {
                                 ZStack(alignment: .bottomTrailing) {
-                                    Image(uiImage: video.thumbnail ?? UIImage(ciImage: CIImage(color: .gray)))
-                                        .resizable()
+                                    AssetImage(asset: video.asset, libraryManager: libraryManager)
                                         .frame(height: UIScreen.main.bounds.width/rowItemCount)
 
                                     let duration = Int(video.asset.duration)
@@ -158,6 +157,26 @@ struct LocalVideoGalleryView: View {
 
                     if updateAlertCount == 3 { updateAlertCount = 0 }
                 }
+            }
+        }
+    }
+}
+
+struct AssetImage: View {
+    let asset: PHAsset
+    @State private var image: UIImage?
+    @ObservedObject var libraryManager: LocalVideoLibraryManager
+
+    var body: some View {
+        Group {
+            if let image = image {
+                Image(uiImage: image)
+                    .resizable()
+            } else {
+                ProgressView()
+                    .task {
+                        image = await libraryManager.thumbnail(for: asset)
+                    }
             }
         }
     }
