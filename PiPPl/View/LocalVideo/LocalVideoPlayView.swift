@@ -13,7 +13,7 @@ struct LocalVideoPlayView: View {
     @StateObject private var localVideoPlayer = LocalVideoPlayer()
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.isPresented) var isPresented
-    var video: Video
+    var asset: PHAsset
 
     var body: some View {
         ZStack {
@@ -37,9 +37,9 @@ struct LocalVideoPlayView: View {
         .toolbar(content: {
             ToolbarItem(placement: .principal) {
                 VStack {
-                    Text(video.asset.creationDate!, style: .date)
+                    Text(asset.creationDate!, style: .date)
                         .font(.system(size: 15, weight: .semibold))
-                    Text(video.asset.creationDate!, style: .time)
+                    Text(asset.creationDate!, style: .time)
                         .foregroundStyle(.gray)
                         .font(.system(size: 12))
                 }
@@ -48,7 +48,7 @@ struct LocalVideoPlayView: View {
         .onAppear {
             if !isPresented {
                 Task {
-                    await localVideoPlayer.configureVideo(video.asset)
+                    await localVideoPlayer.configureVideo(asset)
                 }
             }
         }
@@ -74,6 +74,6 @@ struct LocalPlayerView: UIViewControllerRepresentable {
 
 #Preview {
     NavigationView {
-        LocalVideoPlayView(video: Video(asset: PHAsset()))
+        LocalVideoPlayView(asset: PHAsset())
     }
 }

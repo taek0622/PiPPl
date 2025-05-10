@@ -63,7 +63,7 @@ struct LocalVideoGalleryView: View {
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed(UIScreen.main.bounds.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
                         ForEach(libraryManager.videos, id: \.id) { video in
                             NavigationLink {
-                                LocalVideoPlayView(video: video)
+                                LocalVideoPlayView(asset: video.asset)
                                     .toolbar(.hidden, for: .tabBar)
                             } label: {
                                 ZStack(alignment: .bottomTrailing) {
