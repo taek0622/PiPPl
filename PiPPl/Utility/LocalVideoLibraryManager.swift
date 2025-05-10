@@ -156,7 +156,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         }
     }
 
-    func requestThumbnail(_ asset: PHAsset) async -> UIImage {
+    func requestThumbnail(for asset: PHAsset) async -> UIImage {
         await withCheckedContinuation { continuation in
             Task { @MainActor in
                 let manager = PHImageManager.default()
