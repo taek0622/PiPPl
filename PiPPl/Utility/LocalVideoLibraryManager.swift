@@ -11,7 +11,7 @@ import UIKit
 import Dispatch
 
 struct Video: Identifiable {
-    let id = UUID()
+    var id: String { asset.localIdentifier }
     var asset: PHAsset
     var thumbnail: UIImage?
 }
