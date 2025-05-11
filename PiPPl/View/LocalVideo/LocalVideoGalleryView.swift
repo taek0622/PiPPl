@@ -121,7 +121,7 @@ struct LocalVideoGalleryView: View {
             }
 
             if updateState == .recommended || updateState == .available {
-                Button(AppText.updateAvailableAlertPostponeAction) {}
+                Button(AppText.updateAvailableAlertPostponeAction, role: .cancel) {}
             }
         } message: {
             Text(updateState.updateAlertBody)
