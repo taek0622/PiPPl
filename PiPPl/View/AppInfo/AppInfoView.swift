@@ -26,6 +26,7 @@ struct AppInfoView: View {
     @State private var url = URL(string: "https://www.google.com")!
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
+    @State private var isClearCache: Bool = false
 
     var body: some View {
         List {
@@ -66,6 +67,9 @@ struct AppInfoView: View {
                         .font(.system(size: 16))
                 }
             }
+            Button(AppText.clearAllCache, role: .destructive) {
+                isClearCache = true
+            }
         }
         .fullScreenCover(isPresented: $isOpenSafariView, content: {
             SafariView(url: url)
@@ -101,6 +105,16 @@ struct AppInfoView: View {
             }
         } message: {
             Text(updateState.updateAlertBody)
+        }
+        .alert(AppText.clearAllCache, isPresented: $isClearCache) {
+            Button(AppText.confirm, role: .destructive) {
+                ThumbnailDiskCache.shared.removeAllThumbnails()
+                ThumbnailMemoryCache.shared.removeAllThumbnails()
+            }
+
+            Button(AppText.cancel, role: .cancel) {}
+        } message: {
+            Text(AppText.clearCacheAlertBody)
         }
     }
 }
