@@ -5,16 +5,8 @@
 //  Created by 김민택 on 1/18/24.
 //
 
-import Foundation
 import Photos
 import UIKit
-import Dispatch
-
-struct Video: Identifiable {
-    let id = UUID()
-    var asset: PHAsset
-    var thumbnail: UIImage?
-}
 
 class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChangeObserver {
 
@@ -23,14 +15,13 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
     @Published var isLoading = false
     private var assetFetchResult: PHFetchResult<PHAsset>?
 
-    static let shared = LocalVideoLibraryManager()
     var status: PHAuthorizationStatus {
         get {
             PHPhotoLibrary.authorizationStatus(for: .readWrite)
         }
     }
 
-    override private init() {
+    override init() {
         super.init()
         PHPhotoLibrary.shared().register(self)
     }
@@ -65,8 +56,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 let asset = assets.object(at: idx)
 
                 group.addTask {
-                    let thumbnail = await self.requestThumbnail(asset)
-                    return (idx, Video(asset: asset, thumbnail: thumbnail))
+                    return (idx, Video(asset: asset))
                 }
             }
 
@@ -90,7 +80,23 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
         }
     }
 
-    func requestThumbnail(_ asset: PHAsset) async -> UIImage {
+    func thumbnail(for asset: PHAsset) async -> UIImage {
+        if let cachedImage = ThumbnailMemoryCache.shared.thumbnail(for: asset) {
+            return cachedImage
+        }
+
+        if let diskImage = ThumbnailDiskCache.shared.loadThumbnail(for: asset) {
+            ThumbnailMemoryCache.shared.setThumbnail(diskImage, for: asset)
+            return diskImage
+        }
+
+        let requestedImage = await requestThumbnail(for: asset)
+        ThumbnailDiskCache.shared.saveThumbnail(requestedImage, for: asset)
+        ThumbnailMemoryCache.shared.setThumbnail(requestedImage, for: asset)
+        return requestedImage
+    }
+
+    func requestThumbnail(for asset: PHAsset) async -> UIImage {
         await withCheckedContinuation { continuation in
             Task { @MainActor in
                 let manager = PHImageManager.default()
@@ -126,6 +132,8 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
             if changes.hasIncrementalChanges {
                 if let removed = changes.removedIndexes {
                     for idx in removed.reversed() {
+                        ThumbnailDiskCache.shared.removeThumbnail(for: self.videos[idx].asset)
+                        ThumbnailMemoryCache.shared.removeThumbnail(for: self.videos[idx].asset)
                         self.videos.remove(at: idx)
                     }
                 }
@@ -133,8 +141,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 if let inserted = changes.insertedIndexes {
                     for idx in inserted {
                         let asset = changes.fetchResultAfterChanges.object(at: idx)
-                        let thumbnail = await self.requestThumbnail(asset)
-                        let video = Video(asset: asset, thumbnail: thumbnail)
+                        let video = Video(asset: asset)
                         self.videos.insert(video, at: idx)
                     }
                 }
@@ -142,8 +149,7 @@ class LocalVideoLibraryManager: NSObject, ObservableObject, PHPhotoLibraryChange
                 if let changed = changes.changedIndexes {
                     for idx in changed {
                         let asset = changes.fetchResultAfterChanges.object(at: idx)
-                        let thumbnail = await self.requestThumbnail(asset)
-                        let video = Video(asset: asset, thumbnail: thumbnail)
+                        let video = Video(asset: asset)
                         self.videos[idx] = video
                     }
                 }
