@@ -13,6 +13,7 @@
 		2649A4B12BFF900A007FCC55 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649A4B02BFF900A007FCC55 /* AppInfoView.swift */; };
 		2649A4BD2C066280007FCC55 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649A4BC2C066280007FCC55 /* NoticeView.swift */; };
 		264C11102DD045C600E67A5F /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C110F2DD045C200E67A5F /* VideoModel.swift */; };
+		264C11122DD0460600E67A5F /* ThumbnailMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C11112DD045FE00E67A5F /* ThumbnailMemoryCache.swift */; };
 		2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */; };
 		26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AC2BA736A800823338 /* NoticeModel.swift */; };
 		26B742AF2BA736C200823338 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AE2BA736C200823338 /* NoticeViewModel.swift */; };
@@ -40,6 +41,7 @@
 		2649A4B02BFF900A007FCC55 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		2649A4BC2C066280007FCC55 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		264C110F2DD045C200E67A5F /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		264C11112DD045FE00E67A5F /* ThumbnailMemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailMemoryCache.swift; sourceTree = "<group>"; };
 		2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoLibraryManager.swift; sourceTree = "<group>"; };
 		26B742AC2BA736A800823338 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
 		26B742AE2BA736C200823338 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		263F037D2B598DC400EAC60E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				264C11112DD045FE00E67A5F /* ThumbnailMemoryCache.swift */,
 				2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */,
 				26EBB1952BC728B600C83CA2 /* AppVersionManager.swift */,
 				263F037E2B598DFB00EAC60E /* LocalVideoPlayer.swift */,
@@ -263,6 +266,7 @@
 				26E801D92DB9190500CE20BB /* CustomerServiceMailView.swift in Sources */,
 				26E63A6A2DC939B4000D2C53 /* VersionModel.swift in Sources */,
 				26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */,
+				264C11122DD0460600E67A5F /* ThumbnailMemoryCache.swift in Sources */,
 				26EB7EF02B56AB8100282354 /* NetworkPlayerViewController.swift in Sources */,
 				264C11102DD045C600E67A5F /* VideoModel.swift in Sources */,
 				2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */,
