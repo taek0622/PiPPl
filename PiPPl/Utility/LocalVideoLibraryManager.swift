@@ -10,11 +10,6 @@ import Photos
 import UIKit
 import Dispatch
 
-struct Video: Identifiable {
-    var id: String { asset.localIdentifier }
-    var asset: PHAsset
-}
-
 class ThumbnailMemoryCache {
 
     static let shared = ThumbnailMemoryCache()
