@@ -49,6 +49,22 @@
         }
       }
     },
+    "Cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        }
+      }
+    },
     "CantSendMailAlertBody" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -83,8 +99,46 @@
         }
       }
     },
+    "clearAllCache" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Cache"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "캐시 데이터 삭제"
+          }
+        }
+      }
+    },
+    "clearCacheAlertBody" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temporary app data will be deleted.\nIt will be automatically recreated if needed."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "앱의 임시 저장 정보를 삭제합니다.\n삭제된 정보는 필요한 경우 자동으로 다시 생성됩니다."
+          }
+        }
+      }
+    },
     "Confirm" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",

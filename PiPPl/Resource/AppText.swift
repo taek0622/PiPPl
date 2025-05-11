@@ -10,6 +10,7 @@ enum AppText {
     // MARK: - Global Text
 
     static let confirm = String(localized: "Confirm")
+    static let cancel = String(localized: "Cancel")
 
     // MARK: - TabBar or SideBar Text
 
@@ -38,6 +39,7 @@ enum AppText {
     static let customerService = String(localized: "CustomerService")
     static let license = String(localized: "License")
     static let versionInfo = String(localized: "AppVersionInfo")
+    static let clearAllCache = String(localized: "clearAllCache")
 
     static let cantSendMailAlertTitle = String(localized: "CantSendMailAlertTitle")
     static let cantSendMailAlertBody = String(localized: "CantSendMailAlertBody")
@@ -65,5 +67,9 @@ enum AppText {
 
     static let latestVersionAlertTitle = String(localized: "LatestVersionAlertTitle")
     static let latestVersionAlertBody = String(localized: "LatestVersionAlertBody")
+
+    // MARK: - Removing Cache Text
+
+    static let clearCacheAlertBody = String(localized: "clearCacheAlertBody")
 
 }
