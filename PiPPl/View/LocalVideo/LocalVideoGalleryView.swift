@@ -13,7 +13,7 @@ struct LocalVideoGalleryView: View {
     @State private var isPermissionAccessable = false
     @State private var updateState: UpdateState = .latest
     @State private var isUpdateAlertOpen = false
-    @StateObject private var libraryManager = LocalVideoLibraryManager()
+    @StateObject private var localVideoLibraryManager = LocalVideoLibraryManager()
     @EnvironmentObject var appVersionManager: AppVersionManager
     @Environment(\.colorScheme) private var colorScheme
     var rowItemCount: Double {
@@ -44,7 +44,7 @@ struct LocalVideoGalleryView: View {
                             isPermissionAccessable = false
                         case .authorized, .limited:
                             Task {
-                                await libraryManager.configureGallery()
+                                await localVideoLibraryManager.configureGallery()
                                 isPermissionAccessable = true
                             }
                         @unknown default:
@@ -52,22 +52,22 @@ struct LocalVideoGalleryView: View {
                         }
                     }
                 }
-            } else if libraryManager.videos.isEmpty {
+            } else if localVideoLibraryManager.videos.isEmpty {
                 Button(AppText.photoGalleryNoVideoButtonText) {
                     Task {
-                        await libraryManager.configureGallery()
+                        await localVideoLibraryManager.configureGallery()
                     }
                 }
             } else {
                 ScrollView {
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed(UIScreen.main.bounds.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
-                        ForEach(libraryManager.videos, id: \.id) { video in
+                        ForEach(localVideoLibraryManager.videos, id: \.id) { video in
                             NavigationLink {
                                 LocalVideoPlayView(asset: video.asset)
                                     .toolbar(.hidden, for: .tabBar)
                             } label: {
                                 ZStack(alignment: .bottomTrailing) {
-                                    AssetImage(asset: video.asset, libraryManager: libraryManager)
+                                    AssetImage(asset: video.asset, localVideoLibraryManager: localVideoLibraryManager)
                                         .frame(height: UIScreen.main.bounds.width/rowItemCount)
 
                                     let duration = Int(video.asset.duration)
@@ -81,7 +81,7 @@ struct LocalVideoGalleryView: View {
                 }
             }
 
-            if libraryManager.isLoading {
+            if localVideoLibraryManager.isLoading {
                 VStack {
                     ZStack {
                         Color(colorScheme == .light ? #colorLiteral(red: 0.2196078431, green: 0.2196078431, blue: 0.2196078431, alpha: 1) : #colorLiteral(red: 0.5490196078, green: 0.5490196078, blue: 0.5490196078, alpha: 1))
@@ -90,9 +90,9 @@ struct LocalVideoGalleryView: View {
                             HStack {
                                 Text(AppText.videoLoadText)
                                 Spacer()
-                                Text("\(Int(libraryManager.videoLoadingProgress * 100))%")
+                                Text("\(Int(localVideoLibraryManager.videoLoadingProgress * 100))%")
                             }
-                            ProgressView(value: libraryManager.videoLoadingProgress)
+                            ProgressView(value: localVideoLibraryManager.videoLoadingProgress)
                         }
                         .padding()
                         .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? UIScreen.main.bounds.width : UIScreen.main.bounds.width / 5 * 3)
@@ -127,14 +127,14 @@ struct LocalVideoGalleryView: View {
             Text(updateState.updateAlertBody)
         }
         .onAppear {
-            switch libraryManager.status {
+            switch localVideoLibraryManager.status {
             case .notDetermined, .restricted, .denied:
                 isPermissionAccessable = false
             case .authorized, .limited:
                 isPermissionAccessable = true
-                if libraryManager.videos.isEmpty {
+                if localVideoLibraryManager.videos.isEmpty {
                     Task {
-                        await libraryManager.configureGallery()
+                        await localVideoLibraryManager.configureGallery()
                     }
                 }
             @unknown default:
@@ -165,7 +165,7 @@ struct LocalVideoGalleryView: View {
 struct AssetImage: View {
     let asset: PHAsset
     @State private var image: UIImage?
-    @ObservedObject var libraryManager: LocalVideoLibraryManager
+    @ObservedObject var localVideoLibraryManager: LocalVideoLibraryManager
 
     var body: some View {
         Group {
@@ -175,7 +175,7 @@ struct AssetImage: View {
             } else {
                 ProgressView()
                     .task {
-                        image = await libraryManager.thumbnail(for: asset)
+                        image = await localVideoLibraryManager.thumbnail(for: asset)
                     }
             }
         }
