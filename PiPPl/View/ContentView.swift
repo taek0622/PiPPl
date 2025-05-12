@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+enum LocalViewSelection: Hashable {
+    case playView(Video)
+}
+
+enum AppInfoViewSelection: Hashable {
+    case noticeView
+    case licenseView
+}
+
 struct ContentView: View {
     enum ViewSelection {
         case localVideo
