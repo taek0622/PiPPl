@@ -31,8 +31,8 @@ struct AppInfoView: View {
 
     var body: some View {
         List {
-            NavigationLink(AppText.notice) {
-                NoticeView()
+            Button(AppText.notice) {
+                appInfoPath.append(AppInfoViewSelection.noticeView)
             }
             Button(AppText.developerInfo) {
                 url = URL(string: "https://github.com/taek0622")!
