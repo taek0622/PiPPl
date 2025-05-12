@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-
     @State private var selectedView: ViewSelection = .localVideo
     @State private var localPath = NavigationPath()
     @State private var appInfoPath = NavigationPath()
