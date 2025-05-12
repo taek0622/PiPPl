@@ -185,6 +185,6 @@ struct AssetImage: View {
 
 #Preview {
     NavigationView {
-        LocalVideoGalleryView()
+        LocalVideoGalleryView(localPath: .constant(NavigationPath()), localVideoLibraryManager: LocalVideoLibraryManager())
     }
 }

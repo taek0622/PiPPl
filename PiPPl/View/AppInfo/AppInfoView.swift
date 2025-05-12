@@ -132,6 +132,6 @@ struct SafariView: UIViewControllerRepresentable {
 
 #Preview {
     NavigationStack {
-        AppInfoView()
+        AppInfoView(appInfoPath: .constant(NavigationPath()))
     }
 }
