@@ -27,6 +27,7 @@ struct AppInfoView: View {
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
     @State private var isClearCache: Bool = false
+    @Binding var appInfoPath: NavigationPath
 
     var body: some View {
         List {
