@@ -10,14 +10,6 @@ import SafariServices
 import SwiftUI
 
 struct AppInfoView: View {
-    enum AppInfoAction {
-        case none
-        case developerInfo
-        case customerService
-        case license
-        case versionInfo
-    }
-
     @EnvironmentObject var appVersionManager: AppVersionManager
     @State private var isOpenSafariView = false
     @State private var isOldVersion = false
