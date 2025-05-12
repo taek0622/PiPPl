@@ -25,6 +25,8 @@ struct ContentView: View {
 
     @StateObject var localVideoLibraryManager = LocalVideoLibraryManager()
     @State private var selectedView: ViewSelection = .localVideo
+    @State private var localPath = NavigationPath()
+    @State private var appInfoPath = NavigationPath()
 
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
