@@ -31,7 +31,7 @@ struct ContentView: View {
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             TabView(selection: $selectedView) {
-                NavigationStack {
+                NavigationStack(path: $localPath) {
                     LocalVideoGalleryView(localPath: $localPath, localVideoLibraryManager: localVideoLibraryManager)
                         .navigationTitle(AppText.localVideo)
                         .navigationBarTitleDisplayMode(.inline)
@@ -43,7 +43,7 @@ struct ContentView: View {
                     .tabItem { Label(AppText.networkVideo, systemImage: "globe") }
                     .tag(ViewSelection.networkVideo)
 
-                NavigationStack {
+                NavigationStack(path: $appInfoPath) {
                     AppInfoView(appInfoPath: $appInfoPath)
                         .navigationTitle(AppText.appInfo)
                         .navigationBarTitleDisplayMode(.inline)
