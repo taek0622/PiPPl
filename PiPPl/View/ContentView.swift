@@ -23,6 +23,7 @@ struct ContentView: View {
         case appInfo
     }
 
+    @StateObject var localVideoLibraryManager = LocalVideoLibraryManager()
     @State private var selectedView: ViewSelection = .localVideo
 
     var body: some View {

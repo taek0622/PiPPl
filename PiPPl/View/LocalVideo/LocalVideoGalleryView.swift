@@ -13,7 +13,7 @@ struct LocalVideoGalleryView: View {
     @State private var isPermissionAccessable = false
     @State private var updateState: UpdateState = .latest
     @State private var isUpdateAlertOpen = false
-    @StateObject private var localVideoLibraryManager = LocalVideoLibraryManager()
+    @ObservedObject var localVideoLibraryManager: LocalVideoLibraryManager
     @EnvironmentObject var appVersionManager: AppVersionManager
     @Environment(\.colorScheme) private var colorScheme
     var rowItemCount: Double {
