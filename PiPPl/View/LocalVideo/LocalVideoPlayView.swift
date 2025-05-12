@@ -37,9 +37,9 @@ struct LocalVideoPlayView: View {
         .toolbar(content: {
             ToolbarItem(placement: .principal) {
                 VStack {
-                    Text(asset.creationDate!, style: .date)
+                    Text(asset.creationDate ?? Date.now, style: .date)
                         .font(.system(size: 15, weight: .semibold))
-                    Text(asset.creationDate!, style: .time)
+                    Text(asset.creationDate ?? Date.now, style: .time)
                         .foregroundStyle(.gray)
                         .font(.system(size: 12))
                 }
