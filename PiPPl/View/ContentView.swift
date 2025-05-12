@@ -11,6 +11,13 @@ struct ContentView: View {
     let localVideoGalleryView = LocalVideoGalleryView()
     let networkPlayerView = NetworkPlayerView()
     let appInfoView = AppInfoView()
+    enum ViewSelection {
+        case localVideo
+        case networkVideo
+        case appInfo
+    }
+
+    @State private var selectedView: ViewSelection = .localVideo
 
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
