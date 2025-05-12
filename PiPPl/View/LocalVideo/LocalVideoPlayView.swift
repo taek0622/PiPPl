@@ -10,9 +10,10 @@ import Photos
 import SwiftUI
 
 struct LocalVideoPlayView: View {
-    @StateObject private var localVideoPlayer = LocalVideoPlayer()
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.isPresented) var isPresented
+    @StateObject private var localVideoPlayer = LocalVideoPlayer()
+
     var asset: PHAsset
 
     var body: some View {
