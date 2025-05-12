@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    let localVideoGalleryView = LocalVideoGalleryView()
-    let networkPlayerView = NetworkPlayerView()
-    let appInfoView = AppInfoView()
     enum ViewSelection {
         case localVideo
         case networkVideo
@@ -23,15 +20,15 @@ struct ContentView: View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             TabView {
                 NavigationStack {
-                    localVideoGalleryView
+                    LocalVideoGalleryView(localPath: $localPath, localVideoLibraryManager: localVideoLibraryManager)
                         .navigationTitle(AppText.localVideo)
                         .navigationBarTitleDisplayMode(.inline)
                 }
                 .tabItem { Label(AppText.localVideo, systemImage: "play.square") }
-                networkPlayerView
+                NetworkPlayerView()
                     .tabItem { Label(AppText.networkVideo, systemImage: "globe") }
                 NavigationStack {
-                    appInfoView
+                    AppInfoView(appInfoPath: $appInfoPath)
                         .navigationTitle(AppText.appInfo)
                 }
                 .tabItem { Label(AppText.appInfo, systemImage: "info.circle") }
