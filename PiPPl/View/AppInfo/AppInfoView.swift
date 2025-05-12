@@ -30,8 +30,15 @@ struct AppInfoView: View {
 
     var body: some View {
         List {
-            Button(AppText.notice) {
+            Button {
                 appInfoPath.append(AppInfoViewSelection.noticeView)
+            } label: {
+                HStack {
+                    Text(AppText.notice)
+                    Spacer()
+                    Image(systemName: "chevron.forward")
+                        .fontWeight(.medium)
+                }
             }
             Button(AppText.developerInfo) {
                 url = URL(string: "https://github.com/taek0622")!
