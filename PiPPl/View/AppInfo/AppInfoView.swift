@@ -11,6 +11,7 @@ import SwiftUI
 
 struct AppInfoView: View {
     @EnvironmentObject var appVersionManager: AppVersionManager
+    @Binding var appInfoPath: NavigationPath
     @State private var isOpenSafariView = false
     @State private var isOldVersion = false
     @State private var isSelectAppVersion = false
@@ -18,7 +19,6 @@ struct AppInfoView: View {
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
     @State private var isClearCache: Bool = false
-    @Binding var appInfoPath: NavigationPath
 
     var body: some View {
         List {

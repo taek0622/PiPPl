@@ -9,13 +9,14 @@ import Photos
 import SwiftUI
 
 struct LocalVideoGalleryView: View {
+    @Environment(\.colorScheme) private var colorScheme
+    @EnvironmentObject var appVersionManager: AppVersionManager
     @AppStorage("updateAlertCount") var updateAlertCount: Int = 0
+    @Binding var localPath: NavigationPath
     @State private var isPermissionAccessable = false
     @State private var isUpdateAlertOpen = false
-    @Binding var localPath: NavigationPath
     @ObservedObject var localVideoLibraryManager: LocalVideoLibraryManager
-    @EnvironmentObject var appVersionManager: AppVersionManager
-    @Environment(\.colorScheme) private var colorScheme
+
     var rowItemCount: Double {
         if UIDevice.current.userInterfaceIdiom == .phone {
             if UIDevice.current.orientation == .portrait {
