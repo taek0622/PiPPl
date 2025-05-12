@@ -159,6 +159,13 @@ struct LocalVideoGalleryView: View {
                 }
             }
         }
+        .navigationDestination(for: LocalViewSelection.self) { view in
+            switch view {
+                case .playView(let video):
+                    LocalVideoPlayView(asset: video.asset)
+                        .toolbar(.hidden, for: .tabBar)
+            }
+        }
     }
 }
 
