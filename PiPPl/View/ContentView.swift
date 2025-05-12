@@ -43,6 +43,7 @@ struct ContentView: View {
                 NavigationStack {
                     AppInfoView(appInfoPath: $appInfoPath)
                         .navigationTitle(AppText.appInfo)
+                        .navigationBarTitleDisplayMode(.inline)
                 }
                 .tabItem { Label(AppText.appInfo, systemImage: "info.circle") }
                 .tag(ViewSelection.appInfo)
