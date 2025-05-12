@@ -117,6 +117,14 @@ struct AppInfoView: View {
         } message: {
             Text(AppText.clearCacheAlertBody)
         }
+        .navigationDestination(for: AppInfoViewSelection.self) { view in
+            switch view {
+                case .noticeView:
+                    NoticeView()
+                case .licenseView:
+                    EmptyView()
+            }
+        }
     }
 }
 
