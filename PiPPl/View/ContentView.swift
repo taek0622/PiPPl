@@ -18,20 +18,25 @@ struct ContentView: View {
 
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            TabView {
+            TabView(selection: $selectedView) {
                 NavigationStack {
                     LocalVideoGalleryView(localPath: $localPath, localVideoLibraryManager: localVideoLibraryManager)
                         .navigationTitle(AppText.localVideo)
                         .navigationBarTitleDisplayMode(.inline)
                 }
                 .tabItem { Label(AppText.localVideo, systemImage: "play.square") }
+                .tag(ViewSelection.localVideo)
+
                 NetworkPlayerView()
                     .tabItem { Label(AppText.networkVideo, systemImage: "globe") }
+                    .tag(ViewSelection.networkVideo)
+
                 NavigationStack {
                     AppInfoView(appInfoPath: $appInfoPath)
                         .navigationTitle(AppText.appInfo)
                 }
                 .tabItem { Label(AppText.appInfo, systemImage: "info.circle") }
+                .tag(ViewSelection.appInfo)
             }
         } else if UIDevice.current.userInterfaceIdiom == .pad {
             NavigationSplitView {
