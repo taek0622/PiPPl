@@ -96,6 +96,16 @@ struct ContentView: View {
                             }
                     }
                 }
+                .onChange(of: selectedView) { value in
+                    switch value {
+                        case .localVideo:
+                            appInfoPath = .init()
+                        case .networkVideo:
+                            localPath = .init()
+                            appInfoPath = .init()
+                        case .appInfo:
+                            localPath = .init()
+                    }
                 }
             }
         } else {
