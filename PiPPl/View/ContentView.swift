@@ -7,21 +7,7 @@
 
 import SwiftUI
 
-enum LocalViewSelection: Hashable {
-    case playView(Video)
-}
-
-enum AppInfoViewSelection: Hashable {
-    case noticeView
-    case licenseView
-}
-
 struct ContentView: View {
-    enum ViewSelection {
-        case localVideo
-        case networkVideo
-        case appInfo
-    }
 
     @State private var selectedView: ViewSelection = .localVideo
     @State private var localPath = NavigationPath()
