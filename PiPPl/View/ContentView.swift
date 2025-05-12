@@ -41,33 +41,48 @@ struct ContentView: View {
         } else if UIDevice.current.userInterfaceIdiom == .pad {
             NavigationSplitView {
                 List {
-                    NavigationLink {
-                        NavigationStack {
-                            localVideoGalleryView
-                                .navigationTitle(AppText.localVideo)
-                        }
+                    Button {
+                        selectedView = .localVideo
                     } label: {
                         Label(AppText.localVideo, systemImage: "play.square")
                     }
-                    NavigationLink {
-                        networkPlayerView
+
+                    Button {
+                        selectedView = .networkVideo
                     } label: {
                         Label(AppText.networkVideo, systemImage: "globe")
                     }
-                    NavigationLink {
-                        NavigationStack {
-                            appInfoView
-                                .navigationTitle(AppText.appInfo)
-                        }
+
+                    Button {
+                        selectedView = .appInfo
                     } label: {
                         Label(AppText.appInfo, systemImage: "info.circle")
                     }
                 }
                 .listStyle(.plain)
             } detail: {
-                NavigationStack {
-                    localVideoGalleryView
-                        .navigationTitle(AppText.localVideo)
+                VStack {
+                    switch selectedView {
+                        case .localVideo:
+                            NavigationStack(path: $localPath) {
+                                LocalVideoGalleryView(localPath: $localPath, localVideoLibraryManager: localVideoLibraryManager)
+                                    .navigationTitle(AppText.localVideo)
+                                    .navigationBarTitleDisplayMode(.inline)
+                            }
+                        case .networkVideo:
+                            NavigationStack {
+                                NetworkPlayerView()
+                                    .navigationTitle(AppText.networkVideo)
+                                    .toolbar(.hidden)
+                            }
+                        case .appInfo:
+                            NavigationStack(path: $appInfoPath) {
+                                AppInfoView(appInfoPath: $appInfoPath)
+                                    .navigationTitle(AppText.appInfo)
+                                    .navigationBarTitleDisplayMode(.inline)
+                            }
+                    }
+                }
                 }
             }
         } else {
