@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NoticeView: View {
-
     @StateObject var noticeViewModel = NoticeViewModel()
 
     var body: some View {

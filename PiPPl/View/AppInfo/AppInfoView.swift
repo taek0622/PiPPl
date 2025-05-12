@@ -10,19 +10,11 @@ import SafariServices
 import SwiftUI
 
 struct AppInfoView: View {
-    enum AppInfoAction {
-        case none
-        case developerInfo
-        case customerService
-        case license
-        case versionInfo
-    }
-
     @EnvironmentObject var appVersionManager: AppVersionManager
+    @Binding var appInfoPath: NavigationPath
     @State private var isOpenSafariView = false
     @State private var isOldVersion = false
     @State private var isSelectAppVersion = false
-    @State private var updateState: UpdateState = .latest
     @State private var url = URL(string: "https://www.google.com")!
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
@@ -30,8 +22,15 @@ struct AppInfoView: View {
 
     var body: some View {
         List {
-            NavigationLink(AppText.notice) {
-                NoticeView()
+            Button {
+                appInfoPath.append(AppInfoViewSelection.noticeView)
+            } label: {
+                HStack {
+                    Text(AppText.notice)
+                    Spacer()
+                    Image(systemName: "chevron.forward")
+                        .fontWeight(.medium)
+                }
             }
             Button(AppText.developerInfo) {
                 url = URL(string: "https://github.com/taek0622")!
@@ -50,9 +49,7 @@ struct AppInfoView: View {
             }
             Button {
                 Task {
-                    updateState = await appVersionManager.checkNewUpdate()
-
-                    if updateState == .latest {
+                    if appVersionManager.updateState == .latest {
                         isSelectAppVersion = true
                     } else {
                         isOldVersion = true
@@ -91,8 +88,8 @@ struct AppInfoView: View {
         } message: {
             Text(AppText.latestVersionAlertBody)
         }
-        .alert(updateState.updateAlertTitle, isPresented: $isOldVersion) {
-            Button(updateState.updateAlertPrimaryAction) {
+        .alert(appVersionManager.updateState.updateAlertTitle, isPresented: $isOldVersion) {
+            Button(appVersionManager.updateState.updateAlertPrimaryAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 guard let url = URL(string: appStoreOpenURL) else { return }
                 if UIApplication.shared.canOpenURL(url) {
@@ -100,11 +97,11 @@ struct AppInfoView: View {
                 }
             }
 
-            if updateState == .recommended || updateState == .available {
+            if appVersionManager.updateState == .recommended || appVersionManager.updateState == .available {
                 Button(AppText.updateAvailableAlertPostponeAction, role: .cancel) {}
             }
         } message: {
-            Text(updateState.updateAlertBody)
+            Text(appVersionManager.updateState.updateAlertBody)
         }
         .alert(AppText.clearAllCache, isPresented: $isClearCache) {
             Button(AppText.confirm, role: .destructive) {
@@ -115,6 +112,14 @@ struct AppInfoView: View {
             Button(AppText.cancel, role: .cancel) {}
         } message: {
             Text(AppText.clearCacheAlertBody)
+        }
+        .navigationDestination(for: AppInfoViewSelection.self) { view in
+            switch view {
+                case .noticeView:
+                    NoticeView()
+                case .licenseView:
+                    EmptyView()
+            }
         }
     }
 }
@@ -131,6 +136,6 @@ struct SafariView: UIViewControllerRepresentable {
 
 #Preview {
     NavigationStack {
-        AppInfoView()
+        AppInfoView(appInfoPath: .constant(NavigationPath()))
     }
 }
