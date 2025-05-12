@@ -50,8 +50,6 @@ struct AppInfoView: View {
             }
             Button {
                 Task {
-//                    appVersionManager.updateState = await appVersionManager.checkNewUpdate()
-
                     if appVersionManager.updateState == .latest {
                         isSelectAppVersion = true
                     } else {
