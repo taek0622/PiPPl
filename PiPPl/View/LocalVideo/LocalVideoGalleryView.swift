@@ -63,9 +63,8 @@ struct LocalVideoGalleryView: View {
                 ScrollView {
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed(UIScreen.main.bounds.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
                         ForEach(localVideoLibraryManager.videos, id: \.id) { video in
-                            NavigationLink {
-                                LocalVideoPlayView(asset: video.asset)
-                                    .toolbar(.hidden, for: .tabBar)
+                            Button {
+                                localPath.append(LocalViewSelection.playView(video))
                             } label: {
                                 ZStack(alignment: .bottomTrailing) {
                                     AssetImage(asset: video.asset, localVideoLibraryManager: localVideoLibraryManager)
