@@ -8,6 +8,7 @@
 import Foundation
 
 class AppVersionManager: ObservableObject {
+
     @Published var updateState = UpdateState.latest
     @Published var isUpdateAlertOpened = false
 
@@ -25,6 +26,14 @@ class AppVersionManager: ObservableObject {
            let versions = Version(downloadedVersionString) {
             self.downloadedAppVersion = versions
         } else { self.downloadedAppVersion = .init(0, 0, 0) }
+
+        Task {
+            let newState = await checkNewUpdate()
+
+            await MainActor.run {
+                self.updateState = newState
+            }
+        }
     }
 
     func checkNewUpdate() async -> UpdateState {
