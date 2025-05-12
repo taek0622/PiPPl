@@ -11,7 +11,6 @@ import SwiftUI
 struct LocalVideoGalleryView: View {
     @AppStorage("updateAlertCount") var updateAlertCount: Int = 0
     @State private var isPermissionAccessable = false
-    @State private var updateState: UpdateState = .latest
     @State private var isUpdateAlertOpen = false
     @Binding var localPath: NavigationPath
     @ObservedObject var localVideoLibraryManager: LocalVideoLibraryManager
@@ -101,18 +100,18 @@ struct LocalVideoGalleryView: View {
             }
         }
         .toolbar {
-            if updateState != .latest {
+            if appVersionManager.updateState != .latest {
                 Button {
                     isUpdateAlertOpen = true
                 } label: {
                     Image(systemName: "arrow.up.square.fill")
-                        .foregroundStyle(updateState.updateNotificationColor)
+                        .foregroundStyle(appVersionManager.updateState.updateNotificationColor)
                 }
 
             }
         }
-        .alert(updateState.updateAlertTitle, isPresented: $isUpdateAlertOpen) {
-            Button(updateState.updateAlertPrimaryAction) {
+        .alert(appVersionManager.updateState.updateAlertTitle, isPresented: $isUpdateAlertOpen) {
+            Button(appVersionManager.updateState.updateAlertPrimaryAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 guard let url = URL(string: appStoreOpenURL) else { return }
                 if UIApplication.shared.canOpenURL(url) {
@@ -120,11 +119,11 @@ struct LocalVideoGalleryView: View {
                 }
             }
 
-            if updateState == .recommended || updateState == .available {
+            if appVersionManager.updateState == .recommended || appVersionManager.updateState == .available {
                 Button(AppText.updateAvailableAlertPostponeAction, role: .cancel) {}
             }
         } message: {
-            Text(updateState.updateAlertBody)
+            Text(appVersionManager.updateState.updateAlertBody)
         }
         .onAppear {
             switch localVideoLibraryManager.status {
@@ -142,12 +141,12 @@ struct LocalVideoGalleryView: View {
             }
 
             Task {
-                updateState = await appVersionManager.checkNewUpdate()
+//                appVersionManager.updateState = await appVersionManager.checkNewUpdate()
 
-                if updateState == .required && !appVersionManager.isUpdateAlertOpened {
+                if appVersionManager.updateState == .required && !appVersionManager.isUpdateAlertOpened {
                     isUpdateAlertOpen = true
                     appVersionManager.isUpdateAlertOpened = true
-                } else if updateState == .recommended && !appVersionManager.isUpdateAlertOpened {
+                } else if appVersionManager.updateState == .recommended && !appVersionManager.isUpdateAlertOpened {
                     if updateAlertCount == 0 {
                         isUpdateAlertOpen = true
                         appVersionManager.isUpdateAlertOpened = true

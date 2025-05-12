@@ -22,7 +22,6 @@ struct AppInfoView: View {
     @State private var isOpenSafariView = false
     @State private var isOldVersion = false
     @State private var isSelectAppVersion = false
-    @State private var updateState: UpdateState = .latest
     @State private var url = URL(string: "https://www.google.com")!
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
@@ -51,9 +50,9 @@ struct AppInfoView: View {
             }
             Button {
                 Task {
-                    updateState = await appVersionManager.checkNewUpdate()
+//                    appVersionManager.updateState = await appVersionManager.checkNewUpdate()
 
-                    if updateState == .latest {
+                    if appVersionManager.updateState == .latest {
                         isSelectAppVersion = true
                     } else {
                         isOldVersion = true
@@ -92,8 +91,8 @@ struct AppInfoView: View {
         } message: {
             Text(AppText.latestVersionAlertBody)
         }
-        .alert(updateState.updateAlertTitle, isPresented: $isOldVersion) {
-            Button(updateState.updateAlertPrimaryAction) {
+        .alert(appVersionManager.updateState.updateAlertTitle, isPresented: $isOldVersion) {
+            Button(appVersionManager.updateState.updateAlertPrimaryAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 guard let url = URL(string: appStoreOpenURL) else { return }
                 if UIApplication.shared.canOpenURL(url) {
@@ -101,11 +100,11 @@ struct AppInfoView: View {
                 }
             }
 
-            if updateState == .recommended || updateState == .available {
+            if appVersionManager.updateState == .recommended || appVersionManager.updateState == .available {
                 Button(AppText.updateAvailableAlertPostponeAction, role: .cancel) {}
             }
         } message: {
-            Text(updateState.updateAlertBody)
+            Text(appVersionManager.updateState.updateAlertBody)
         }
         .alert(AppText.clearAllCache, isPresented: $isClearCache) {
             Button(AppText.confirm, role: .destructive) {
