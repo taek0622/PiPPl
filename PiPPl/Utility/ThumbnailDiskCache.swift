@@ -62,6 +62,16 @@ class ThumbnailDiskCache {
         }.value
     }
 
+    func cacheSizeString() -> String {
+        var size = cacheSizeInBytes()
+        var capacityUnit = SICapacity.Byte
+
+        while size >= 1000 && capacityUnit != .Petabyte {
+            size /= 1000
+            capacityUnit = SICapacity(rawValue: capacityUnit.rawValue + 1) ?? SICapacity.Petabyte
+        }
+
+        return "\(size)" + capacityUnit.capacityString()
     }
 
     private func fileURL(for asset: PHAsset) -> URL {
