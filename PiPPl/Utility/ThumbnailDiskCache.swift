@@ -53,10 +53,15 @@ class ThumbnailDiskCache {
         try? fileManager.removeItem(at: url)
     }
 
-    func removeAllThumbnails() {
-        guard fileManager.fileExists(atPath: cacheDirectoryURL.path) else { return }
-        try? fileManager.removeItem(at: cacheDirectoryURL)
-        try? fileManager.createDirectory(at: cacheDirectoryURL, withIntermediateDirectories: true)
+    func removeAllThumbnails() async {
+        await Task.detached {
+            if self.fileManager.fileExists(atPath: self.cacheDirectoryURL.path) {
+                try? self.fileManager.removeItem(at: self.cacheDirectoryURL)
+                try? self.fileManager.createDirectory(at: self.cacheDirectoryURL, withIntermediateDirectories: true)
+            }
+        }.value
+    }
+
     }
 
     private func fileURL(for asset: PHAsset) -> URL {
