@@ -69,4 +69,25 @@ class ThumbnailDiskCache {
         return cacheDirectoryURL.appendingPathComponent("\(filename)", conformingTo: .jpeg)
     }
 
+    private func cacheSizeInBytes() -> Int64 {
+        return folderSize(at: cacheDirectoryURL)
+    }
+
+    private func folderSize(at url: URL) -> Int64 {
+        var size: Int64 = 0
+
+        if let files = try? FileManager.default.subpathsOfDirectory(atPath: url.path) {
+            for file in files {
+                let filePath = url.appendingPathComponent(file).path
+
+                if let fileAttributes = try? FileManager.default.attributesOfItem(atPath: filePath),
+                   let fileSize = fileAttributes[.size] as? NSNumber {
+                    size += fileSize.int64Value
+                }
+            }
+        }
+
+        return size
+    }
+
 }
