@@ -19,6 +19,7 @@ struct AppInfoView: View {
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
     @State private var isClearCache: Bool = false
+    @State private var cacheCapacity = "0B"
 
     var body: some View {
         List {
@@ -64,8 +65,17 @@ struct AppInfoView: View {
                         .font(.system(size: 16))
                 }
             }
-            Button(AppText.clearAllCache, role: .destructive) {
+            Button {
                 isClearCache = true
+            } label: {
+                HStack {
+                    Text(AppText.clearAllCache)
+                        .foregroundStyle(.red)
+                    Spacer()
+                    Text(cacheCapacity)
+                        .foregroundStyle(.gray)
+                        .font(.system(size: 14))
+                }
             }
         }
         .fullScreenCover(isPresented: $isOpenSafariView, content: {
@@ -105,13 +115,19 @@ struct AppInfoView: View {
         }
         .alert(AppText.clearAllCache, isPresented: $isClearCache) {
             Button(AppText.confirm, role: .destructive) {
-                ThumbnailDiskCache.shared.removeAllThumbnails()
-                ThumbnailMemoryCache.shared.removeAllThumbnails()
+                Task {
+                    await ThumbnailDiskCache.shared.removeAllThumbnails()
+                    ThumbnailMemoryCache.shared.removeAllThumbnails()
+                    cacheCapacity = ThumbnailDiskCache.shared.cacheSizeString()
+                }
             }
 
             Button(AppText.cancel, role: .cancel) {}
         } message: {
             Text(AppText.clearCacheAlertBody)
+        }
+        .onAppear {
+            cacheCapacity = ThumbnailDiskCache.shared.cacheSizeString()
         }
         .navigationDestination(for: AppInfoViewSelection.self) { view in
             switch view {
