@@ -227,6 +227,16 @@ struct WebView: UIViewRepresentable {
             }
         }
 
+        if isPiPOn {
+            Task {
+                guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist") else { return }
+                guard let property = NSDictionary(contentsOfFile: filePath) else { return }
+                guard let pipLogic = property["PiPLogic"] as? String else { return }
+                try await webView.evaluateJavaScript(pipLogic)
+                isPiPOn = false
+            }
+        }
+
     }
 
     func makeCoordinator() -> Coordinator {
