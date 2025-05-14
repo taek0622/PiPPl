@@ -237,6 +237,12 @@ struct WebView: UIViewRepresentable {
             }
         }
 
+        if isPausedVideo {
+            Task {
+                webView.load(URLRequest(url: URL(string: "https://www.google.com/")!))
+                isPausedVideo = false
+            }
+        }
     }
 
     func makeCoordinator() -> Coordinator {
