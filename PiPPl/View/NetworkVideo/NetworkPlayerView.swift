@@ -17,6 +17,18 @@ struct NetworkPlayerView: View {
 
     var body: some View {
         WebView(searchingText: $searchingText, isSubmitted: $isSubmitted, isPiPOn: $isPiPOn, isPausedVideo: $isPausedVideo)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    TextField(AppText.searchFieldPlaceholder, text: $searchingText)
+                        .padding(4)
+                        .background(Color(UIColor(white: colorScheme == .light ? 0.9 : 0.7, alpha: 1)))
+                        .clipShape(.rect(cornerRadius: 8))
+                        .onSubmit {
+                            isSubmitted = true
+                        }
+                }
+
+            }
     }
 }
 
