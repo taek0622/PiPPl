@@ -273,31 +273,6 @@ struct WebView: UIViewRepresentable {
     }
 }
 
-struct LegacyNetworkPlayerView: View {
-    let webView = LegacyWebView()
-
-    var body: some View {
-        webView
-            .onDisappear {
-                webView.pauseVideo()
-            }
-    }
-}
-
-struct LegacyWebView: UIViewControllerRepresentable {
-    let networkPlayerView = NetworkPlayerViewController()
-
-    func makeUIViewController(context: Context) -> UIViewController {
-        return UINavigationController(rootViewController: networkPlayerView)
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-
-    func pauseVideo() {
-        networkPlayerView.pauseVideo()
-    }
-}
-
 #Preview {
     NetworkPlayerView()
 }
