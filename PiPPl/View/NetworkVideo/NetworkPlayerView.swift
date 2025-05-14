@@ -194,11 +194,26 @@ struct WebView: UIViewRepresentable {
                                 "YOUTUBE", "YT", "YUN", "ZA", "ZAPPOS", "ZARA", "ZERO", "ZIP", "ZM", "ZONE",
                                 "ZUERICH", "ZW"].map { $0.lowercased() })
 
+    class Coordinator: NSObject, WKNavigationDelegate {
+        var parent: WebView
+
+        init(_ parent: WebView) {
+            self.parent = parent
+        }
+
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            parent.searchingText = webView.url?.absoluteString ?? ""
+        }
+    }
 
     func makeUIView(context: Context) -> WKWebView {
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
     }
 
 }
