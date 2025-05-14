@@ -220,6 +220,13 @@ struct WebView: UIViewRepresentable {
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
+        if isSubmitted {
+            Task {
+                webView.load(getURLRequest(from: searchingText))
+                isSubmitted = false
+            }
+        }
+
     }
 
     func makeCoordinator() -> Coordinator {
