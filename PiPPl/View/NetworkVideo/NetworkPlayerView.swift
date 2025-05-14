@@ -8,6 +8,12 @@
 import SwiftUI
 import WebKit
 
+struct NetworkPlayerView: View {
+
+    var body: some View {
+    }
+}
+
 
 struct LegacyNetworkPlayerView: View {
     let webView = LegacyWebView()
