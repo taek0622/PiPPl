@@ -36,6 +36,8 @@ struct NetworkPlayerView: View {
                     }
                 }
             }
+            .onDisappear {
+                isPausedVideo = true
             }
     }
 }
