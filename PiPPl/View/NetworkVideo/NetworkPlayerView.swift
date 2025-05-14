@@ -16,6 +16,7 @@ struct NetworkPlayerView: View {
     @State private var isPausedVideo = false
 
     var body: some View {
+        WebView(searchingText: $searchingText, isSubmitted: $isSubmitted, isPiPOn: $isPiPOn, isPausedVideo: $isPausedVideo)
     }
 }
 
