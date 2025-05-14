@@ -28,6 +28,14 @@ struct NetworkPlayerView: View {
                         }
                 }
 
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isPiPOn = true
+                    } label: {
+                        Image(systemName: "pip.enter")
+                    }
+                }
+            }
             }
     }
 }
