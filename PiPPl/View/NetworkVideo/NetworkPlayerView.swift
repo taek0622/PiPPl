@@ -14,6 +14,15 @@ struct NetworkPlayerView: View {
     }
 }
 
+struct WebView: UIViewRepresentable {
+
+    func makeUIView(context: Context) -> WKWebView {
+    }
+
+    func updateUIView(_ webView: WKWebView, context: Context) {
+    }
+
+}
 
 struct LegacyNetworkPlayerView: View {
     let webView = LegacyWebView()
