@@ -226,6 +226,28 @@ struct WebView: UIViewRepresentable {
         Coordinator(self)
     }
 
+    private func getURLRequest(from urlString: String) -> URLRequest {
+        var urlString = urlString.lowercased()
+
+        if !(urlString.hasPrefix("https://") || urlString.hasPrefix("http://")) {
+            let splitPath = urlString.split(separator: "/")
+            let splitParameter = splitPath[0].split(separator: "?")
+            let splitFragment = splitParameter[0].split(separator: "#")
+            let splitDomain = splitFragment[0].split(separator: ".")
+            let tld = splitDomain.count > 1 ? String(splitDomain.last ?? "") : ""
+
+            if domains.contains(tld) {
+                urlString = "https://" + urlString
+            } else {
+                urlString = "https://www.google.com/search?q=" + urlString
+            }
+        }
+
+        let url = URL(string: urlString) ?? URL(string: "about:blank")!
+        let request = URLRequest(url: url)
+
+        return request
+    }
 }
 
 struct LegacyNetworkPlayerView: View {
