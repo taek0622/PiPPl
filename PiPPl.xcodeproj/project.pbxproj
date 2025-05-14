@@ -17,6 +17,7 @@
 		264C11142DD0463700E67A5F /* ThumbnailDiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C11132DD0463100E67A5F /* ThumbnailDiskCache.swift */; };
 		264C11342DD2680C00E67A5F /* ViewSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C11332DD2680800E67A5F /* ViewSelection.swift */; };
 		264C11382DD3AC3800E67A5F /* SICapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C11372DD3AC3300E67A5F /* SICapacity.swift */; };
+		264C115F2DD5016900E67A5F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C115E2DD5016500E67A5F /* WebView.swift */; };
 		2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */; };
 		26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AC2BA736A800823338 /* NoticeModel.swift */; };
 		26B742AF2BA736C200823338 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AE2BA736C200823338 /* NoticeViewModel.swift */; };
@@ -47,6 +48,7 @@
 		264C11132DD0463100E67A5F /* ThumbnailDiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailDiskCache.swift; sourceTree = "<group>"; };
 		264C11332DD2680800E67A5F /* ViewSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSelection.swift; sourceTree = "<group>"; };
 		264C11372DD3AC3300E67A5F /* SICapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SICapacity.swift; sourceTree = "<group>"; };
+		264C115E2DD5016500E67A5F /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoLibraryManager.swift; sourceTree = "<group>"; };
 		26B742AC2BA736A800823338 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
 		26B742AE2BA736C200823338 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				2649A4AE2BFF8D2B007FCC55 /* NetworkPlayerView.swift */,
+				264C115E2DD5016500E67A5F /* WebView.swift */,
 			);
 			path = NetworkVideo;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26B742AF2BA736C200823338 /* NoticeViewModel.swift in Sources */,
+				264C115F2DD5016900E67A5F /* WebView.swift in Sources */,
 				26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */,
 				26E801D12DB5193100CE20BB /* LocalPlayerViewController.swift in Sources */,
 				26EBB1CE2BE26A3500C83CA2 /* LocalVideoPlayView.swift in Sources */,
