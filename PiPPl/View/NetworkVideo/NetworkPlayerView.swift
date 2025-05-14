@@ -8,8 +8,9 @@
 import SwiftUI
 import WebKit
 
-struct NetworkPlayerView: View {
-    let webView = WebView()
+
+struct LegacyNetworkPlayerView: View {
+    let webView = LegacyWebView()
 
     var body: some View {
         webView
@@ -19,7 +20,7 @@ struct NetworkPlayerView: View {
     }
 }
 
-struct WebView: UIViewControllerRepresentable {
+struct LegacyWebView: UIViewControllerRepresentable {
     let networkPlayerView = NetworkPlayerViewController()
 
     func makeUIViewController(context: Context) -> UIViewController {
