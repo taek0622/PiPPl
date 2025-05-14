@@ -9,12 +9,21 @@ import SwiftUI
 import WebKit
 
 struct NetworkPlayerView: View {
+    @Environment(\.colorScheme) var colorScheme
+    @State private var searchingText = "https://www.google.com/"
+    @State private var isSubmitted = false
+    @State private var isPiPOn = false
+    @State private var isPausedVideo = false
 
     var body: some View {
     }
 }
 
 struct WebView: UIViewRepresentable {
+    @Binding var searchingText: String
+    @Binding var isSubmitted: Bool
+    @Binding var isPiPOn: Bool
+    @Binding var isPausedVideo: Bool
     let domains: Set<String> = Set(["AAA", "AARP", "ABB", "ABBOTT", "ABBVIE", "ABC", "ABLE", "ABOGADO", "ABUDHABI", "AC",
                                 "ACADEMY", "ACCENTURE", "ACCOUNTANT", "ACCOUNTANTS", "ACO", "ACTOR", "AD", "ADS", "ADULT", "AE",
                                 "AEG", "AERO", "AETNA", "AF", "AFL", "AFRICA", "AG", "AGAKHAN", "AGENCY", "AI",
