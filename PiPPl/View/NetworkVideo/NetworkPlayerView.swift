@@ -207,6 +207,16 @@ struct WebView: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> WKWebView {
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.allowsInlineMediaPlayback = true
+        webConfiguration.allowsPictureInPictureMediaPlayback = true
+
+        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.allowsBackForwardNavigationGestures = true
+        webView.navigationDelegate = context.coordinator
+        webView.load(URLRequest(url: URL(string: searchingText)!))
+
+        return webView
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
