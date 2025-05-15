@@ -10,8 +10,9 @@ import Photos
 import SwiftUI
 
 struct LocalVideoPlayView: View {
-    @StateObject private var localVideoPlayer = LocalVideoPlayer.shared
+    @StateObject private var localVideoPlayer = LocalVideoPlayer()
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.isPresented) var isPresented
     var asset: PHAsset
 
     var body: some View {
@@ -33,11 +34,28 @@ struct LocalVideoPlayView: View {
                 .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? UIScreen.main.bounds.width : UIScreen.main.bounds.width / 5 * 3)
             }
         }
+        .toolbar(content: {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text(asset.creationDate!, style: .date)
+                        .font(.system(size: 15, weight: .semibold))
+                    Text(asset.creationDate!, style: .time)
+                        .foregroundStyle(.gray)
+                        .font(.system(size: 12))
+                }
+            }
+        })
         .onAppear {
-            localVideoPlayer.configureVideo(asset)
+            if !isPresented {
+                Task {
+                    await localVideoPlayer.configureVideo(asset)
+                }
+            }
         }
         .onDisappear {
-            localVideoPlayer.pause()
+            if !isPresented {
+                localVideoPlayer.pause()
+            }
         }
     }
 }

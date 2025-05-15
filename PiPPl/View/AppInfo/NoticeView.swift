@@ -8,18 +8,11 @@
 import SwiftUI
 
 struct NoticeView: View {
-    struct NoticeItem: Hashable, Identifiable {
-        var id: Self { self }
-        var title: String
-        var date: String? = nil
-        var content: [NoticeItem]? = nil
-    }
 
-    let networkManager = NetworkManager.shared
-    @State private var item = [NoticeItem]()
+    @StateObject var noticeViewModel = NoticeViewModel()
 
     var body: some View {
-        List(item.reversed(), children: \.content) { item in
+        List(noticeViewModel.notices.reversed(), children: \.content) { item in
             VStack(alignment: .leading) {
                 if item.date != nil {
                     Text(item.date!)
@@ -31,17 +24,11 @@ struct NoticeView: View {
                     .font(.system(size: 17))
             }
         }
+        .task {
+            await noticeViewModel.requestNoticeData()
+        }
         .listStyle(.grouped)
         .navigationTitle(AppText.notice)
-        .onAppear {
-            item = []
-
-            networkManager.requestNoticeData { notices in
-                for notice in notices {
-                    item.append(NoticeItem(title: notice.title, date: notice.createDate, content: [NoticeItem(title: notice.content)]))
-                }
-            }
-        }
     }
 }
 

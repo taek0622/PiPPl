@@ -8,7 +8,7 @@
 ![Platforms-iPadOS](https://img.shields.io/badge/iPadOS-16.0+-skyblue)
 
 ## 다운로드
-<a href="https://apps.apple.com/kr/app/pippl/id6479563734">![Latest_Version](https://img.shields.io/badge/version-2.3.0-green)<br>
+<a href="https://apps.apple.com/kr/app/pippl/id6479563734">![Latest_Version](https://img.shields.io/badge/version-2.4.0-green)<br>
 <img src="https://github.com/taek0622/PiPPl/assets/81027256/c69ed780-ff4a-42fd-9ba4-a8d643f78454"></a>
 
 ## iOS 스크린샷
