@@ -9,13 +9,14 @@ import Photos
 import SwiftUI
 
 struct LocalVideoGalleryView: View {
-    @AppStorage("updateAlertCount") var updateAlertCount: Int = 0
-    @State private var isPermissionAccessable = false
-    @State private var updateState: UpdateState = .latest
-    @State private var isUpdateAlertOpen = false
-    @StateObject private var localVideoLibraryManager = LocalVideoLibraryManager()
-    @EnvironmentObject var appVersionManager: AppVersionManager
     @Environment(\.colorScheme) private var colorScheme
+    @EnvironmentObject var appVersionManager: AppVersionManager
+    @AppStorage("updateAlertCount") var updateAlertCount: Int = 0
+    @Binding var localPath: NavigationPath
+    @State private var isPermissionAccessable = false
+    @State private var isUpdateAlertOpen = false
+    @ObservedObject var localVideoLibraryManager: LocalVideoLibraryManager
+
     var rowItemCount: Double {
         if UIDevice.current.userInterfaceIdiom == .phone {
             if UIDevice.current.orientation == .portrait {
@@ -62,9 +63,8 @@ struct LocalVideoGalleryView: View {
                 ScrollView {
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed(UIScreen.main.bounds.width/rowItemCount), spacing: 1), count: Int(rowItemCount)), spacing: 1) {
                         ForEach(localVideoLibraryManager.videos, id: \.id) { video in
-                            NavigationLink {
-                                LocalVideoPlayView(asset: video.asset)
-                                    .toolbar(.hidden, for: .tabBar)
+                            Button {
+                                localPath.append(LocalViewSelection.playView(video))
                             } label: {
                                 ZStack(alignment: .bottomTrailing) {
                                     AssetImage(asset: video.asset, localVideoLibraryManager: localVideoLibraryManager)
@@ -101,18 +101,18 @@ struct LocalVideoGalleryView: View {
             }
         }
         .toolbar {
-            if updateState != .latest {
+            if appVersionManager.updateState != .latest {
                 Button {
                     isUpdateAlertOpen = true
                 } label: {
                     Image(systemName: "arrow.up.square.fill")
-                        .foregroundStyle(updateState.updateNotificationColor)
+                        .foregroundStyle(appVersionManager.updateState.updateNotificationColor)
                 }
 
             }
         }
-        .alert(updateState.updateAlertTitle, isPresented: $isUpdateAlertOpen) {
-            Button(updateState.updateAlertPrimaryAction) {
+        .alert(appVersionManager.updateState.updateAlertTitle, isPresented: $isUpdateAlertOpen) {
+            Button(appVersionManager.updateState.updateAlertPrimaryAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
                 guard let url = URL(string: appStoreOpenURL) else { return }
                 if UIApplication.shared.canOpenURL(url) {
@@ -120,11 +120,11 @@ struct LocalVideoGalleryView: View {
                 }
             }
 
-            if updateState == .recommended || updateState == .available {
+            if appVersionManager.updateState == .recommended || appVersionManager.updateState == .available {
                 Button(AppText.updateAvailableAlertPostponeAction, role: .cancel) {}
             }
         } message: {
-            Text(updateState.updateAlertBody)
+            Text(appVersionManager.updateState.updateAlertBody)
         }
         .onAppear {
             switch localVideoLibraryManager.status {
@@ -142,12 +142,10 @@ struct LocalVideoGalleryView: View {
             }
 
             Task {
-                updateState = await appVersionManager.checkNewUpdate()
-
-                if updateState == .required && !appVersionManager.isUpdateAlertOpened {
+                if appVersionManager.updateState == .required && !appVersionManager.isUpdateAlertOpened {
                     isUpdateAlertOpen = true
                     appVersionManager.isUpdateAlertOpened = true
-                } else if updateState == .recommended && !appVersionManager.isUpdateAlertOpened {
+                } else if appVersionManager.updateState == .recommended && !appVersionManager.isUpdateAlertOpened {
                     if updateAlertCount == 0 {
                         isUpdateAlertOpen = true
                         appVersionManager.isUpdateAlertOpened = true
@@ -157,6 +155,13 @@ struct LocalVideoGalleryView: View {
 
                     if updateAlertCount == 3 { updateAlertCount = 0 }
                 }
+            }
+        }
+        .navigationDestination(for: LocalViewSelection.self) { view in
+            switch view {
+                case .playView(let video):
+                    LocalVideoPlayView(asset: video.asset)
+                        .toolbar(.hidden, for: .tabBar)
             }
         }
     }
@@ -184,6 +189,6 @@ struct AssetImage: View {
 
 #Preview {
     NavigationView {
-        LocalVideoGalleryView()
+        LocalVideoGalleryView(localPath: .constant(NavigationPath()), localVideoLibraryManager: LocalVideoLibraryManager())
     }
 }

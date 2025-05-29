@@ -7,7 +7,7 @@
 
 import Photos
 
-struct Video: Identifiable {
+struct Video: Identifiable, Hashable {
     var id: String { asset.localIdentifier }
     var asset: PHAsset
 }
