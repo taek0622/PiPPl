@@ -170,6 +170,15 @@ struct WebView: UIViewRepresentable {
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
             parent.searchingText = webView.url?.absoluteString ?? ""
         }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            Task {
+                guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist") else { return }
+                guard let property = NSDictionary(contentsOfFile: filePath) else { return }
+                guard let pipLogic = property["PiPObserveAndStart"] as? String else { return }
+                try await webView.evaluateJavaScript(pipLogic)
+            }
+        }
     }
 
     func makeUIView(context: Context) -> WKWebView {
