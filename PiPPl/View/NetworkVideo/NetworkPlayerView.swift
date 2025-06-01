@@ -6,30 +6,38 @@
 //
 
 import SwiftUI
-import WebKit
 
 struct NetworkPlayerView: View {
-    let webView = WebView()
+    @Environment(\.colorScheme) var colorScheme
+    @State private var searchingText = "https://www.google.com/"
+    @State private var isSubmitted = false
+    @State private var isPiPOn = false
+    @State private var isPausedVideo = false
 
     var body: some View {
-        webView
-            .onDisappear {
-                webView.pauseVideo()
+        WebView(searchingText: $searchingText, isSubmitted: $isSubmitted, isPiPOn: $isPiPOn, isPausedVideo: $isPausedVideo)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    TextField(AppText.searchFieldPlaceholder, text: $searchingText)
+                        .padding(4)
+                        .background(Color(UIColor(white: colorScheme == .light ? 0.9 : 0.7, alpha: 1)))
+                        .clipShape(.rect(cornerRadius: 8))
+                        .onSubmit {
+                            isSubmitted = true
+                        }
+                }
+
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isPiPOn = true
+                    } label: {
+                        Image(systemName: "pip.enter")
+                    }
+                }
             }
-    }
-}
-
-struct WebView: UIViewControllerRepresentable {
-    let networkPlayerView = NetworkPlayerViewController()
-
-    func makeUIViewController(context: Context) -> UIViewController {
-        return UINavigationController(rootViewController: networkPlayerView)
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-
-    func pauseVideo() {
-        networkPlayerView.pauseVideo()
+            .onDisappear {
+                isPausedVideo = true
+            }
     }
 }
 
