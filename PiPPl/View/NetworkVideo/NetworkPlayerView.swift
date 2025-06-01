@@ -11,11 +11,10 @@ struct NetworkPlayerView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var searchingText = "https://www.google.com/"
     @State private var isSubmitted = false
-    @State private var isPiPOn = false
     @State private var isPausedVideo = false
 
     var body: some View {
-        WebView(searchingText: $searchingText, isSubmitted: $isSubmitted, isPiPOn: $isPiPOn, isPausedVideo: $isPausedVideo)
+        WebView(searchingText: $searchingText, isSubmitted: $isSubmitted, isPausedVideo: $isPausedVideo)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     TextField(AppText.searchFieldPlaceholder, text: $searchingText)
@@ -25,14 +24,6 @@ struct NetworkPlayerView: View {
                         .onSubmit {
                             isSubmitted = true
                         }
-                }
-
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        isPiPOn = true
-                    } label: {
-                        Image(systemName: "pip.enter")
-                    }
                 }
             }
             .onDisappear {
