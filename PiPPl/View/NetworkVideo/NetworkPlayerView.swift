@@ -21,6 +21,9 @@ struct NetworkPlayerView: View {
                         .padding(4)
                         .background(Color(UIColor(white: colorScheme == .light ? 0.9 : 0.7, alpha: 1)))
                         .clipShape(.rect(cornerRadius: 8))
+                        .onAppear {
+                            UITextField.appearance().clearButtonMode = .whileEditing
+                        }
                         .onSubmit {
                             isSubmitted = true
                         }
