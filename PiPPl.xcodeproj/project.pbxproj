@@ -17,6 +17,7 @@
 		264C11142DD0463700E67A5F /* ThumbnailDiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C11132DD0463100E67A5F /* ThumbnailDiskCache.swift */; };
 		264C11342DD2680C00E67A5F /* ViewSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C11332DD2680800E67A5F /* ViewSelection.swift */; };
 		264C11382DD3AC3800E67A5F /* SICapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C11372DD3AC3300E67A5F /* SICapacity.swift */; };
+		264C115F2DD5016900E67A5F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C115E2DD5016500E67A5F /* WebView.swift */; };
 		2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */; };
 		26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AC2BA736A800823338 /* NoticeModel.swift */; };
 		26B742AF2BA736C200823338 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B742AE2BA736C200823338 /* NoticeViewModel.swift */; };
@@ -29,7 +30,6 @@
 		26E801D92DB9190500CE20BB /* CustomerServiceMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E801D82DB9190500CE20BB /* CustomerServiceMailView.swift */; };
 		26EB7EE32B56AA1300282354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26EB7EE22B56AA1300282354 /* Assets.xcassets */; };
 		26EB7EE62B56AA1300282354 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26EB7EE42B56AA1300282354 /* LaunchScreen.storyboard */; };
-		26EB7EF02B56AB8100282354 /* NetworkPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EB7EEF2B56AB8100282354 /* NetworkPlayerViewController.swift */; };
 		26EBB1962BC728B600C83CA2 /* AppVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBB1952BC728B600C83CA2 /* AppVersionManager.swift */; };
 		26EBB1C42BDFE88900C83CA2 /* PiPPlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBB1C32BDFE88900C83CA2 /* PiPPlApp.swift */; };
 		26EBB1C62BDFE8B700C83CA2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EBB1C52BDFE8B700C83CA2 /* ContentView.swift */; };
@@ -48,6 +48,7 @@
 		264C11132DD0463100E67A5F /* ThumbnailDiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailDiskCache.swift; sourceTree = "<group>"; };
 		264C11332DD2680800E67A5F /* ViewSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSelection.swift; sourceTree = "<group>"; };
 		264C11372DD3AC3300E67A5F /* SICapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SICapacity.swift; sourceTree = "<group>"; };
+		264C115E2DD5016500E67A5F /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		2683F5502B583E3C00C1CEEB /* LocalVideoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalVideoLibraryManager.swift; sourceTree = "<group>"; };
 		26B742AC2BA736A800823338 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
 		26B742AE2BA736C200823338 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		26EB7EE22B56AA1300282354 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26EB7EE52B56AA1300282354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26EB7EE72B56AA1300282354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26EB7EEF2B56AB8100282354 /* NetworkPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPlayerViewController.swift; sourceTree = "<group>"; };
 		26EB7EF32B56AC9900282354 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		26EBB1952BC728B600C83CA2 /* AppVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionManager.swift; sourceTree = "<group>"; };
 		26EBB1C32BDFE88900C83CA2 /* PiPPlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPPlApp.swift; sourceTree = "<group>"; };
@@ -96,8 +96,8 @@
 		263F037B2B5984E300EAC60E /* NetworkVideo */ = {
 			isa = PBXGroup;
 			children = (
-				26EB7EEF2B56AB8100282354 /* NetworkPlayerViewController.swift */,
 				2649A4AE2BFF8D2B007FCC55 /* NetworkPlayerView.swift */,
+				264C115E2DD5016500E67A5F /* WebView.swift */,
 			);
 			path = NetworkVideo;
 			sourceTree = "<group>";
@@ -219,7 +219,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					26EB7ED52B56AA1000282354 = {
 						CreatedOnToolsVersion = 15.1;
@@ -266,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26B742AF2BA736C200823338 /* NoticeViewModel.swift in Sources */,
+				264C115F2DD5016900E67A5F /* WebView.swift in Sources */,
 				26DA7D512BB5D3A3002AF316 /* AppText.swift in Sources */,
 				26E801D12DB5193100CE20BB /* LocalPlayerViewController.swift in Sources */,
 				26EBB1CE2BE26A3500C83CA2 /* LocalVideoPlayView.swift in Sources */,
@@ -276,7 +277,6 @@
 				26E63A6A2DC939B4000D2C53 /* VersionModel.swift in Sources */,
 				26B742AD2BA736A800823338 /* NoticeModel.swift in Sources */,
 				264C11122DD0460600E67A5F /* ThumbnailMemoryCache.swift in Sources */,
-				26EB7EF02B56AB8100282354 /* NetworkPlayerViewController.swift in Sources */,
 				264C11102DD045C600E67A5F /* VideoModel.swift in Sources */,
 				2683F5512B583E3C00C1CEEB /* LocalVideoLibraryManager.swift in Sources */,
 				263F037F2B598DFB00EAC60E /* LocalVideoPlayer.swift in Sources */,
@@ -316,7 +316,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -343,6 +343,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = F2SSSA5NRF;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -360,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -380,7 +381,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -407,6 +408,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = F2SSSA5NRF;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -418,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -435,7 +437,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F2SSSA5NRF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PiPPl/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
@@ -449,7 +450,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -469,7 +470,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F2SSSA5NRF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PiPPl/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
@@ -483,7 +483,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.immeenu.PiPPl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

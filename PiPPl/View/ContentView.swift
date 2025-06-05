@@ -24,9 +24,13 @@ struct ContentView: View {
                 .tabItem { Label(AppText.localVideo, systemImage: "play.square") }
                 .tag(ViewSelection.localVideo)
 
-                NetworkPlayerView()
-                    .tabItem { Label(AppText.networkVideo, systemImage: "globe") }
-                    .tag(ViewSelection.networkVideo)
+                NavigationStack {
+                    NetworkPlayerView()
+                        .navigationTitle(AppText.networkVideo)
+                        .navigationBarTitleDisplayMode(.inline)
+                }
+                .tabItem { Label(AppText.networkVideo, systemImage: "globe") }
+                .tag(ViewSelection.networkVideo)
 
                 NavigationStack(path: $appInfoPath) {
                     AppInfoView(appInfoPath: $appInfoPath)
@@ -71,7 +75,7 @@ struct ContentView: View {
                             NavigationStack {
                                 NetworkPlayerView()
                                     .navigationTitle(AppText.networkVideo)
-                                    .toolbar(.hidden)
+                                    .navigationBarTitleDisplayMode(.inline)
                             }
                         case .appInfo:
                             NavigationStack(path: $appInfoPath) {
