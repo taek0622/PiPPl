@@ -11,7 +11,6 @@ import WebKit
 struct WebView: UIViewRepresentable {
     @Binding var searchingText: String
     @Binding var isSubmitted: Bool
-    @Binding var isPiPOn: Bool
     @Binding var isPausedVideo: Bool
     let domains: Set<String> = Set(["AAA", "AARP", "ABB", "ABBOTT", "ABBVIE", "ABC", "ABLE", "ABOGADO", "ABUDHABI", "AC",
                                 "ACADEMY", "ACCENTURE", "ACCOUNTANT", "ACCOUNTANTS", "ACO", "ACTOR", "AD", "ADS", "ADULT", "AE",
@@ -170,6 +169,15 @@ struct WebView: UIViewRepresentable {
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
             parent.searchingText = webView.url?.absoluteString ?? ""
         }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            Task {
+                guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist") else { return }
+                guard let property = NSDictionary(contentsOfFile: filePath) else { return }
+                guard let pipLogic = property["PiPObserveAndStart"] as? String else { return }
+                try await webView.evaluateJavaScript(pipLogic)
+            }
+        }
     }
 
     func makeUIView(context: Context) -> WKWebView {
@@ -190,16 +198,6 @@ struct WebView: UIViewRepresentable {
             Task {
                 webView.load(getURLRequest(from: searchingText))
                 isSubmitted = false
-            }
-        }
-
-        if isPiPOn {
-            Task {
-                guard let filePath = Bundle.main.path(forResource: "Properties", ofType: "plist") else { return }
-                guard let property = NSDictionary(contentsOfFile: filePath) else { return }
-                guard let pipLogic = property["PiPLogic"] as? String else { return }
-                try await webView.evaluateJavaScript(pipLogic)
-                isPiPOn = false
             }
         }
 
