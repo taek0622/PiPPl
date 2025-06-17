@@ -28,6 +28,30 @@ struct NetworkPlayerView: View {
                             isSubmitted = true
                         }
                 }
+
+                ToolbarItem(placement: .navigation) {
+                    Menu {
+                        Button("Google") {
+                            searchingText = "https://www.google.com/"
+                            isSubmitted = true
+                        }
+                        Button("YouTube") {
+                            searchingText = "https://www.youtube.com/"
+                            isSubmitted = true
+                        }
+                        Button("X (Twitter)") {
+                            searchingText = "https://x.com/home"
+                            isSubmitted = true
+                        }
+                        Button("Instagram") {
+                            searchingText = "https://www.instagram.com/"
+                            isSubmitted = true
+                        }
+                    } label: {
+                        Image(systemName: "list.bullet")
+                    }
+
+                }
             }
             .onDisappear {
                 isPausedVideo = true

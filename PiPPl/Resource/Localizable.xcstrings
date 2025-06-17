@@ -181,6 +181,12 @@
         }
       }
     },
+    "Google" : {
+      "shouldTranslate" : false
+    },
+    "Instagram" : {
+      "shouldTranslate" : false
+    },
     "LatestVersionAlertBody" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -650,6 +656,12 @@
           }
         }
       }
+    },
+    "X (Twitter)" : {
+      "shouldTranslate" : false
+    },
+    "YouTube" : {
+      "shouldTranslate" : false
     }
   },
   "version" : "1.0"
