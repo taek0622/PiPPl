@@ -99,8 +99,8 @@ struct AppInfoView: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $isOpenSafariView, content: {
-            SafariView(url: url)
+        .fullScreenCover(item: $safariViewType, content: { type in
+            SafariView(url: type.url)
         })
         .sheet(isPresented: $isMailSend, content: {
             CustomerServiceMailView()
