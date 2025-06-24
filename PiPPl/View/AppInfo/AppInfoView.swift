@@ -15,7 +15,6 @@ struct AppInfoView: View {
     @State private var isOpenSafariView = false
     @State private var isOldVersion = false
     @State private var isSelectAppVersion = false
-    @State private var url = URL(string: "https://www.google.com")!
     @State private var safariViewType: SafariViewType?
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
@@ -55,8 +54,7 @@ struct AppInfoView: View {
                 }
             }
             Button(AppText.developerInfo) {
-                url = URL(string: "https://github.com/taek0622")!
-                isOpenSafariView = true
+                safariViewType = .developer
             }
             Button(AppText.customerService) {
                 if !MFMailComposeViewController.canSendMail() {
@@ -66,8 +64,7 @@ struct AppInfoView: View {
                 }
             }
             Button(AppText.license) {
-                url = URL(string: "https://pippl.notion.site/e318bd246e894b348ece6387e68270de")!
-                isOpenSafariView = true
+                safariViewType = .license
             }
             Button {
                 Task {
