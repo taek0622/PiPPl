@@ -16,10 +16,31 @@ struct AppInfoView: View {
     @State private var isOldVersion = false
     @State private var isSelectAppVersion = false
     @State private var url = URL(string: "https://www.google.com")!
+    @State private var safariViewType: SafariViewType?
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
     @State private var isClearCache: Bool = false
     @State private var cacheCapacity = "0B"
+
+    enum SafariViewType: Identifiable {
+        case developer, license
+
+        var id: String {
+            switch self {
+                case .developer: return "developer"
+                case .license: return "license"
+            }
+        }
+
+        var url: URL {
+            switch self {
+                case .developer:
+                    return URL(string: "https://github.com/taek0622")!
+                case .license:
+                    return URL(string: "https://pippl.notion.site/e318bd246e894b348ece6387e68270de")!
+            }
+        }
+    }
 
     var body: some View {
         List {
