@@ -14,11 +14,10 @@ struct AppInfoView: View {
     @Binding var appInfoPath: NavigationPath
     @State private var isOpenSafariView = false
     @State private var isOldVersion = false
-    @State private var isSelectAppVersion = false
     @State private var safariViewType: SafariViewType?
     @State private var isMailSend = false
-    @State private var isUnavailableMail = false
-    @State private var isClearCache: Bool = false
+    @State private var isShowingAlert = false
+    @State private var alertType: AlertType = .latestVersion
     @State private var cacheCapacity = "0B"
 
     enum SafariViewType: Identifiable {
@@ -41,6 +40,34 @@ struct AppInfoView: View {
         }
     }
 
+    enum AlertType: Identifiable {
+        case cantSendMail, latestVersion, clearCache
+
+        var id: String {
+            switch self {
+                case .cantSendMail: return "cantSendMail"
+                case .latestVersion: return "latestVersion"
+                case .clearCache: return "clearCache"
+            }
+        }
+
+        var title: String {
+            switch self {
+                case .cantSendMail: return AppText.cantSendMailAlertTitle
+                case .latestVersion: return AppText.latestVersionAlertTitle
+                case .clearCache: return AppText.clearAllCache
+            }
+        }
+
+        var message: String {
+            switch self {
+                case .cantSendMail: return AppText.cantSendMailAlertBody
+                case .latestVersion: return AppText.latestVersionAlertBody
+                case .clearCache: return AppText.clearCacheAlertBody
+            }
+        }
+    }
+
     var body: some View {
         List {
             Button {
@@ -58,7 +85,8 @@ struct AppInfoView: View {
             }
             Button(AppText.customerService) {
                 if !MFMailComposeViewController.canSendMail() {
-                    isUnavailableMail = true
+                    alertType = .cantSendMail
+                    isShowingAlert = true
                 } else {
                     isMailSend = true
                 }
@@ -69,7 +97,8 @@ struct AppInfoView: View {
             Button {
                 Task {
                     if appVersionManager.updateState == .latest {
-                        isSelectAppVersion = true
+                        alertType = .latestVersion
+                        isShowingAlert = true
                     } else {
                         isOldVersion = true
                     }
@@ -84,7 +113,8 @@ struct AppInfoView: View {
                 }
             }
             Button {
-                isClearCache = true
+                alertType = .clearCache
+                isShowingAlert = true
             } label: {
                 HStack {
                     Text(AppText.clearAllCache)
@@ -102,20 +132,26 @@ struct AppInfoView: View {
         .sheet(isPresented: $isMailSend, content: {
             CustomerServiceMailView()
         })
-        .alert(AppText.cantSendMailAlertTitle, isPresented: $isUnavailableMail, actions: {
-            Button(AppText.confirm) {
-                isUnavailableMail = false
+        .alert(alertType.title, isPresented: $isShowingAlert, actions: {
+            switch alertType {
+                case .cantSendMail:
+                    Button(AppText.confirm) {}
+                case .latestVersion:
+                    Button(AppText.confirm) {}
+                case .clearCache:
+                    Button(AppText.confirm, role: .destructive) {
+                        Task {
+                            await ThumbnailDiskCache.shared.removeAllThumbnails()
+                            ThumbnailMemoryCache.shared.removeAllThumbnails()
+                            cacheCapacity = ThumbnailDiskCache.shared.cacheSizeString()
+                        }
+                    }
+
+                    Button(AppText.cancel, role: .cancel) {}
             }
         }, message: {
-            Text(AppText.cantSendMailAlertBody)
+            Text(alertType.message)
         })
-        .alert(AppText.latestVersionAlertTitle, isPresented: $isSelectAppVersion) {
-            Button(AppText.confirm) {
-                isSelectAppVersion = false
-            }
-        } message: {
-            Text(AppText.latestVersionAlertBody)
-        }
         .alert(appVersionManager.updateState.updateAlertTitle, isPresented: $isOldVersion) {
             Button(appVersionManager.updateState.updateAlertPrimaryAction) {
                 let appStoreOpenURL = "itms-apps://itunes.apple.com/app/apple-store/\(appVersionManager.iTunesID)"
@@ -130,19 +166,6 @@ struct AppInfoView: View {
             }
         } message: {
             Text(appVersionManager.updateState.updateAlertBody)
-        }
-        .alert(AppText.clearAllCache, isPresented: $isClearCache) {
-            Button(AppText.confirm, role: .destructive) {
-                Task {
-                    await ThumbnailDiskCache.shared.removeAllThumbnails()
-                    ThumbnailMemoryCache.shared.removeAllThumbnails()
-                    cacheCapacity = ThumbnailDiskCache.shared.cacheSizeString()
-                }
-            }
-
-            Button(AppText.cancel, role: .cancel) {}
-        } message: {
-            Text(AppText.clearCacheAlertBody)
         }
         .onAppear {
             cacheCapacity = ThumbnailDiskCache.shared.cacheSizeString()
