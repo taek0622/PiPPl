@@ -52,6 +52,21 @@ struct AppInfoView: View {
             }
         }
 
+        var title: String {
+            switch self {
+                case .cantSendMail: return AppText.cantSendMailAlertTitle
+                case .latestVersion: return AppText.latestVersionAlertTitle
+                case .clearCache: return AppText.clearAllCache
+            }
+        }
+
+        var message: String {
+            switch self {
+                case .cantSendMail: return AppText.cantSendMailAlertBody
+                case .latestVersion: return AppText.latestVersionAlertBody
+                case .clearCache: return AppText.clearCacheAlertBody
+            }
+        }
     }
 
     var body: some View {
