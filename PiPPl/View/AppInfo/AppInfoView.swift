@@ -41,6 +41,19 @@ struct AppInfoView: View {
         }
     }
 
+    enum AlertType: Identifiable {
+        case cantSendMail, latestVersion, clearCache
+
+        var id: String {
+            switch self {
+                case .cantSendMail: return "cantSendMail"
+                case .latestVersion: return "latestVersion"
+                case .clearCache: return "clearCache"
+            }
+        }
+
+    }
+
     var body: some View {
         List {
             Button {
