@@ -19,6 +19,8 @@ struct AppInfoView: View {
     @State private var isMailSend = false
     @State private var isUnavailableMail = false
     @State private var isClearCache: Bool = false
+    @State private var isShowingAlert = false
+    @State private var alertType: AlertType = .latestVersion
     @State private var cacheCapacity = "0B"
 
     enum SafariViewType: Identifiable {
